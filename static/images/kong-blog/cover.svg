@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- Gradient Background -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#003459;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#001e33;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grad1)"/>
+
+  <!-- Decorative Shapes -->
+  <circle cx="100" cy="100" r="150" fill="#ffffff" opacity="0.05"/>
+  <circle cx="1100" cy="530" r="200" fill="#ffffff" opacity="0.05"/>
+  
+  <!-- Kubernetes Logo Outline (Simulated) -->
+  <path d="M600,100 L900,250 L900,500 L600,650 L300,500 L300,250 Z" stroke="#326ce5" stroke-width="5" fill="none" opacity="0.2"/>
+
+  <!-- Main Text -->
+  <text x="600" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="60" fill="#ffffff">Kong API Gateway</text>
+  <text x="600" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="40" fill="#8dc63f">Best Practices on GKE</text>
+
+  <!-- Sub Text -->
+  <text x="600" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#bbdefb">Architecture • Security • Optimization</text>
+
+  <!-- Logos/Icons Area (Abstract representation) -->
+  <circle cx="500" cy="550" r="30" fill="#326ce5"/> <!-- K8s color -->
+  <circle cx="600" cy="550" r="30" fill="#4285f4"/> <!-- GCP color -->
+  <circle cx="700" cy="550" r="30" fill="#003459" stroke="white" stroke-width="2"/> <!-- Kong color -->
+
+</svg>

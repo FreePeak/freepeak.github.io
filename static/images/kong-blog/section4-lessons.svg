@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300">
+  <!-- Background -->
+  <rect width="800" height="300" fill="#fff" rx="10" ry="10"/>
+
+  <text x="400" y="40" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#333">Bài Học Thực Tế</text>
+
+  <!-- Lesson 1: DB-less -->
+  <g transform="translate(100, 80)">
+    <rect width="180" height="150" fill="#fce4ec" rx="10"/>
+    <text x="90" y="30" text-anchor="middle" font-family="Arial" font-weight="bold" fill="#880e4f" font-size="16">1. DB-less Mode</text>
+    
+    <!-- Database Icon Strikethrough -->
+    <path d="M60,70 C60,60 120,60 120,70 L120,110 C120,120 60,120 60,110 Z" fill="none" stroke="#ad1457" stroke-width="2"/>
+    <ellipse cx="90" cy="70" rx="30" ry="10" stroke="#ad1457" fill="none"/>
+    <line x1="50" y1="120" x2="130" y2="60" stroke="#c2185b" stroke-width="4"/>
+    
+    <text x="90" y="140" text-anchor="middle" font-family="Arial" font-size="12" fill="#880e4f">No Postgres Dependency</text>
+  </g>
+
+  <!-- Lesson 2: Health Checks -->
+  <g transform="translate(310, 80)">
+    <rect width="180" height="150" fill="#e8f5e9" rx="10"/>
+    <text x="90" y="30" text-anchor="middle" font-family="Arial" font-weight="bold" fill="#1b5e20" font-size="16">2. Health Checks</text>
+    
+    <!-- Heartbeat Line -->
+    <polyline points="40,90 60,90 70,60 80,110 90,70 110,90 140,90" fill="none" stroke="#2e7d32" stroke-width="3"/>
+    
+    <text x="90" y="140" text-anchor="middle" font-family="Arial" font-size="12" fill="#1b5e20">Tune Probes Carefully</text>
+  </g>
+
+  <!-- Lesson 3: Plugin Ordering -->
+  <g transform="translate(520, 80)">
+    <rect width="180" height="150" fill="#fff8e1" rx="10"/>
+    <text x="90" y="30" text-anchor="middle" font-family="Arial" font-weight="bold" fill="#ff6f00" font-size="16">3. Plugin Priority</text>
+    
+    <!-- Stack -->
+    <rect x="50" y="60" width="80" height="20" fill="#ffecb3" stroke="#ff8f00"/>
+    <rect x="50" y="85" width="80" height="20" fill="#ffe082" stroke="#ff8f00"/>
+    <rect x="50" y="110" width="80" height="20" fill="#ffca28" stroke="#ff8f00"/>
+    
+    <text x="90" y="145" text-anchor="middle" font-family="Arial" font-size="12" fill="#ff6f00">Auth > RateLimit > Proxy</text>
+  </g>
+
+</svg>

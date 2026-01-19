@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300">
+  <!-- Background -->
+  <rect width="800" height="300" fill="#ffffff" rx="10" ry="10"/>
+
+  <!-- Legend -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="#333">Kiến Trúc Triển Khai Tiêu Chuẩn</text>
+
+  <!-- Namespaces -->
+  <rect x="50" y="60" width="300" height="200" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" stroke-dasharray="5,5" rx="10"/>
+  <text x="65" y="85" font-family="Arial" font-size="14" font-weight="bold" fill="#7b1fa2">Namespace: kong-system</text>
+
+  <rect x="450" y="60" width="300" height="200" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" stroke-dasharray="5,5" rx="10"/>
+  <text x="465" y="85" font-family="Arial" font-size="14" font-weight="bold" fill="#388e3c">Namespace: app-workloads</text>
+
+  <!-- Kong Pods -->
+  <rect x="100" y="110" width="200" height="120" fill="#003459" rx="5"/>
+  <text x="200" y="140" text-anchor="middle" fill="white" font-family="Arial" font-weight="bold">Kong Proxy</text>
+  <text x="200" y="160" text-anchor="middle" fill="#ccc" font-family="Arial" font-size="12">ReplicaSet (min 3)</text>
+  <text x="200" y="190" text-anchor="middle" fill="#8dc63f" font-family="Arial" font-size="12">HPA Enabled</text>
+
+  <!-- App Pods -->
+  <rect x="500" y="110" width="200" height="50" fill="#ea4335" rx="5"/>
+  <text x="600" y="140" text-anchor="middle" fill="white" font-family="Arial" font-weight="bold">Payment Service</text>
+
+  <rect x="500" y="180" width="200" height="50" fill="#fbbc05" rx="5"/>
+  <text x="600" y="210" text-anchor="middle" fill="white" font-family="Arial" font-weight="bold">Catalog Service</text>
+
+  <!-- Arrow -->
+  <defs>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#388e3c" />
+    </marker>
+  </defs>
+  
+  <line x1="300" y1="135" x2="500" y2="135" stroke="#388e3c" stroke-width="3" marker-end="url(#arrow-green)"/>
+  <line x1="300" y1="205" x2="500" y2="205" stroke="#388e3c" stroke-width="3" marker-end="url(#arrow-green)"/>
+  
+  <text x="400" y="125" text-anchor="middle" font-family="Arial" font-size="10" fill="#555">Internal Traffic</text>
+  <text x="400" y="195" text-anchor="middle" font-family="Arial" font-size="10" fill="#555">Internal Traffic</text>
+
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="220" viewBox="0 0 800 220" role="img" aria-label="Conclusion Checklist">
+  <rect x="0" y="0" width="800" height="220" fill="#ffffff" rx="12" />
+
+  <text x="400" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#111827">Conclusion Checklist</text>
+
+  <!-- Left card: Kong -->
+  <g transform="translate(90,70)">
+    <rect x="0" y="0" width="280" height="120" rx="14" fill="#e6f4ff" stroke="#1d4ed8" stroke-width="2" />
+    <circle cx="34" cy="34" r="16" fill="#34a853" />
+    <path d="M26 34 L33 41 L46 27" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="70" y="40" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#0f172a">Chọn Kong</text>
+
+    <text x="34" y="76" font-family="Arial, sans-serif" font-size="12" fill="#0f172a">- Cần plugins (Auth, RateLimit, Log)</text>
+    <text x="34" y="96" font-family="Arial, sans-serif" font-size="12" fill="#0f172a">- Muốn multi-cloud / tránh lock-in</text>
+    <text x="34" y="116" font-family="Arial, sans-serif" font-size="12" fill="#0f172a">- Traffic lớn, cần policy phức tạp</text>
+  </g>
+
+  <!-- Right card: GCP Ingress -->
+  <g transform="translate(430,70)">
+    <rect x="0" y="0" width="280" height="120" rx="14" fill="#f3f4f6" stroke="#9ca3af" stroke-width="2" />
+    <circle cx="34" cy="34" r="16" fill="#4285f4" />
+    <path d="M26 34 L33 41 L46 27" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="70" y="40" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#0f172a">Chọn GCP Ingress</text>
+
+    <text x="34" y="76" font-family="Arial, sans-serif" font-size="12" fill="#0f172a">- Routing đơn giản, ít vận hành</text>
+    <text x="34" y="96" font-family="Arial, sans-serif" font-size="12" fill="#0f172a">- Tận dụng managed LB của GCP</text>
+    <text x="34" y="116" font-family="Arial, sans-serif" font-size="12" fill="#0f172a">- Team nhỏ, nhu cầu tối thiểu</text>
+  </g>
+</svg>

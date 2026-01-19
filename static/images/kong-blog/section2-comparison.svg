@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <!-- Background -->
+  <rect width="800" height="400" fill="#ffffff" rx="10" ry="10"/>
+  
+  <!-- Header -->
+  <text x="400" y="40" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="#333">Kong Gateway vs. GCP Ingress</text>
+
+  <!-- Columns Background -->
+  <rect x="50" y="70" width="340" height="300" fill="#f8f9fa" rx="10"/>
+  <rect x="410" y="70" width="340" height="300" fill="#e3f2fd" rx="10" stroke="#003459" stroke-width="2"/>
+
+  <!-- Column Headers -->
+  <text x="220" y="100" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#666">GCP Default Ingress</text>
+  <text x="580" y="100" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#003459">Kong Gateway</text>
+
+  <!-- Features List - GCP -->
+  <g transform="translate(80, 140)">
+    <circle cx="10" cy="10" r="8" fill="#ea4335"/> <path d="M6,6 L14,14 M14,6 L6,14" stroke="white" stroke-width="2"/>
+    <text x="30" y="15" font-family="Arial" font-size="14" fill="#555">Plugins Ecosystem</text>
+
+    <circle cx="10" cy="50" r="8" fill="#fbbc05"/> <text x="7" y="54" font-family="Arial" font-size="12" fill="white" font-weight="bold">~</text>
+    <text x="30" y="55" font-family="Arial" font-size="14" fill="#555">Performance</text>
+
+    <circle cx="10" cy="90" r="8" fill="#ea4335"/> <path d="M6,86 L14,94 M14,86 L6,94" stroke="white" stroke-width="2"/>
+    <text x="30" y="95" font-family="Arial" font-size="14" fill="#555">Vendor Agnostic</text>
+
+    <circle cx="10" cy="130" r="8" fill="#34a853"/> <path d="M6,130 L9,134 L14,126" fill="none" stroke="white" stroke-width="2"/>
+    <text x="30" y="135" font-family="Arial" font-size="14" fill="#555">Native Integration</text>
+  </g>
+
+  <!-- Features List - Kong -->
+  <g transform="translate(440, 140)">
+    <circle cx="10" cy="10" r="8" fill="#34a853"/> <path d="M6,10 L9,14 L14,6" fill="none" stroke="white" stroke-width="2"/>
+    <text x="30" y="15" font-family="Arial" font-size="14" fill="#333" font-weight="bold">Rich Plugin Hub</text>
+    <text x="30" y="30" font-family="Arial" font-size="10" fill="#666">(Auth, RateLimit, Log...)</text>
+
+    <circle cx="10" cy="50" r="8" fill="#34a853"/> <path d="M6,50 L9,54 L14,46" fill="none" stroke="white" stroke-width="2"/>
+    <text x="30" y="55" font-family="Arial" font-size="14" fill="#333" font-weight="bold">High Performance</text>
+    <text x="30" y="70" font-family="Arial" font-size="10" fill="#666">(NGINX + LuaJIT)</text>
+
+    <circle cx="10" cy="90" r="8" fill="#34a853"/> <path d="M6,90 L9,94 L14,86" fill="none" stroke="white" stroke-width="2"/>
+    <text x="30" y="95" font-family="Arial" font-size="14" fill="#333" font-weight="bold">Multi-Cloud Ready</text>
+    <text x="30" y="110" font-family="Arial" font-size="10" fill="#666">(AWS, GCP, Azure, On-prem)</text>
+
+    <circle cx="10" cy="130" r="8" fill="#34a853"/> <path d="M6,130 L9,134 L14,126" fill="none" stroke="white" stroke-width="2"/>
+    <text x="30" y="135" font-family="Arial" font-size="14" fill="#333" font-weight="bold">K8s Native (CRDs)</text>
+  </g>
+
+</svg>
