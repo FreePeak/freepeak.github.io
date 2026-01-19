@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="400" viewBox="0 0 1000 400">
+  <defs>
+    <style>
+      :root {
+        --bg: #fdfcfa;
+        --ink: #1f2937;
+        --muted: #6b7280;
+        --good: #059669;
+        --warn: #d97706;
+        --danger: #dc2626;
+      }
+      .title { font: 600 20px ui-sans-serif, -apple-system, sans-serif; fill: var(--ink); }
+      .label { font: 500 16px ui-sans-serif, -apple-system, sans-serif; fill: var(--ink); }
+      .small { font: 400 14px ui-sans-serif, -apple-system, sans-serif; fill: var(--muted); }
+      .code { font: 500 15px ui-monospace, 'Courier New', monospace; }
+    </style>
+    
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f2937"/>
+    </marker>
+  </defs>
+  
+  <rect width="1000" height="400" fill="#fdfcfa"/>
+  
+  <!-- Timeline -->
+  <line x1="100" y1="200" x2="900" y2="200" stroke="#d1d5db" stroke-width="3"/>
+  
+  <!-- Phase 1: Easy start -->
+  <g transform="translate(150, 200)">
+    <circle cx="0" cy="0" r="12" fill="#059669"/>
+    <text x="0" y="-40" class="label" text-anchor="middle">Giai đoạn đầu</text>
+    <text x="0" y="-20" class="small" text-anchor="middle" fill="#059669">Dễ dàng</text>
+    
+    <rect x="-80" y="30" width="160" height="70" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+    <text x="0" y="55" class="small" text-anchor="middle">1 VPC</text>
+    <text x="0" y="75" class="code" text-anchor="middle" fill="#059669">10.0.0.0/16</text>
+    <text x="0" y="90" class="small" text-anchor="middle">✓ Deploy OK</text>
+  </g>
+  
+  <!-- Phase 2: Growing pains -->
+  <g transform="translate(450, 200)">
+    <circle cx="0" cy="0" r="12" fill="#d97706"/>
+    <text x="0" y="-40" class="label" text-anchor="middle">Khi mở rộng</text>
+    <text x="0" y="-20" class="small" text-anchor="middle" fill="#d97706">Bắt đầu rắc rối</text>
+    
+    <rect x="-100" y="30" width="200" height="100" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+    <text x="0" y="55" class="small" text-anchor="middle">3 VPCs, 5 môi trường</text>
+    <text x="0" y="75" class="code" text-anchor="middle" fill="#d97706">10.0.0.0/16 (x3)</text>
+    <text x="0" y="95" class="small" text-anchor="middle">+ Office: 10.0.0.0/16</text>
+    <text x="0" y="115" class="small" text-anchor="middle" fill="#d97706">⚠ CIDR overlap!</text>
+  </g>
+  
+  <!-- Phase 3: Crisis -->
+  <g transform="translate(750, 200)">
+    <circle cx="0" cy="0" r="12" fill="#dc2626"/>
+    <text x="0" y="-40" class="label" text-anchor="middle">Khi cần kết nối</text>
+    <text x="0" y="-20" class="small" text-anchor="middle" fill="#dc2626">Khủng hoảng</text>
+    
+    <rect x="-90" y="30" width="180" height="110" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+    <text x="0" y="55" class="small" text-anchor="middle">VPN / Peering</text>
+    <text x="0" y="75" class="small" text-anchor="middle">Multi-account</text>
+    <text x="0" y="95" class="small" text-anchor="middle" fill="#dc2626">✗ Không route được</text>
+    <text x="0" y="115" class="small" text-anchor="middle" fill="#dc2626">→ Đập đi làm lại</text>
+    <text x="0" y="130" class="small" text-anchor="middle" fill="#dc2626">→ Migrate VPC</text>
+  </g>
+  
+  <!-- Arrows -->
+  <path d="M230 200 L380 200" stroke="#1f2937" stroke-width="2" fill="none" marker-end="url(#arrow)" opacity="0.3"/>
+  <path d="M530 200 L680 200" stroke="#1f2937" stroke-width="2" fill="none" marker-end="url(#arrow)" opacity="0.3"/>
+  
+  <!-- Bottom insight -->
+  <rect x="100" y="350" width="800" height="40" rx="6" fill="#f0fdf4" stroke="#059669" stroke-width="2"/>
+  <text x="500" y="377" class="label" text-anchor="middle" fill="#059669">💡 Giải pháp: Chốt CIDR sớm, quản trị như quyết định cấp dự án</text>
+</svg>

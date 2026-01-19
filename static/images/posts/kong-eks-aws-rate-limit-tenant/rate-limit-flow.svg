@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <style>
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+      .h1 { font-weight: 700; }
+      .h2 { font-weight: 600; }
+      .outline { fill: none; stroke: #0b1220; stroke-width: 2; }
+      .arrow { fill: none; stroke: #0b1220; stroke-width: 2; }
+      .good { fill: #e9fff6; }
+      .warn { fill: #fff6e8; }
+      .bad { fill: #fff1f1; }
+      .muted { opacity: 0.75; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="720" fill="#ffffff"/>
+
+  <text x="80" y="84" class="mono h1" font-size="34" fill="#0b1220">Rate Limiting Flow (per tenant)</text>
+  <text x="80" y="118" class="mono" font-size="18" fill="#0b1220" opacity="0.75">Từ identity -> consumer -> plugin -> response/metrics.</text>
+
+  <g transform="translate(80,190)">
+    <!-- request -->
+    <rect x="0" y="0" width="320" height="120" rx="16" class="outline" fill="#ffffff"/>
+    <text x="20" y="40" class="mono h2" font-size="18" fill="#0b1220">Request</text>
+    <text x="20" y="72" class="mono" font-size="14" fill="#0b1220">Authorization: Bearer &lt;jwt&gt;</text>
+    <text x="20" y="96" class="mono" font-size="14" fill="#0b1220">claim: tenant_id=acme</text>
+
+    <!-- arrow -->
+    <path d="M 320 60 L 400 60" class="arrow"/>
+    <path d="M 396 60 l -12 -7 v 14 z" fill="#0b1220"/>
+
+    <!-- identity extraction -->
+    <rect x="400" y="0" width="320" height="120" rx="16" class="outline" fill="#fff6e8"/>
+    <text x="420" y="40" class="mono h2" font-size="18" fill="#0b1220">Identity Extraction</text>
+    <text x="420" y="72" class="mono" font-size="14" fill="#0b1220">JWT plugin parses claim</text>
+    <text x="420" y="96" class="mono" font-size="14" fill="#0b1220">tenant_id -> consumer</text>
+
+    <!-- arrow -->
+    <path d="M 720 60 L 800 60" class="arrow"/>
+    <path d="M 796 60 l -12 -7 v 14 z" fill="#0b1220"/>
+
+    <!-- consumer + plugin -->
+    <rect x="800" y="0" width="320" height="120" rx="16" class="outline" fill="#e9fff6"/>
+    <text x="820" y="40" class="mono h2" font-size="18" fill="#0b1220">Enforcement</text>
+    <text x="820" y="72" class="mono" font-size="14" fill="#0b1220">Rate Limiting plugin</text>
+    <text x="820" y="96" class="mono" font-size="14" fill="#0b1220">quota window/counter</text>
+  </g>
+
+  <!-- split responses -->
+  <path d="M 1040 310 L 1040 360" class="arrow"/>
+  <path d="M 1040 360 L 820 450" class="arrow"/>
+  <path d="M 1040 360 L 980 450" class="arrow"/>
+
+  <g transform="translate(140,420)">
+    <rect x="0" y="0" width="460" height="180" rx="16" class="outline" fill="#ffffff"/>
+    <text x="20" y="40" class="mono h2" font-size="18" fill="#0b1220">Allowed -> Upstream</text>
+    <text x="20" y="74" class="mono" font-size="14" fill="#0b1220">proxy to service</text>
+    <text x="20" y="98" class="mono" font-size="14" fill="#0b1220">+ metrics/logs</text>
+    <text x="20" y="132" class="mono muted" font-size="14" fill="#0b1220">Examples: latency, 2xx/5xx rate</text>
+  </g>
+
+  <g transform="translate(660,420)">
+    <rect x="0" y="0" width="460" height="180" rx="16" class="outline" fill="#fff1f1"/>
+    <text x="20" y="40" class="mono h2" font-size="18" fill="#0b1220">Exceeded -> 429</text>
+    <text x="20" y="74" class="mono" font-size="14" fill="#0b1220">HTTP 429 Too Many Requests</text>
+    <text x="20" y="98" class="mono" font-size="14" fill="#0b1220">Retry-After + rate limit headers</text>
+    <text x="20" y="132" class="mono muted" font-size="14" fill="#0b1220">Track: tenant with highest 429</text>
+  </g>
+
+  <!-- small legend -->
+  <g transform="translate(80,650)">
+    <text x="0" y="0" class="mono" font-size="12" fill="#0b1220" opacity="0.7">Note: Flow is conceptual; mapping tenant_id->consumer can be done by JWT/key-auth + consumer definition.</text>
+  </g>
+</svg>

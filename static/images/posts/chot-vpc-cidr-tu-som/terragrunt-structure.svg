@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="550" viewBox="0 0 900 550">
+  <defs>
+    <style>
+      .title { font: 600 18px ui-sans-serif, sans-serif; fill: #1f2937; }
+      .label { font: 500 15px ui-sans-serif, sans-serif; fill: #1f2937; }
+      .small { font: 400 13px ui-sans-serif, sans-serif; fill: #6b7280; }
+      .code { font: 500 13px ui-monospace, 'Courier New', monospace; fill: #059669; }
+      .file { fill: #ffffff; stroke: #0f766e; stroke-width: 2; rx: 6; }
+      .folder { fill: #ecfdf5; stroke: #0f766e; stroke-width: 2; rx: 6; }
+      .arrow { stroke: #6b7280; stroke-width: 2; fill: none; }
+    </style>
+    
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+  
+  <rect width="900" height="550" fill="#fdfcfa"/>
+  
+  <!-- Title -->
+  <text x="450" y="35" class="title" text-anchor="middle" font-size="22">Quản trị CIDR với Terragrunt: Config cấp dự án</text>
+  
+  <!-- Project structure -->
+  <g transform="translate(50, 80)">
+    <!-- project.hcl -->
+    <rect x="0" y="0" width="350" height="180" class="file"/>
+    <text x="15" y="25" class="label">📄 project.hcl</text>
+    <text x="15" y="50" class="small">(Config cấp dự án - SSOT cho CIDR)</text>
+    
+    <rect x="20" y="70" width="310" height="95" fill="#f0fdf4" rx="4"/>
+    <text x="30" y="90" class="code">locals {</text>
+    <text x="45" y="108" class="code">  vpc_cidr = {</text>
+    <text x="60" y="126" class="code">    dev     = "10.10.0.0/16"</text>
+    <text x="60" y="144" class="code">    staging = "10.20.0.0/16"</text>
+    <text x="60" y="162" class="code">    prod    = "10.30.0.0/16"</text>
+    <text x="45" y="180" class="code">  }</text>
+    <text x="30" y="198" class="code">}</text>
+    
+    <text x="15" y="225" class="small" fill="#059669">✓ Tất cả môi trường có dải riêng biệt</text>
+    <text x="15" y="245" class="small" fill="#059669">✓ Dễ review, audit trong Git</text>
+    <text x="15" y="265" class="small" fill="#059669">✓ Không chồng lấp khi mở rộng</text>
+  </g>
+  
+  <!-- Arrow down -->
+  <path d="M225 345 L225 385" class="arrow" marker-end="url(#arrow)"/>
+  <text x="245" y="370" class="small">truyền xuống</text>
+  
+  <!-- Environment folders -->
+  <g transform="translate(50, 395)">
+    <!-- Dev environment -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="240" height="120" class="folder"/>
+      <text x="15" y="25" class="label">📁 dev/</text>
+      
+      <rect x="20" y="40" width="200" height="65" class="file"/>
+      <text x="30" y="60" class="label" font-size="13">network/terragrunt.hcl</text>
+      <text x="30" y="80" class="code" font-size="12">inputs = {</text>
+      <text x="40" y="95" class="code" font-size="12">  vpc_cidr = local.vpc_cidr.dev</text>
+      <text x="30" y="110" class="code" font-size="12">}</text>
+    </g>
+    
+    <!-- Staging environment -->
+    <g transform="translate(260, 0)">
+      <rect x="0" y="0" width="240" height="120" class="folder"/>
+      <text x="15" y="25" class="label">📁 staging/</text>
+      
+      <rect x="20" y="40" width="200" height="65" class="file"/>
+      <text x="30" y="60" class="label" font-size="13">network/terragrunt.hcl</text>
+      <text x="30" y="80" class="code" font-size="12">inputs = {</text>
+      <text x="40" y="95" class="code" font-size="12">  vpc_cidr = local.vpc_cidr.staging</text>
+      <text x="30" y="110" class="code" font-size="12">}</text>
+    </g>
+    
+    <!-- Prod environment -->
+    <g transform="translate(520, 0)">
+      <rect x="0" y="0" width="240" height="120" class="folder"/>
+      <text x="15" y="25" class="label">📁 prod/</text>
+      
+      <rect x="20" y="40" width="200" height="65" class="file"/>
+      <text x="30" y="60" class="label" font-size="13">network/terragrunt.hcl</text>
+      <text x="30" y="80" class="code" font-size="12">inputs = {</text>
+      <text x="40" y="95" class="code" font-size="12">  vpc_cidr = local.vpc_cidr.prod</text>
+      <text x="30" y="110" class="code" font-size="12">}</text>
+    </g>
+  </g>
+  
+  <!-- Bottom note -->
+  <rect x="50" y="530" width="800" height="1" fill="#d1d5db"/>
+</svg>

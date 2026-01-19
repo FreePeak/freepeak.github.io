@@ -1,0 +1,76 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0099cc;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Grid pattern background -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2a2a3e" stroke-width="1"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.3"/>
+  
+  <!-- Main content container -->
+  <g transform="translate(100, 150)">
+    <!-- VPC Icon representation -->
+    <g transform="translate(0, 0)">
+      <!-- Main VPC box -->
+      <rect x="0" y="0" width="400" height="280" rx="8" fill="none" stroke="url(#accentGradient)" stroke-width="3" opacity="0.8"/>
+      
+      <!-- CIDR label at top -->
+      <rect x="10" y="-15" width="140" height="30" rx="4" fill="#1a1a2e"/>
+      <text x="80" y="7" font-family="'Courier New', monospace" font-size="18" fill="#00d4ff" text-anchor="middle" font-weight="bold">10.0.0.0/16</text>
+      
+      <!-- Subnets inside VPC -->
+      <!-- Public Subnet 1 -->
+      <rect x="20" y="30" width="170" height="100" rx="4" fill="#00d4ff" opacity="0.15" stroke="#00d4ff" stroke-width="2"/>
+      <text x="105" y="55" font-family="Arial, sans-serif" font-size="14" fill="#00d4ff" text-anchor="middle" font-weight="bold">Public Subnet</text>
+      <text x="105" y="75" font-family="'Courier New', monospace" font-size="12" fill="#00d4ff" text-anchor="middle" opacity="0.8">10.0.1.0/24</text>
+      
+      <!-- Public Subnet 2 -->
+      <rect x="210" y="30" width="170" height="100" rx="4" fill="#00d4ff" opacity="0.15" stroke="#00d4ff" stroke-width="2"/>
+      <text x="295" y="55" font-family="Arial, sans-serif" font-size="14" fill="#00d4ff" text-anchor="middle" font-weight="bold">Public Subnet</text>
+      <text x="295" y="75" font-family="'Courier New', monospace" font-size="12" fill="#00d4ff" text-anchor="middle" opacity="0.8">10.0.2.0/24</text>
+      
+      <!-- Private Subnet 1 -->
+      <rect x="20" y="150" width="170" height="100" rx="4" fill="#ff6b6b" opacity="0.15" stroke="#ff6b6b" stroke-width="2"/>
+      <text x="105" y="175" font-family="Arial, sans-serif" font-size="14" fill="#ff6b6b" text-anchor="middle" font-weight="bold">Private Subnet</text>
+      <text x="105" y="195" font-family="'Courier New', monospace" font-size="12" fill="#ff6b6b" text-anchor="middle" opacity="0.8">10.0.10.0/24</text>
+      
+      <!-- Private Subnet 2 -->
+      <rect x="210" y="150" width="170" height="100" rx="4" fill="#ff6b6b" opacity="0.15" stroke="#ff6b6b" stroke-width="2"/>
+      <text x="295" y="175" font-family="Arial, sans-serif" font-size="14" fill="#ff6b6b" text-anchor="middle" font-weight="bold">Private Subnet</text>
+      <text x="295" y="195" font-family="'Courier New', monospace" font-size="12" fill="#ff6b6b" text-anchor="middle" opacity="0.8">10.0.11.0/24</text>
+    </g>
+    
+    <!-- Warning symbol and text -->
+    <g transform="translate(500, 60)">
+      <!-- Warning triangle -->
+      <path d="M 50 0 L 90 70 L 10 70 Z" fill="none" stroke="#ffd700" stroke-width="4"/>
+      <circle cx="50" cy="50" r="4" fill="#ffd700"/>
+      <line x1="50" y1="25" x2="50" y2="42" stroke="#ffd700" stroke-width="4" stroke-linecap="round"/>
+      
+      <!-- Warning text -->
+      <text x="120" y="30" font-family="Arial, sans-serif" font-size="20" fill="#ffd700" font-weight="bold">Quyết định sớm</text>
+      <text x="120" y="55" font-family="Arial, sans-serif" font-size="18" fill="#ffd700" opacity="0.9">tránh đập đi làm lại!</text>
+    </g>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="80" font-family="Arial, sans-serif" font-size="42" fill="white" text-anchor="middle" font-weight="bold">Chốt VPC CIDR Từ Sớm</text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="530" font-family="Arial, sans-serif" font-size="24" fill="#00d4ff" text-anchor="middle" opacity="0.9">AWS Infrastructure as Code Best Practice</text>
+  
+  <!-- Bottom decorative line -->
+  <rect x="300" y="570" width="600" height="3" fill="url(#accentGradient)" opacity="0.6"/>
+</svg>

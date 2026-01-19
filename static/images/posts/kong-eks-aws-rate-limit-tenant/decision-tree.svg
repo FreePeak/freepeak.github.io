@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <style>
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+      .h1 { font-weight: 700; }
+      .h2 { font-weight: 600; }
+      .outline { fill: none; stroke: #0b1220; stroke-width: 2; }
+      .arrow { fill: none; stroke: #0b1220; stroke-width: 2; }
+      .muted { opacity: 0.75; }
+      .aws { fill: #fff6e8; }
+      .bad { fill: #fff1f1; }
+      .good { fill: #e9fff6; }
+      .label { font-weight: 600; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="720" fill="#ffffff"/>
+
+  <text x="80" y="84" class="mono h1" font-size="34" fill="#0b1220">Decision Tree: Khi cần rate limit theo tenant</text>
+  <text x="80" y="118" class="mono" font-size="18" fill="#0b1220" opacity="0.75">Ba nhánh "nhìn có vẻ đúng" và một nhánh "đúng bài".</text>
+
+  <!-- Root -->
+  <g transform="translate(80,170)">
+    <rect x="0" y="0" width="1040" height="80" rx="16" class="outline" fill="#ffffff"/>
+    <text x="24" y="34" class="mono h2" font-size="18" fill="#0b1220">Need: rate limiting theo identity (tenant/API key/JWT claim)</text>
+    <text x="24" y="60" class="mono" font-size="14" fill="#0b1220" opacity="0.7">Goal: enforce 429 + headers nhất quán, không đẩy logic vào từng service</text>
+  </g>
+
+  <!-- Branch arrows -->
+  <path d="M 600 250 L 330 320" class="arrow"/>
+  <path d="M 600 250 L 600 320" class="arrow"/>
+  <path d="M 600 250 L 870 320" class="arrow"/>
+  <path d="M 600 250 L 1010 340" class="arrow"/>
+
+  <!-- Boxes -->
+  <g transform="translate(160,320)">
+    <rect x="0" y="0" width="300" height="260" rx="16" class="outline" fill="#fff6e8"/>
+    <text x="20" y="40" class="mono h2" font-size="18" fill="#0b1220">ALB Ingress</text>
+    <text x="20" y="74" class="mono" font-size="14" fill="#0b1220">Pros: native, managed routing</text>
+    <text x="20" y="108" class="mono label" font-size="14" fill="#0b1220">Cost:</text>
+    <text x="20" y="132" class="mono muted" font-size="14" fill="#0b1220">- phải tự parse identity</text>
+    <text x="20" y="156" class="mono muted" font-size="14" fill="#0b1220">- phải có quota store</text>
+    <text x="20" y="180" class="mono muted" font-size="14" fill="#0b1220">- enforce không nhất quán</text>
+    <text x="20" y="214" class="mono" font-size="14" fill="#0b1220" opacity="0.7">=> gateway bằng "băng keo"</text>
+  </g>
+
+  <g transform="translate(450,320)">
+    <rect x="0" y="0" width="300" height="260" rx="16" class="outline" fill="#fff1f1"/>
+    <text x="20" y="40" class="mono h2" font-size="18" fill="#0b1220">AWS WAF</text>
+    <text x="20" y="74" class="mono" font-size="14" fill="#0b1220">Pros: bot/IP rules</text>
+    <text x="20" y="108" class="mono label" font-size="14" fill="#0b1220">Cost:</text>
+    <text x="20" y="132" class="mono muted" font-size="14" fill="#0b1220">- rule khó đọc/khó review</text>
+    <text x="20" y="156" class="mono muted" font-size="14" fill="#0b1220">- ops/cost tăng theo traffic</text>
+    <text x="20" y="180" class="mono muted" font-size="14" fill="#0b1220">- không phải quota engine</text>
+    <text x="20" y="214" class="mono" font-size="14" fill="#0b1220" opacity="0.7">=> đúng một phần, thiếu phần chính</text>
+  </g>
+
+  <g transform="translate(740,320)">
+    <rect x="0" y="0" width="300" height="260" rx="16" class="outline" fill="#fff1f1"/>
+    <text x="20" y="40" class="mono h2" font-size="18" fill="#0b1220">Lambda/custom</text>
+    <text x="20" y="74" class="mono" font-size="14" fill="#0b1220">Pros: linh hoạt</text>
+    <text x="20" y="108" class="mono label" font-size="14" fill="#0b1220">Cost:</text>
+    <text x="20" y="132" class="mono muted" font-size="14" fill="#0b1220">- latency/cold start</text>
+    <text x="20" y="156" class="mono muted" font-size="14" fill="#0b1220">- tự làm observability</text>
+    <text x="20" y="180" class="mono muted" font-size="14" fill="#0b1220">- tự định nghĩa chuẩn 429</text>
+    <text x="20" y="214" class="mono" font-size="14" fill="#0b1220" opacity="0.7">=> bạn tự build gateway mini</text>
+  </g>
+
+  <g transform="translate(900,520)">
+    <rect x="0" y="0" width="260" height="150" rx="16" class="outline" fill="#e9fff6"/>
+    <text x="20" y="40" class="mono h2" font-size="18" fill="#0b1220">Kong DB-less</text>
+    <text x="20" y="74" class="mono" font-size="14" fill="#0b1220">- consumer + plugin model</text>
+    <text x="20" y="98" class="mono" font-size="14" fill="#0b1220">- config-as-code + GitOps</text>
+    <text x="20" y="122" class="mono" font-size="14" fill="#0b1220">- scale stateless</text>
+  </g>
+</svg>
