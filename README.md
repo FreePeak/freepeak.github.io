@@ -4,10 +4,31 @@ Personal blog built with Hugo and PaperMod theme, deployed to GitHub Pages.
 
 ## Local Development
 
-1. Install Hugo Extended: https://gohugo.io/installation/
-2. Clone with submodules: `git clone --recurse-submodules <repo-url>`
-3. Run dev server: `hugo server -D`
-4. Visit: http://localhost:1313
+Prerequisites:
+- [Hugo Extended](https://gohugo.io/installation/)
+- [Make](https://www.gnu.org/software/make/) (optional, but recommended)
+
+### Quick Start
+
+1. Clone with submodules:
+   ```bash
+   git clone --recurse-submodules <repo-url>
+   cd <repo-name>
+   ```
+
+2. Run the development server:
+   ```bash
+   make run
+   # Or manually: hugo server -D
+   ```
+
+3. Visit: http://localhost:1313
+
+### Available Commands
+
+- `make run`: Start dev server with drafts
+- `make build`: Build for production
+- `make clean`: Remove build artifacts
 
 ## Adding Content
 
