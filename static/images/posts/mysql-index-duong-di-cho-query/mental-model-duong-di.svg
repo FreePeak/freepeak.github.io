@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="good" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22c55e"/>
+      <stop offset="1" stop-color="#2dd4bf"/>
+    </linearGradient>
+    <linearGradient id="bad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fb7185"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="640" fill="url(#bg)"/>
+
+  <g transform="translate(70 70)">
+    <text x="0" y="0" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700">
+      Index là đường đi cho query
+    </text>
+    <text x="0" y="42" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">
+      Cùng dữ liệu, nhưng đi đúng đường thì nhanh hơn rất nhiều
+    </text>
+  </g>
+
+  <g transform="translate(80 170)">
+    <rect x="0" y="0" width="480" height="380" rx="18" fill="#0b1b2a" stroke="#1f2937"/>
+    <text x="26" y="48" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="700">Đúng đường (index hợp)</text>
+
+    <path d="M70 120 C170 70, 260 70, 360 120" fill="none" stroke="url(#good)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M330 138 L385 112 L374 168 Z" fill="#2dd4bf"/>
+
+    <g transform="translate(40 190)">
+      <text x="0" y="0" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">WHERE user_id = ? AND status = ?</text>
+      <text x="0" y="28" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">ORDER BY created_at DESC</text>
+      <text x="0" y="56" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">LIMIT 20</text>
+      <rect x="0" y="78" width="400" height="2" fill="#1f2937"/>
+      <text x="0" y="110" fill="#99f6e4" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">KEY: (user_id, status, created_at)</text>
+      <text x="0" y="138" fill="#86efac" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">Ít đọc, đúng 20 dòng đầu tiên</text>
+    </g>
+  </g>
+
+  <g transform="translate(640 170)">
+    <rect x="0" y="0" width="480" height="380" rx="18" fill="#111827" stroke="#1f2937"/>
+    <text x="26" y="48" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="700">Sai đường (index vô dụng)</text>
+
+    <path d="M70 120 C170 210, 260 210, 360 120" fill="none" stroke="url(#bad)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M330 138 L385 112 L374 168 Z" fill="#f59e0b"/>
+
+    <g transform="translate(40 190)">
+      <text x="0" y="0" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">WHERE DATE(created_at) = '2026-01-01'</text>
+      <text x="0" y="28" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">OR status = 'PAID'</text>
+      <text x="0" y="56" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">ORDER BY created_at DESC</text>
+      <rect x="0" y="78" width="400" height="2" fill="#1f2937"/>
+      <text x="0" y="110" fill="#fda4af" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">Key không dùng được (hoặc đọc rất nhiều)</text>
+      <text x="0" y="138" fill="#fdba74" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">Dẫn tới filesort và quét nhiều rows</text>
+    </g>
+  </g>
+</svg>
