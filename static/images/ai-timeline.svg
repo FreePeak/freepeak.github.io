@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AI Tools Timeline</title>
+  <desc id="desc">Abstract timeline of AI tools with connected milestones and glowing nodes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="0.6" stop-color="#111827"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#89dceb"/>
+      <stop offset="0.5" stop-color="#cba6f7"/>
+      <stop offset="1" stop-color="#a6e3a1"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="14" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .stroke { stroke-linecap: round; stroke-linejoin: round; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <g opacity="0.12" filter="url(#glow)">
+    <circle cx="260" cy="220" r="160" fill="#89dceb"/>
+    <circle cx="820" cy="160" r="120" fill="#cba6f7"/>
+    <circle cx="1340" cy="260" r="150" fill="#a6e3a1"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="170" y="330" width="1260" height="260" rx="22" fill="#0a0f1e" stroke="#24324f" stroke-width="2"/>
+    <path d="M230 460 C 450 420, 560 520, 770 460 S 1120 400, 1370 460" fill="none" stroke="url(#line)" stroke-width="8" opacity="0.9" class="stroke"/>
+
+    <g class="mono" font-size="16" fill="#cdd6f4" opacity="0.9">
+      <text x="230" y="370">2022</text>
+      <text x="520" y="370">2023</text>
+      <text x="810" y="370">2024</text>
+      <text x="1100" y="370">2025</text>
+      <text x="1320" y="370">2026</text>
+    </g>
+
+    <g filter="url(#glow)">
+      <circle cx="230" cy="460" r="16" fill="#89dceb"/>
+      <circle cx="520" cy="440" r="16" fill="#cba6f7"/>
+      <circle cx="820" cy="480" r="16" fill="#89dceb"/>
+      <circle cx="1100" cy="430" r="16" fill="#cba6f7"/>
+      <circle cx="1370" cy="460" r="16" fill="#a6e3a1"/>
+    </g>
+
+    <g class="mono" font-size="18" fill="#cdd6f4" opacity="0.95">
+      <text x="230" y="520">ChatGPT</text>
+      <text x="520" y="520">Copilot</text>
+      <text x="820" y="520">Cursor</text>
+      <text x="1100" y="520">Agents</text>
+      <text x="1370" y="520">Bench</text>
+    </g>
+
+    <g opacity="0.45">
+      <path d="M230 460 L 230 410" stroke="#89dceb" stroke-width="2" class="stroke"/>
+      <path d="M520 440 L 520 410" stroke="#cba6f7" stroke-width="2" class="stroke"/>
+      <path d="M820 480 L 820 410" stroke="#89dceb" stroke-width="2" class="stroke"/>
+      <path d="M1100 430 L 1100 410" stroke="#cba6f7" stroke-width="2" class="stroke"/>
+      <path d="M1370 460 L 1370 410" stroke="#a6e3a1" stroke-width="2" class="stroke"/>
+    </g>
+  </g>
+
+  <g opacity="0.5" class="mono" font-size="14" fill="#a6e3a1">
+    <text x="170" y="660">Hint: mỗi node = một giai doan tool; duong cong = do "cuon" va quota.</text>
+  </g>
+</svg>

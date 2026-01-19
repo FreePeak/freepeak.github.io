@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Small Repo Quick Fix</title>
+  <desc id="desc">Minimal editor window with a small diff and a fast checkmark indicating quick changes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#0b1220"/>
+    </linearGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+    <style>
+      .stroke { stroke-linecap: round; stroke-linejoin: round; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="260" y="180" width="1080" height="540" rx="26" fill="#0a0f1e" stroke="#24324f" stroke-width="2"/>
+    <rect x="260" y="180" width="1080" height="48" rx="26" fill="#0b1020"/>
+
+    <rect x="320" y="260" width="720" height="400" rx="18" fill="#091026" stroke="#22304d" stroke-width="2"/>
+    <rect x="1080" y="260" width="220" height="400" rx="18" fill="#091026" stroke="#22304d" stroke-width="2"/>
+
+    <text x="350" y="315" class="mono" font-size="16" fill="#cdd6f4" opacity="0.9">diff --git a/api.ts b/api.ts</text>
+
+    <g class="mono" font-size="16" opacity="0.95">
+      <text x="350" y="360" fill="#a6e3a1">+  router.get('/ping', ...)</text>
+      <text x="350" y="392" fill="#a6e3a1">+  return 'ok'</text>
+      <text x="350" y="424" fill="#f38ba8">-  // TODO</text>
+    </g>
+
+    <g opacity="0.65">
+      <rect x="1120" y="300" width="140" height="36" rx="18" fill="#0c1122" stroke="#a6e3a1" stroke-width="1.5"/>
+      <text x="1140" y="324" class="mono" font-size="14" fill="#a6e3a1">fast</text>
+      <path d="M1176 353 L 1188 365 L 1210 342" stroke="#a6e3a1" stroke-width="4" fill="none" class="stroke"/>
+
+      <rect x="1120" y="390" width="160" height="18" rx="9" fill="#11182f"/>
+      <rect x="1120" y="418" width="130" height="18" rx="9" fill="#11182f"/>
+      <rect x="1120" y="446" width="150" height="18" rx="9" fill="#11182f"/>
+    </g>
+  </g>
+</svg>

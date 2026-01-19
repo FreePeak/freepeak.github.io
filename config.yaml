@@ -59,11 +59,11 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Welcome to FreePeak Labs 👋"
+    Title: "Welcome to FreePeak Labs"
     Content: >
-      Khám phá thế giới AI, lập trình và công nghệ.
-      
-      Chia sẻ kinh nghiệm, công cụ và kiến thức thực tế từ một developer.
+      Discover the world of AI, software development, and technology.
+
+      Sharing practical experience, effective tools, and real-world knowledge from a professional developer.
 
   socialIcons:
     - name: github
@@ -72,8 +72,6 @@ params:
       url: "https://x.com/linhdmn"
     - name: linkedin
       url: "https://www.linkedin.com/in/linhdmn/"
-    - name: rss
-      url: "/index.xml"
 
   cover:
     hidden: false

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Cursor Editor With AI</title>
+  <desc id="desc">Abstract editor window with side AI assistant panel and highlighted code blocks.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="0.55" stop-color="#111827"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#070a14"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+    <style>
+      .stroke { stroke-linecap: round; stroke-linejoin: round; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="160" y="120" width="1280" height="660" rx="26" fill="url(#panel)" stroke="#24324f" stroke-width="2"/>
+    <rect x="160" y="120" width="1280" height="48" rx="26" fill="#0a0f1e"/>
+    <circle cx="190" cy="144" r="7" fill="#f38ba8"/>
+    <circle cx="214" cy="144" r="7" fill="#f9e2af"/>
+    <circle cx="238" cy="144" r="7" fill="#a6e3a1"/>
+
+    <rect x="210" y="190" width="820" height="540" rx="18" fill="#091026" stroke="#22304d" stroke-width="2"/>
+    <rect x="1060" y="190" width="330" height="540" rx="18" fill="#091026" stroke="#22304d" stroke-width="2"/>
+
+    <text x="230" y="230" class="mono" font-size="16" fill="#cdd6f4" opacity="0.9">src/agent/runner.ts</text>
+    <text x="1080" y="230" class="mono" font-size="16" fill="#89dceb" opacity="0.95">AI Assistant</text>
+
+    <g class="mono" font-size="17" fill="#cdd6f4" opacity="0.9">
+      <text x="230" y="280">export async function runTask(spec) {</text>
+      <text x="230" y="312" fill="#cba6f7">  const plan = await model.plan(spec)</text>
+      <text x="230" y="344" fill="#89dceb">  const diff = await tools.edit(plan)</text>
+      <text x="230" y="376" fill="#a6e3a1">  return tools.verify(diff)</text>
+      <text x="230" y="408">}</text>
+    </g>
+
+    <g opacity="0.55">
+      <rect x="230" y="450" width="760" height="18" rx="9" fill="#11182f"/>
+      <rect x="230" y="476" width="720" height="18" rx="9" fill="#11182f"/>
+      <rect x="230" y="502" width="700" height="18" rx="9" fill="#11182f"/>
+      <rect x="230" y="528" width="740" height="18" rx="9" fill="#11182f"/>
+      <rect x="230" y="554" width="680" height="18" rx="9" fill="#11182f"/>
+    </g>
+
+    <g opacity="0.9">
+      <rect x="1080" y="270" width="290" height="70" rx="16" fill="#0c1122" stroke="#22304d" stroke-width="1.5"/>
+      <rect x="1080" y="352" width="290" height="130" rx="16" fill="#0c1122" stroke="#22304d" stroke-width="1.5"/>
+      <rect x="1080" y="494" width="290" height="210" rx="16" fill="#0c1122" stroke="#22304d" stroke-width="1.5"/>
+
+      <g class="mono" font-size="14" fill="#cdd6f4" opacity="0.9">
+        <text x="1100" y="310">- scan repo context</text>
+        <text x="1100" y="336">- propose minimal diff</text>
+        <text x="1100" y="392" fill="#a6e3a1">OK: build passes</text>
+        <text x="1100" y="418" fill="#f9e2af">NOTE: quota risk</text>
+        <text x="1100" y="556">next:</text>
+        <text x="1100" y="582">1) add tests</text>
+        <text x="1100" y="608">2) refactor module</text>
+        <text x="1100" y="634">3) run lint</text>
+      </g>
+    </g>
+
+    <g opacity="0.45">
+      <path d="M1060 320 C 990 320, 960 330, 920 350" stroke="#89dceb" stroke-width="3" fill="none" class="stroke"/>
+      <path d="M1060 420 C 980 420, 960 410, 900 392" stroke="#cba6f7" stroke-width="3" fill="none" class="stroke"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AI Plugins</title>
+  <desc id="desc">Abstract grid of plugin cards and connectors representing an AI ecosystem.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+    <style>
+      .stroke { stroke-linecap: round; stroke-linejoin: round; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <g opacity="0.12">
+    <circle cx="320" cy="220" r="180" fill="#cba6f7"/>
+    <circle cx="1320" cy="260" r="200" fill="#89dceb"/>
+    <circle cx="980" cy="760" r="240" fill="#a6e3a1"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="170" y="140" width="1260" height="620" rx="24" fill="#0a0f1e" stroke="#24324f" stroke-width="2"/>
+    <text x="220" y="210" class="mono" font-size="22" fill="#cdd6f4" opacity="0.95">plugins/</text>
+
+    <g opacity="0.45">
+      <path d="M520 320 C 650 260, 780 260, 910 320" stroke="#89dceb" stroke-width="3" fill="none" class="stroke"/>
+      <path d="M520 520 C 700 600, 850 600, 1030 520" stroke="#a6e3a1" stroke-width="3" fill="none" class="stroke"/>
+      <path d="M910 320 C 1040 360, 1110 420, 1180 500" stroke="#cba6f7" stroke-width="3" fill="none" class="stroke"/>
+    </g>
+
+    <g>
+      <rect x="260" y="260" width="260" height="140" rx="18" fill="#0c1122" stroke="#22304d" stroke-width="2"/>
+      <rect x="560" y="260" width="350" height="140" rx="18" fill="#0c1122" stroke="#22304d" stroke-width="2"/>
+      <rect x="950" y="260" width="390" height="140" rx="18" fill="#0c1122" stroke="#22304d" stroke-width="2"/>
+
+      <rect x="260" y="460" width="320" height="160" rx="18" fill="#0c1122" stroke="#22304d" stroke-width="2"/>
+      <rect x="620" y="460" width="360" height="160" rx="18" fill="#0c1122" stroke="#22304d" stroke-width="2"/>
+      <rect x="1020" y="460" width="320" height="160" rx="18" fill="#0c1122" stroke="#22304d" stroke-width="2"/>
+
+      <g class="mono" font-size="18" fill="#cdd6f4" opacity="0.95">
+        <text x="290" y="310">search</text>
+        <text x="590" y="310">code-edit</text>
+        <text x="980" y="310">terminal-run</text>
+        <text x="290" y="520">repo-map</text>
+        <text x="650" y="520">lint</text>
+        <text x="1050" y="520">tests</text>
+      </g>
+
+      <g class="mono" font-size="14" opacity="0.9">
+        <text x="290" y="346" fill="#89dceb">rg, glob, index</text>
+        <text x="590" y="346" fill="#cba6f7">apply patch safely</text>
+        <text x="980" y="346" fill="#a6e3a1">run + parse output</text>
+        <text x="290" y="556" fill="#f9e2af">context windows</text>
+        <text x="650" y="556" fill="#89dceb">eslint, fmt</text>
+        <text x="1050" y="556" fill="#a6e3a1">unit + integ</text>
+      </g>
+    </g>
+  </g>
+</svg>

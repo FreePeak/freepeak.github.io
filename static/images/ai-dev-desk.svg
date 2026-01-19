@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AI Dev Desk</title>
+  <desc id="desc">Abstract developer workspace with editor window, chat panels, terminal, and connected AI nodes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.55" stop-color="#111827"/>
+      <stop offset="1" stop-color="#0b1220"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="60%">
+      <stop offset="0" stop-color="#89dceb" stop-opacity="0.26"/>
+      <stop offset="0.45" stop-color="#cba6f7" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#070a14"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="18" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        0 0 0 0.55 0" result="g"/>
+      <feMerge>
+        <feMergeNode in="g"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .stroke { stroke-linecap: round; stroke-linejoin: round; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <g opacity="0.18">
+    <path d="M120 730 C 380 600, 520 620, 760 520" fill="none" stroke="#89dceb" stroke-width="2" class="stroke"/>
+    <path d="M1420 200 C 1210 310, 1100 280, 880 380" fill="none" stroke="#cba6f7" stroke-width="2" class="stroke"/>
+    <path d="M1310 760 C 1180 650, 1060 620, 840 580" fill="none" stroke="#a6e3a1" stroke-width="2" class="stroke"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="420" y="155" width="780" height="520" rx="22" fill="url(#panel)" stroke="#232946" stroke-width="2"/>
+    <rect x="420" y="155" width="780" height="44" rx="22" fill="#0a0f1e"/>
+    <circle cx="450" cy="177" r="7" fill="#f38ba8"/>
+    <circle cx="475" cy="177" r="7" fill="#f9e2af"/>
+    <circle cx="500" cy="177" r="7" fill="#a6e3a1"/>
+
+    <rect x="455" y="225" width="710" height="20" rx="10" fill="#11182f"/>
+    <rect x="455" y="260" width="680" height="16" rx="8" fill="#0f152a"/>
+    <rect x="455" y="286" width="640" height="16" rx="8" fill="#0f152a"/>
+    <rect x="455" y="312" width="700" height="16" rx="8" fill="#0f152a"/>
+
+    <g class="mono" fill="#89dceb" opacity="0.9" font-size="18">
+      <text x="455" y="370">function planTask(input) {</text>
+      <text x="455" y="402" fill="#cba6f7">  const context = loadRepo();</text>
+      <text x="455" y="434" fill="#a6e3a1">  return agent.run(context, input);</text>
+      <text x="455" y="466">}</text>
+    </g>
+
+    <g opacity="0.35">
+      <rect x="455" y="500" width="320" height="140" rx="16" fill="#0c1122" stroke="#22304d" stroke-width="1.5"/>
+      <rect x="795" y="500" width="370" height="140" rx="16" fill="#0c1122" stroke="#22304d" stroke-width="1.5"/>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="140" y="260" width="250" height="340" rx="18" fill="url(#panel)" stroke="#24324f" stroke-width="2"/>
+    <rect x="140" y="260" width="250" height="42" rx="18" fill="#0a0f1e"/>
+    <text x="164" y="288" class="mono" font-size="16" fill="#cba6f7" opacity="0.9">AI Chat</text>
+    <g opacity="0.85" class="mono" font-size="14" fill="#cdd6f4">
+      <text x="164" y="336">- scan codebase</text>
+      <text x="164" y="362">- propose diff</text>
+      <text x="164" y="388">- run checks</text>
+      <text x="164" y="414">- summarize</text>
+    </g>
+    <g opacity="0.7">
+      <rect x="164" y="448" width="202" height="18" rx="9" fill="#11182f"/>
+      <rect x="164" y="476" width="160" height="18" rx="9" fill="#11182f"/>
+      <rect x="164" y="504" width="190" height="18" rx="9" fill="#11182f"/>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1220" y="230" width="260" height="210" rx="18" fill="url(#panel)" stroke="#24324f" stroke-width="2"/>
+    <rect x="1220" y="230" width="260" height="42" rx="18" fill="#0a0f1e"/>
+    <text x="1244" y="258" class="mono" font-size="16" fill="#89dceb" opacity="0.95">Terminal</text>
+    <g class="mono" font-size="14" fill="#a6e3a1" opacity="0.9">
+      <text x="1244" y="308">$ npm run build</text>
+      <text x="1244" y="334">... ok</text>
+      <text x="1244" y="360">$ hugo</text>
+      <text x="1244" y="386">Pages:  42</text>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1130" y="500" width="330" height="230" rx="18" fill="url(#panel)" stroke="#24324f" stroke-width="2"/>
+    <rect x="1130" y="500" width="330" height="42" rx="18" fill="#0a0f1e"/>
+    <text x="1154" y="528" class="mono" font-size="16" fill="#f9e2af" opacity="0.95">Context</text>
+    <g opacity="0.75">
+      <rect x="1154" y="566" width="268" height="16" rx="8" fill="#11182f"/>
+      <rect x="1154" y="592" width="292" height="16" rx="8" fill="#11182f"/>
+      <rect x="1154" y="618" width="240" height="16" rx="8" fill="#11182f"/>
+      <rect x="1154" y="644" width="280" height="16" rx="8" fill="#11182f"/>
+    </g>
+  </g>
+
+  <g filter="url(#softGlow)">
+    <circle cx="365" cy="240" r="10" fill="#89dceb"/>
+    <circle cx="1205" cy="290" r="10" fill="#cba6f7"/>
+    <circle cx="1120" cy="740" r="10" fill="#a6e3a1"/>
+    <circle cx="520" cy="720" r="10" fill="#89dceb"/>
+
+    <path d="M365 240 C 420 260, 430 300, 450 328" fill="none" stroke="#89dceb" stroke-width="3" opacity="0.65" class="stroke"/>
+    <path d="M1205 290 C 1120 340, 1020 330, 940 340" fill="none" stroke="#cba6f7" stroke-width="3" opacity="0.55" class="stroke"/>
+    <path d="M1120 740 C 1040 680, 980 660, 860 620" fill="none" stroke="#a6e3a1" stroke-width="3" opacity="0.55" class="stroke"/>
+    <path d="M520 720 C 570 670, 620 660, 700 650" fill="none" stroke="#89dceb" stroke-width="3" opacity="0.45" class="stroke"/>
+  </g>
+
+  <g opacity="0.12">
+    <circle cx="230" cy="170" r="120" fill="#89dceb"/>
+    <circle cx="1410" cy="120" r="90" fill="#cba6f7"/>
+    <circle cx="1420" cy="820" r="140" fill="#a6e3a1"/>
+  </g>
+</svg>

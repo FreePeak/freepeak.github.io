@@ -16,3 +16,6 @@ Thumbs.db
 
 # Local
 *.log
+
+# Git worktrees
+.worktrees/

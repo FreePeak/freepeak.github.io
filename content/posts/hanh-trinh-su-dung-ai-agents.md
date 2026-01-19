@@ -29,7 +29,7 @@ editPost:
 
 > **Lưu ý:** Hình ảnh trong bài viết đang được cập nhật
 
-![Bàn làm việc của dev với nhiều tab AI](images/ai-dev-desk.jpg)
+![Bàn làm việc của dev với nhiều tab AI](../../images/ai-dev-desk.svg)
 
 Chào anh em, mình viết bài này để kể lại hành trình "chơi hệ AI agents" của một đứa làm dev đúng nghĩa: thử đủ kiểu tool, trả phí đủ nơi, bị limit đủ lần, rồi cuối cùng rút ra được một kết luận khá thực dụng: **mỗi model/tool có điểm mạnh – yếu riêng, dùng đúng bài mới thấy đáng tiền**.
 
@@ -37,7 +37,7 @@ Bài này mình kể theo trải nghiệm thật, và có kèm một bảng tổ
 
 ## 1) Từ ChatGPT đến thời "cày chay" và bắt đầu trả phí
 
-![Dòng thời gian các AI tools mình từng dùng](images/ai-timeline.jpg)
+![Dòng thời gian các AI tools mình từng dùng](../../images/ai-timeline.svg)
 
 Mình bắt đầu với ChatGPT ngay từ lúc nó vừa ra mắt. Lúc đó quá đã: hỏi gì cũng trả lời, viết email, tóm tắt, brainstorm… đủ thứ. Sau này nhu cầu tăng (và giới hạn cũng tăng), mình bắt đầu bước qua các tool chuyên code.
 
@@ -45,7 +45,7 @@ Có giai đoạn mình "cày" bản free của Cursor bằng cách dùng… 5 em
 
 ## 2) Khi project càng lớn, mình càng cần AI "đỡ việc thật"
 
-![Một repo lớn: nhiều module, nhiều service](images/large-repo.png)
+![Một repo lớn: nhiều module, nhiều service](../../images/large-repo.svg)
 
 Mình không chỉ code mấy repo CRUD nhỏ. Công việc/side project của mình đi qua đủ loại mức độ phức tạp:
 
@@ -62,7 +62,7 @@ Càng lên mấy tầng này, mình càng quan tâm 3 thứ:
 
 ## 3) Cursor + Opus 4.5: ổn định nhất về chất lượng và cycle prompt (nhưng bị limit)
 
-![Cursor editor + AI chat](images/cursor-editor.jpg)
+![Cursor editor + AI chat](../../images/cursor-editor.svg)
 
 Nếu nói thuần về "độ chắc tay" khi làm project lớn (đọc codebase rộng, bám ngữ cảnh dài, đụng nhiều ngôn ngữ), thì **Cursor + Opus 4.5** là combo mình đánh giá ổn định nhất.
 
@@ -78,7 +78,7 @@ Nhưng… điểm đau duy nhất: **limit quá nhiều**. Dùng kiểu dev cày
 
 ## 4) Vì limit, mình chuyển sang GitHub Copilot + Antigravity (Google)
 
-![Copilot trong IDE](images/copilot-ide.png)
+![Copilot trong IDE](../../images/copilot-ide.svg)
 
 Hiện tại mình dùng song song:
 
@@ -93,13 +93,13 @@ Thói quen của mình là:
 
 ## 5) Claude Code: plugin/support nhiều, nhưng limit mạnh nên chi phí đội lên
 
-![Một màn hình plugin/extension](images/ai-plugins.jpg)
+![Một màn hình plugin/extension](../../images/ai-plugins.svg)
 
 Mình vẫn công nhận hệ Claude có nhiều điểm hay: ecosystem plugin/support khá rộng, trải nghiệm "nói chuyện để code" mượt. Nhưng vấn đề lớn nhất khiến mình không gắn bó lâu là **limit usage mạnh**, dẫn đến khi quy ra chi phí/khả năng cày, thì cảm giác **đắt hơn các nhà khác** (vì mình bị buộc phải tiết kiệm lượt).
 
 ## 6) Repo nhỏ, task đơn giản: GLM 4.7 là lựa chọn mình dùng nhiều
 
-![Đoạn code nhỏ, sửa nhanh](images/small-repo.jpg)
+![Đoạn code nhỏ, sửa nhanh](../../images/small-repo.svg)
 
 Với những tác vụ kiểu:
 
@@ -112,7 +112,7 @@ Với những tác vụ kiểu:
 
 ## 7) Viết lách và research: chia vai cho đúng người
 
-![Viết blog và mail](images/writing.jpg)
+![Viết blog và mail](../../images/writing.svg)
 
 Mình chia use-case khá rõ:
 
