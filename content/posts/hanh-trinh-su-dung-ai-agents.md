@@ -1,11 +1,33 @@
 ---
 title: "Trải nghiệm sử dụng AI Agent lập trình viên 2026"
-date: 2026-01-18
+date: 2026-01-18T10:00:00+07:00
 draft: false
-tags: ["AI", "Developer Tools", "Experience"]
+author: "FreePeak Labs"
+tags: ["AI", "Developer Tools", "Experience", "Review"]
+categories: ["Technology", "AI"]
+description: "Chia sẻ trải nghiệm thực tế về các AI coding agents: Cursor, Copilot, Claude Code, và nhiều công cụ khác - ưu điểm, nhược điểm, và cách chọn tool phù hợp cho từng bài toán."
+summary: "Hành trình khám phá và so sánh các AI coding agents phổ biến: từ ChatGPT, Cursor, GitHub Copilot đến Claude Code và GLM 4.7. Đánh giá dựa trên trải nghiệm thực tế với các project từ CRUD đến EDA, MCP/MPC và PKI."
+ShowToc: true
+TocOpen: false
+ShowReadingTime: true
+ShowBreadCrumbs: true
+ShowPostNavLinks: true
+ShowWordCount: true
+ShowShareButtons: true
+ShowCodeCopyButtons: true
+cover:
+    image: ""
+    alt: "AI Developer Tools Comparison 2026"
+    caption: "So sánh các công cụ AI hỗ trợ lập trình viên"
+    relative: false
+    hidden: false
+editPost:
+    URL: "https://github.com/FreePeak/Labs/tree/main/content"
+    Text: "Suggest Changes"
+    appendFilePath: true
 ---
 
-> Note: Image references need to be moved to static/images/ directory
+> **Lưu ý:** Hình ảnh trong bài viết đang được cập nhật
 
 ![Bàn làm việc của dev với nhiều tab AI](images/ai-dev-desk.jpg)
 

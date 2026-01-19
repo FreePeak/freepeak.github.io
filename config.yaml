@@ -1,0 +1,131 @@
+baseURL: "https://FreePeak.github.io/Labs/"
+title: FreePeak Labs
+languageCode: vi
+theme: PaperMod
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+pagination:
+  pagerSize: 5
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  env: production
+  title: FreePeak Labs
+  description: "Exploring AI, Development, and Technology"
+  keywords: [Blog, AI, Development, Technology, FreePeak]
+  author: FreePeak Labs
+  images: ["https://FreePeak.github.io/Labs/images/freepeak-labs-cover.png"]
+  DateFormat: "January 2, 2006"
+  defaultTheme: auto
+  disableThemeToggle: false
+
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: false
+  hidemeta: false
+  hideSummary: false
+  showtoc: true
+  tocopen: false
+
+  assets:
+    disableHLJS: false
+    disableFingerprinting: false
+
+  label:
+    text: "FreePeak Labs"
+    icon: /apple-touch-icon.png
+    iconHeight: 35
+
+  # home-info mode
+  homeInfoParams:
+    Title: "Welcome to FreePeak Labs 👋"
+    Content: >
+      Khám phá thế giới AI, lập trình và công nghệ.
+      
+      Chia sẻ kinh nghiệm, công cụ và kiến thức thực tế từ một developer.
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/FreePeak"
+    - name: twitter
+      url: "https://twitter.com/FreePeak"
+    - name: linkedin
+      url: "https://linkedin.com/company/freepeak"
+    - name: rss
+      url: "/index.xml"
+
+  cover:
+    hidden: false
+    hiddenInList: false
+    hiddenInSingle: false
+    responsiveImages: true
+    linkFullImages: true
+
+  editPost:
+    URL: "https://github.com/FreePeak/Labs/tree/main/content"
+    Text: "Suggest Changes"
+    appendFilePath: true
+
+  # Search configuration
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 10
+    keys: ["title", "permalink", "summary", "content"]
+
+menu:
+  main:
+    - identifier: posts
+      name: Posts
+      url: /posts/
+      weight: 10
+    - identifier: archives
+      name: Archives
+      url: /archives/
+      weight: 20
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 30
+    - identifier: search
+      name: Search
+      url: /search/
+      weight: 40
+
+pygmentsUseClasses: true
+markup:
+  highlight:
+    noClasses: false
+    anchorLineNos: true
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
+    style: monokai
+  goldmark:
+    renderer:
+      unsafe: true
