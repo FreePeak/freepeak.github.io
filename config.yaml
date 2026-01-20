@@ -51,6 +51,7 @@ params:
   assets:
     disableHLJS: false
     disableFingerprinting: false
+    favicon: /favicon.svg
 
   label:
     text: "FreePeak Labs"

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Free Peak favicon">
+  <defs>
+    <linearGradient id="fpBg" x1="48" y1="40" x2="208" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#202833"/>
+      <stop offset="1" stop-color="#161D26"/>
+    </linearGradient>
+  </defs>
+
+  <!-- dark tile -->
+  <rect x="16" y="16" width="224" height="224" rx="56" fill="url(#fpBg)"/>
+
+  <!-- stylized F mark (minimal, geometric) -->
+  <g fill="#FFFFFF">
+    <!-- top bar with angled end -->
+    <path d="M76 64 H188 L170 88 H76 Z"/>
+    <!-- vertical stem with angled bottom -->
+    <path d="M76 104 L104 132 V206 L76 232 Z"/>
+    <!-- middle bar -->
+    <path d="M112 120 H164 L148 144 H112 Z"/>
+  </g>
+</svg>
