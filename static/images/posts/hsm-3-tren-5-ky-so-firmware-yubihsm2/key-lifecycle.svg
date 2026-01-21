@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520">
+  <defs>
+    <style>
+      .title { font: 700 22px ui-sans-serif, -apple-system, system-ui, sans-serif; fill: #e2e8f0; }
+      .label { font: 700 14px ui-sans-serif, -apple-system, system-ui, sans-serif; fill: #e2e8f0; }
+      .small { font: 500 13px ui-sans-serif, -apple-system, system-ui, sans-serif; fill: #94a3b8; }
+      .mono { font: 700 13px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; fill: #e2e8f0; }
+    </style>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="520" fill="#0b1220"/>
+
+  <text x="40" y="55" class="title">Key lifecycle: sinh trong HSM, phân quyền cho signer</text>
+  <text x="40" y="80" class="small">Ý chính: private key sinh và ở trong HSM; chỉ public key được upload; mỗi signer giữ 1 thiết bị.</text>
+
+  <!-- Step blocks -->
+  <g transform="translate(60, 140)">
+    <g>
+      <rect x="0" y="0" width="230" height="98" rx="14" fill="#0b2a3a" stroke="#1e293b" stroke-width="2"/>
+      <text x="115" y="36" class="label" text-anchor="middle">Key Admin</text>
+      <text x="115" y="62" class="small" text-anchor="middle">Khởi tạo / quản trị</text>
+      <text x="115" y="84" class="small" text-anchor="middle">(không phải signer)</text>
+    </g>
+
+    <path d="M 245 49 L 325 49" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrow)"/>
+
+    <g transform="translate(340, 0)">
+      <rect x="0" y="0" width="280" height="98" rx="14" fill="#052033" stroke="#38bdf8" stroke-width="2"/>
+      <text x="140" y="32" class="label" text-anchor="middle">Portable HSM</text>
+      <text x="140" y="58" class="small" text-anchor="middle">Generate key pair</text>
+      <text x="140" y="80" class="mono" text-anchor="middle" opacity="0.95">Ed25519</text>
+    </g>
+
+    <path d="M 635 49 L 715 49" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrow)"/>
+
+    <g transform="translate(730, 0)">
+      <rect x="0" y="0" width="300" height="98" rx="14" fill="#0b2a3a" stroke="#1e293b" stroke-width="2"/>
+      <text x="150" y="36" class="label" text-anchor="middle">Signing Server</text>
+      <text x="150" y="62" class="small" text-anchor="middle">Lưu public key</text>
+      <text x="150" y="84" class="small" text-anchor="middle">+ kiểm tra chữ ký</text>
+    </g>
+  </g>
+
+  <!-- Private vs public detail -->
+  <g transform="translate(60, 280)">
+    <rect x="0" y="0" width="520" height="105" rx="14" fill="#052033" stroke="#1e293b" stroke-width="2"/>
+    <text x="20" y="30" class="label" fill="#34d399">Private key</text>
+    <text x="20" y="55" class="small">- Nằm trong HSM, không export</text>
+    <text x="20" y="78" class="small">- Dùng để ký digest</text>
+    <text x="20" y="101" class="small">- Cần PIN + sự hiện diện của signer</text>
+  </g>
+  <g transform="translate(620, 280)">
+    <rect x="0" y="0" width="420" height="105" rx="14" fill="#052033" stroke="#1e293b" stroke-width="2"/>
+    <text x="20" y="30" class="label" fill="#22d3ee">Public key</text>
+    <text x="20" y="55" class="small">- Upload lên server</text>
+    <text x="20" y="78" class="small">- Dùng để verify chữ ký</text>
+    <text x="20" y="101" class="small">- Có thể phân phối rộng rãi</text>
+  </g>
+
+  <!-- Distribution -->
+  <g transform="translate(60, 420)">
+    <text x="0" y="0" class="label">Phân phối thiết bị</text>
+    <text x="0" y="22" class="small">5 HSM -&gt; 5 signer (mỗi người 1 key/1 thiết bị).</text>
+
+    <g transform="translate(420, -14)">
+      <circle cx="50" cy="28" r="18" fill="#0b1220" stroke="#22d3ee" stroke-width="2"/>
+      <circle cx="110" cy="28" r="18" fill="#0b1220" stroke="#22d3ee" stroke-width="2"/>
+      <circle cx="170" cy="28" r="18" fill="#0b1220" stroke="#22d3ee" stroke-width="2"/>
+      <circle cx="230" cy="28" r="18" fill="#0b1220" stroke="#22d3ee" stroke-width="2"/>
+      <circle cx="290" cy="28" r="18" fill="#0b1220" stroke="#22d3ee" stroke-width="2"/>
+      <text x="170" y="75" class="small" text-anchor="middle">Signer 1..5</text>
+    </g>
+  </g>
+
+  <rect x="40" y="492" width="1020" height="3" fill="#38bdf8" opacity="0.65"/>
+</svg>

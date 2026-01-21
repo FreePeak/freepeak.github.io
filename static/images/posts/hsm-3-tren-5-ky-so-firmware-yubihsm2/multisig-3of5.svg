@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="420" viewBox="0 0 1000 420">
+  <defs>
+    <style>
+      .title { font: 700 22px ui-sans-serif, -apple-system, system-ui, sans-serif; fill: #e2e8f0; }
+      .label { font: 600 14px ui-sans-serif, -apple-system, system-ui, sans-serif; fill: #e2e8f0; }
+      .small { font: 500 13px ui-sans-serif, -apple-system, system-ui, sans-serif; fill: #94a3b8; }
+      .mono { font: 700 14px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; fill: #e2e8f0; }
+    </style>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <rect width="1000" height="420" fill="#0b1220"/>
+
+  <text x="40" y="55" class="title">3-trên-5 (3-of-5): ngưỡng phát hành</text>
+  <text x="40" y="80" class="small">Cần tối thiểu 3 chữ ký hợp lệ trong 5 signer để “mở cổng” release.</text>
+
+  <!-- Signers -->
+  <g transform="translate(70, 125)">
+    <g>
+      <circle cx="80" cy="80" r="38" fill="#0b1220" stroke="#64748b" stroke-width="2"/>
+      <text x="80" y="86" class="mono" text-anchor="middle" opacity="0.9">S1</text>
+    </g>
+    <g>
+      <circle cx="230" cy="80" r="38" fill="#0b1220" stroke="#22d3ee" stroke-width="4"/>
+      <text x="230" y="86" class="mono" text-anchor="middle">S2</text>
+      <text x="230" y="112" class="small" text-anchor="middle" fill="#22d3ee">signed</text>
+    </g>
+    <g>
+      <circle cx="380" cy="80" r="38" fill="#0b1220" stroke="#22d3ee" stroke-width="4"/>
+      <text x="380" y="86" class="mono" text-anchor="middle">S3</text>
+      <text x="380" y="112" class="small" text-anchor="middle" fill="#22d3ee">signed</text>
+    </g>
+    <g>
+      <circle cx="530" cy="80" r="38" fill="#0b1220" stroke="#22d3ee" stroke-width="4"/>
+      <text x="530" y="86" class="mono" text-anchor="middle">S4</text>
+      <text x="530" y="112" class="small" text-anchor="middle" fill="#22d3ee">signed</text>
+    </g>
+    <g>
+      <circle cx="680" cy="80" r="38" fill="#0b1220" stroke="#64748b" stroke-width="2"/>
+      <text x="680" y="86" class="mono" text-anchor="middle" opacity="0.9">S5</text>
+    </g>
+
+    <!-- Gate -->
+    <g transform="translate(0, 170)">
+      <rect x="140" y="0" width="480" height="72" rx="12" fill="#0b2a3a" stroke="#1e293b" stroke-width="2"/>
+      <text x="380" y="28" class="label" text-anchor="middle">Cổng phát hành</text>
+      <text x="380" y="52" class="small" text-anchor="middle">Mở khi đủ ≥ 3 chữ ký hợp lệ</text>
+
+      <path d="M 380 78 L 380 118" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrow)"/>
+    </g>
+
+    <!-- Release box -->
+    <g transform="translate(300, 300)">
+      <rect x="0" y="0" width="260" height="70" rx="14" fill="#052033" stroke="#38bdf8" stroke-width="2"/>
+      <text x="130" y="30" class="label" text-anchor="middle">Release allowed</text>
+      <text x="130" y="52" class="small" text-anchor="middle">Firmware được đẩy OTA</text>
+    </g>
+  </g>
+
+  <!-- Accent line -->
+  <rect x="40" y="392" width="920" height="3" fill="#38bdf8" opacity="0.65"/>
+</svg>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520">
+  <defs>
+    <style>
+      .title { font: 700 22px ui-sans-serif, -apple-system, system-ui, sans-serif; fill: #e2e8f0; }
+      .label { font: 700 14px ui-sans-serif, -apple-system, system-ui, sans-serif; fill: #e2e8f0; }
+      .small { font: 500 13px ui-sans-serif, -apple-system, system-ui, sans-serif; fill: #94a3b8; }
+      .mono { font: 700 13px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; fill: #e2e8f0; }
+    </style>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="520" fill="#0b1220"/>
+
+  <text x="40" y="55" class="title">Signing flow: từ build đến OTA</text>
+  <text x="40" y="80" class="small">Build server không tự ký; sign server thu chữ ký từ signer (HSM) và chỉ phát hành khi đủ ngưỡng.</text>
+
+  <!-- Main pipeline boxes -->
+  <g transform="translate(60, 135)">
+    <g>
+      <rect x="0" y="0" width="250" height="90" rx="14" fill="#0b2a3a" stroke="#1e293b" stroke-width="2"/>
+      <text x="125" y="35" class="label" text-anchor="middle">Build Server</text>
+      <text x="125" y="62" class="small" text-anchor="middle">Tạo candidate image</text>
+    </g>
+
+    <path d="M 265 45 L 345 45" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrow)"/>
+
+    <g transform="translate(360, 0)">
+      <rect x="0" y="0" width="270" height="90" rx="14" fill="#0b2a3a" stroke="#38bdf8" stroke-width="2"/>
+      <text x="135" y="35" class="label" text-anchor="middle">Signing Server</text>
+      <text x="135" y="62" class="small" text-anchor="middle">Tạo digest + thu chữ ký</text>
+    </g>
+
+    <path d="M 645 45 L 725 45" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrow)"/>
+
+    <g transform="translate(740, 0)">
+      <rect x="0" y="0" width="260" height="90" rx="14" fill="#052033" stroke="#1e293b" stroke-width="2"/>
+      <text x="130" y="35" class="label" text-anchor="middle">OTA / Release</text>
+      <text x="130" y="62" class="small" text-anchor="middle">Phân phối xuống thiết bị</text>
+    </g>
+  </g>
+
+  <!-- Side branch: signers -->
+  <g transform="translate(420, 255)">
+    <text x="0" y="0" class="label">Signing request -&gt; 5 Signers</text>
+    <text x="0" y="22" class="small">Signer ký digest bằng HSM qua PKCS#11, rồi gửi signature về server.</text>
+
+    <!-- Line down from Sign Server -->
+    <path d="M 135 -25 L 135 25" stroke="#38bdf8" stroke-width="3" opacity="0.9"/>
+    <path d="M 135 25 L 135 55" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow)" opacity="0.9"/>
+
+    <!-- Signer row -->
+    <g transform="translate(0, 70)">
+      <g>
+        <circle cx="40" cy="40" r="24" fill="#0b1220" stroke="#64748b" stroke-width="2"/>
+        <text x="40" y="45" class="mono" text-anchor="middle" opacity="0.9">S1</text>
+      </g>
+      <g>
+        <circle cx="120" cy="40" r="24" fill="#0b1220" stroke="#22d3ee" stroke-width="3"/>
+        <text x="120" y="45" class="mono" text-anchor="middle">S2</text>
+      </g>
+      <g>
+        <circle cx="200" cy="40" r="24" fill="#0b1220" stroke="#22d3ee" stroke-width="3"/>
+        <text x="200" y="45" class="mono" text-anchor="middle">S3</text>
+      </g>
+      <g>
+        <circle cx="280" cy="40" r="24" fill="#0b1220" stroke="#22d3ee" stroke-width="3"/>
+        <text x="280" y="45" class="mono" text-anchor="middle">S4</text>
+      </g>
+      <g>
+        <circle cx="360" cy="40" r="24" fill="#0b1220" stroke="#64748b" stroke-width="2"/>
+        <text x="360" y="45" class="mono" text-anchor="middle" opacity="0.9">S5</text>
+      </g>
+
+      <!-- Signatures back -->
+      <path d="M 40 78 C 90 120, 190 120, 240 78" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.7"/>
+      <path d="M 120 78 C 160 130, 260 130, 300 78" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.7"/>
+    </g>
+
+    <!-- Threshold gate -->
+    <g transform="translate(0, 160)">
+      <rect x="0" y="0" width="420" height="78" rx="14" fill="#0b2a3a" stroke="#fbbf24" stroke-width="2"/>
+      <text x="210" y="32" class="label" text-anchor="middle" fill="#fbbf24">Gate: ≥ 3 signatures</text>
+      <text x="210" y="56" class="small" text-anchor="middle">Thiếu chữ ký: không phát hành</text>
+    </g>
+  </g>
+
+   <rect x="40" y="492" width="1020" height="3" fill="#38bdf8" opacity="0.65"/>
+</svg>
