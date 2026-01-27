@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="400" fill="#1e1e2e"/>
+  
+  <!-- Title -->
+  <text x="400" y="50" font-family="sans-serif" font-size="24" fill="#cdd6f4" text-anchor="middle" font-weight="bold">ANATOMY OF AN HSM</text>
+  <text x="400" y="75" font-family="sans-serif" font-size="14" fill="#a6adc8" text-anchor="middle">Physical Security &amp; FIPS 140-2 Level 3</text>
+
+  <!-- Main HSM Box -->
+  <rect x="200" y="100" width="400" height="200" rx="10" fill="#313244" stroke="#45475a" stroke-width="2"/>
+  
+  <!-- Epoxy Label -->
+  <text x="210" y="290" font-family="sans-serif" font-size="12" fill="#585b70">Epoxy Resin Potted (Tamper Resistant)</text>
+
+  <!-- Tamper Mesh (Simple dashed border) -->
+  <rect x="210" y="110" width="380" height="180" rx="5" fill="none" stroke="#f38ba8" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="590" y="130" font-family="sans-serif" font-size="12" fill="#f38ba8" text-anchor="end">Active Tamper Mesh</text>
+
+  <!-- TRNG Module -->
+  <rect x="250" y="150" width="80" height="80" rx="5" fill="#1e1e2e" stroke="#89b4fa" stroke-width="2"/>
+  <text x="290" y="175" font-family="sans-serif" font-size="10" fill="#89b4fa" text-anchor="middle" font-weight="bold">TRNG</text>
+  <text x="290" y="215" font-family="sans-serif" font-size="8" fill="#bac2de" text-anchor="middle">Entropy Source</text>
+
+  <!-- Crypto CPU -->
+  <rect x="360" y="150" width="80" height="80" rx="5" fill="#1e1e2e" stroke="#a6e3a1" stroke-width="2"/>
+  <text x="400" y="175" font-family="sans-serif" font-size="10" fill="#a6e3a1" text-anchor="middle" font-weight="bold">CRYPTO CPU</text>
+  <text x="400" y="215" font-family="sans-serif" font-size="8" fill="#bac2de" text-anchor="middle">Constant-Time Ops</text>
+
+  <!-- Zeroize -->
+  <rect x="470" y="150" width="80" height="80" rx="5" fill="#1e1e2e" stroke="#fab387" stroke-width="2"/>
+  <text x="510" y="175" font-family="sans-serif" font-size="10" fill="#fab387" text-anchor="middle" font-weight="bold">ZEROIZE</text>
+  <text x="510" y="215" font-family="sans-serif" font-size="8" fill="#bac2de" text-anchor="middle">Self-Destruct</text>
+
+  <!-- Secure Key Storage -->
+  <rect x="310" y="240" width="180" height="30" rx="15" fill="#11111b" stroke="#f9e2af" stroke-width="2"/>
+  <text x="400" y="260" font-family="sans-serif" font-size="12" fill="#f9e2af" text-anchor="middle" font-weight="bold">SECURE KEY STORAGE</text>
+
+  <!-- Footer -->
+  <text x="400" y="350" font-family="sans-serif" font-size="14" fill="#6c7086" text-anchor="middle">"Private Keys check in, but they never check out."</text>
+
+</svg>

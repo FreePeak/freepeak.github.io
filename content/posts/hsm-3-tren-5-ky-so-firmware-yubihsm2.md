@@ -38,6 +38,7 @@ Nếu private key nằm trong một file `.pem` trên CI runner, thì đôi khi 
 ## “HSM” không phải để làm crypto nhanh hơn
 
 Tôi từng tưởng HSM là để tăng hiệu năng crypto. Nhưng trong bối cảnh code signing, giá trị chính của HSM là:
+(Nếu bạn muốn hiểu sâu hơn về lớp vỏ vật lý, FIPS 140-2 và tại sao nó an toàn đến mức 'hoang tưởng', hãy đọc bài [HSM: Pháo Đài Vật Lý Cho Những Bí Mật Số](/posts/hsm-concept-definition/))
 
 - Private key được sinh ra và nằm trong phần cứng.
 - Private key không được “export” theo nghĩa thực dụng (không có file để copy).
