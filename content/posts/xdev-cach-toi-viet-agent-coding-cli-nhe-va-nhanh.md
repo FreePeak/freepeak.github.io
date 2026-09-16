@@ -199,6 +199,8 @@ Cái cuối cùng thì buồn cười: tôi đã làm một bảng roster agent 
 
 Tôi port hệ theme của Grok CLI (`GrokNight`/`GrokDay`, tự đổi theo `OSC 11`), và bắt buộc **đủ 66 color token** — spelling giống hệt omp, để một file theme của omp paint được chrome của xdev mà không phải sửa gì. Thiếu một token là test fail, không "để sau".
 
+Cả ngày làm việc trong một cái TUI mà để nó dùng màu mặc định của terminal thì tôi chịu không nổi. Đây là chi phí tôi tự nguyện trả, và tôi nghĩ nó đáng.
+
 ## 6) Kiểm thử một thứ chỉ để hiển thị bằng chữ
 
 Nghe buồn cười. Nhưng TUI của tôi render **chữ**, và chữ thì không ai diff bằng mắt một cách có kỷ luật được.
