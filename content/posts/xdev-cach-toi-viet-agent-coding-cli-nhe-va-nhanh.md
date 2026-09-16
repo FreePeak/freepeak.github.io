@@ -43,6 +43,11 @@ Tôi trả lời được câu đó, và sau khi trả lời thì không chịu 
 
 Bài này kể lại 7 ngày đó: tôi đọc gì, quyết định gì, sai chỗ nào, và đo được gì.
 
+Đây là chính nó, đang chạy giữa session — UI thật, chụp từ chương trình đang
+chạy, không phải mockup:
+
+![Transcript xdev đang chạy: top bar, scrollback, composer, status row](/images/posts/xdev-cach-toi-viet-agent-coding-cli-nhe-va-nhanh/transcript.svg)
+
 ## 2) Cân đo đong đếm trước đã
 
 Tôi không viết bài này để bảo các tool kia tệ. omp và Claude Code là hai thứ tôi dùng hằng ngày, và nếu không có chúng thì tôi không bao giờ nghĩ tới chuyện tự viết.
@@ -97,6 +102,8 @@ Module path `github.com/FreePeak/xdev`, Go 1.25, **CGO-free**, một binary tĩn
 Không có entry nào bị sửa hay xoá. Branch chỉ là **dời một con trỏ**. Context dựng lại bằng cách đi theo parent link. Format inspectable — bạn `jq` vào file session của tôi được, và tôi không cần viewer riêng.
 
 Đây là port ngữ nghĩa từ pi/omp, và nó là thứ khiến tôi yên tâm nhất trong thiết kế. Vì nó cho phép một thứ mà harness dạng "state trong memory" không cho: **nhìn lại và cãi nhau với quá khứ**.
+
+![Tree selector của xdev: cây session append-only, mỗi entry một dòng](/images/posts/xdev-cach-toi-viet-agent-coding-cli-nhe-va-nhanh/tree-selector.svg)
 
 ### Mọi thứ đều có biên
 
@@ -195,9 +202,31 @@ Cái đầu tiên là cú đau: người dùng nhấn Shift để copy bằng se
 
 Cái cuối cùng thì buồn cười: tôi đã làm một bảng roster agent chỉ điều khiển được bằng phím. Trong terminal năm 2026.
 
+![Bảng roster agent mở đè lên transcript — trạng thái rỗng, chưa có agent nền nào chạy](/images/posts/xdev-cach-toi-viet-agent-coding-cli-nhe-va-nhanh/hub-roster.svg)
+
+![Bảng chọn model theo từng role](/images/posts/xdev-cach-toi-viet-agent-coding-cli-nhe-va-nhanh/model-picker.svg)
+
 ### Chủ đề: 66 token màu
 
 Tôi port hệ theme của Grok CLI (`GrokNight`/`GrokDay`, tự đổi theo `OSC 11`), và bắt buộc **đủ 66 color token** — spelling giống hệt omp, để một file theme của omp paint được chrome của xdev mà không phải sửa gì. Thiếu một token là test fail, không "để sau".
+
+### Màn hình bắt đầu, và context dock
+
+Màn hình bắt đầu là chỗ duy nhất thương hiệu được phép có ý kiến — một
+wordmark pixel, dòng tagline nhị phân của nó, và bốn hành động thật kèm đúng
+phím chạy được chúng. Mọi thứ còn lại giữ đơn sắc để transcript là thứ duy
+nhất tranh sự chú ý:
+
+![Màn hình bắt đầu của xdev: wordmark pixel, menu, composer](/images/posts/xdev-cach-toi-viet-agent-coding-cli-nhe-va-nhanh/welcome.svg)
+
+Context dock là câu trả lời cho "tôi đang ở đâu trong session này?". Nó là
+một panel rộng cố định 42 cột, chỉ mở khi terminal đủ rộng để vẫn chừa cho
+transcript khoảng sống riêng của nó, và các mục của nó là đúng những gì
+session đang có: kế hoạch đang chờ, danh sách task, các file mà diff đã đụng
+tới, các agent đang chạy — mỗi mục gấp lại được, và nó từ chối dựng lại frame
+khi không có gì đổi. Ở đây plan mode đang bật, nên dock đã có sẵn mục của nó:
+
+![Context dock của xdev: mục plan đang chờ, trên phần footer của session](/images/posts/xdev-cach-toi-viet-agent-coding-cli-nhe-va-nhanh/dock.svg)
 
 Cả ngày làm việc trong một cái TUI mà để nó dùng màu mặc định của terminal thì tôi chịu không nổi. Đây là chi phí tôi tự nguyện trả, và tôi nghĩ nó đáng.
 

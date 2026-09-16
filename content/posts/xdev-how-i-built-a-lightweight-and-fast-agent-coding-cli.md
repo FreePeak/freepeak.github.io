@@ -43,6 +43,11 @@ I answered it, and once I had answered it I couldn't unsee it. So I wrote xdev. 
 
 This is what happened in those 7 days: what I read, what I decided, where I was wrong, and what I measured.
 
+Here is the thing itself, mid-session — the real UI, captured from the running
+program, not a mockup:
+
+![xdev live transcript: top bar, scrollback, composer, status row](/images/posts/xdev-how-i-built-a-lightweight-and-fast-agent-coding-cli/transcript.svg)
+
 ## 2) Measure first
 
 I am not writing this to say the other tools are bad. omp and Claude Code are two things I use daily, and without them I would never have thought about writing my own.
@@ -97,6 +102,8 @@ Module path `github.com/FreePeak/xdev`, Go 1.25, **CGO-free**, one static binary
 No entry is ever mutated or deleted. Branching is just **moving a pointer**. Context is rebuilt by walking parent links. The format is inspectable — you can `jq` my session files, and I never had to ship a viewer.
 
 This is a semantic port from pi/omp, and it is the part of the design I sleep best about. Because it allows something a "state lives in memory" harness cannot: **look back and argue with the past**.
+
+![xdev tree selector: the append-only session tree, every entry one row](/images/posts/xdev-how-i-built-a-lightweight-and-fast-agent-coding-cli/tree-selector.svg)
 
 ### Everything is bounded
 
@@ -193,7 +200,30 @@ There is no spec for mouse behaviour in a TUI. There is only a feeling of "wrong
 
 The first one stung: the user presses Shift to copy using the **terminal's own** selection, and I have to release the pointer mid-drag — even when they're halfway through selecting. No design document teaches you that detail. Only using it does.
 
+![xdev agent roster over the transcript — the empty state, no background agents running](/images/posts/xdev-how-i-built-a-lightweight-and-fast-agent-coding-cli/hub-roster.svg)
+
 The last one is funny: I had built an agent roster panel controllable only by keyboard. In a terminal, in 2026.
+
+![xdev model picker: the per-role model table](/images/posts/xdev-how-i-built-a-lightweight-and-fast-agent-coding-cli/model-picker.svg)
+
+### The start screen, and the context dock
+
+The start screen is the one place the brand gets to have an opinion — a pixel
+wordmark, its binary tagline, and the four real actions with the keys that
+actually run them. Everything else stays monochrome so the transcript is the
+only thing competing for attention:
+
+![xdev start screen: pixel wordmark, menu, composer](/images/posts/xdev-how-i-built-a-lightweight-and-fast-agent-coding-cli/welcome.svg)
+
+The context dock is the answer to "where am I in this session?". It is a
+fixed 42-column panel that only opens when the terminal is wide enough to
+still leave the transcript its own floor, and its sections are whatever the
+session actually has in play — the plan proposal, the task list, the files the
+diffs touched, the live agents — each one foldable, and it refuses to rebuild a
+frame when nothing changed. Here plan mode is armed, so the dock is already
+carrying its section:
+
+![xdev context dock: the pending plan section, over the session footer](/images/posts/xdev-how-i-built-a-lightweight-and-fast-agent-coding-cli/dock.svg)
 
 ### Theme: 66 colour tokens
 
