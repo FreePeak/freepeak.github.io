@@ -1,0 +1,29 @@
+{{- /*
+  Post index rows: date, italic serif title, muted summary.
+  Context: a page collection, or a dict with "pages" and optional "compact".
+*/ -}}
+{{- $pages := . }}
+{{- $compact := false }}
+{{- if reflect.IsMap . }}
+{{- $pages = .pages }}
+{{- $compact = .compact | default false }}
+{{- end }}
+<ol class="entries{{ if $compact }} entries--compact{{ end }}">
+  {{- range $pages }}
+  <li class="entry">
+    <a class="entry-link" href="{{ .RelPermalink }}">
+      {{- if not .Date.IsZero }}
+      <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (cond $compact "02/01" "02/01/2006") }}</time>
+      {{- end }}
+      <span class="entry-main">
+        <span class="entry-title">{{ .Title }}{{ if .Draft }} <span class="draft-flag">nháp</span>{{ end }}</span>
+        {{- if and (not $compact) (ne (.Param "hideSummary") true) }}
+        {{- with .Summary | plainify | htmlUnescape | truncate 220 }}
+        <span class="entry-desc">{{ . }}</span>
+        {{- end }}
+        {{- end }}
+      </span>
+    </a>
+  </li>
+  {{- end }}
+</ol>

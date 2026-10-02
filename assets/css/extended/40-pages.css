@@ -1,0 +1,391 @@
+/*
+ * Page surface and the non-article pages: home, post index, tags, archives,
+ * search, 404.
+ *
+ * The "veil" is a fixed radial gradient in the paper colour: solid behind the
+ * reading column, dissolving toward the desk at the edges, where the chrome
+ * sits. (Phase 2 can put a canvas behind it without touching this file.)
+ */
+
+.page {
+  position: relative;
+  z-index: 100;
+  flex: 1 0 auto;
+}
+
+.content-page {
+  position: relative;
+  isolation: isolate;
+  padding: var(--frame-content-top) var(--frame-inline) var(--frame-content-bottom);
+  color: var(--ink-body);
+}
+
+.content-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 72% 115% at 50% 48%,
+    color-mix(in srgb, var(--paper) 98.5%, transparent) 0%,
+    color-mix(in srgb, var(--paper) 98.5%, transparent) 45%,
+    color-mix(in srgb, var(--paper) 96%, transparent) 54%,
+    color-mix(in srgb, var(--paper) 68%, transparent) 67%,
+    color-mix(in srgb, var(--paper) 28%, transparent) 80%,
+    transparent 96%
+  );
+}
+
+.content-surface {
+  width: min(100%, var(--measure));
+  margin-inline: auto;
+}
+
+@media (min-width: 801px) and (max-width: 1100px) {
+  .content-surface {
+    width: min(680px, calc(100vw - 360px));
+  }
+}
+
+@media (max-width: 800px) {
+  .content-surface {
+    width: min(100%, 680px);
+  }
+
+  .content-page::before {
+    background: radial-gradient(
+      ellipse 88% 120% at 50% 48%,
+      color-mix(in srgb, var(--paper) 98.5%, transparent) 0%,
+      color-mix(in srgb, var(--paper) 98.5%, transparent) 42%,
+      color-mix(in srgb, var(--paper) 96%, transparent) 52%,
+      color-mix(in srgb, var(--paper) 72%, transparent) 64%,
+      color-mix(in srgb, var(--paper) 34%, transparent) 76%,
+      transparent 92%
+    );
+  }
+}
+
+/* Page headings (index pages). */
+.page-head {
+  margin-bottom: 2.25rem;
+}
+
+.page-kicker {
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.page-title {
+  font-size: var(--text-ui);
+  font-weight: 600;
+  line-height: var(--leading-ui);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.page-desc {
+  margin-top: 0.9rem;
+  font-family: var(--serif);
+  font-size: var(--text-reading);
+  line-height: 1.5;
+  color: var(--ink-body);
+}
+
+.page-tools {
+  margin-top: 0.6rem;
+  text-transform: uppercase;
+}
+
+.page-tools a,
+.not-found a,
+.pagination a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.page-tools a:is(:hover, :focus-visible),
+.not-found a:is(:hover, :focus-visible),
+.pagination a:is(:hover, :focus-visible) {
+  text-decoration: underline dotted;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.14em;
+}
+
+.page-body {
+  margin-bottom: 2.5rem;
+}
+
+/* Home. */
+.home-intro {
+  margin-bottom: 3.75rem;
+}
+
+.home-title {
+  margin-bottom: 1.25rem;
+  font-family: var(--serif);
+  font-size: var(--text-hero);
+  font-style: italic;
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.section-label {
+  margin-bottom: 1.5rem;
+  font-size: var(--text-ui);
+  font-weight: 600;
+  line-height: var(--leading-ui);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* Post index rows. */
+.entries {
+  display: grid;
+  gap: 1.9rem;
+  list-style: none;
+}
+
+.entry-link {
+  display: grid;
+  grid-template-columns: 7.25rem minmax(0, 1fr);
+  column-gap: 1.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.entry-date {
+  padding-top: 0.32em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+}
+
+.entry-title {
+  display: block;
+  font-family: var(--serif);
+  font-size: var(--text-title);
+  font-style: italic;
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.entry-desc {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--serif);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.entry-link:is(:hover, :focus-visible) .entry-title {
+  text-decoration: underline dotted;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.14em;
+}
+
+.entries--compact {
+  gap: 0.85rem;
+}
+
+.entries--compact .entry-link {
+  grid-template-columns: 4rem minmax(0, 1fr);
+}
+
+.draft-flag {
+  margin-inline-start: 0.5em;
+  padding: 0 0.4em;
+  border: 1px solid currentcolor;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+  vertical-align: 0.15em;
+}
+
+/* Newer / older. */
+.pagination {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  text-transform: uppercase;
+}
+
+.pagination-count {
+  color: var(--ink-muted);
+}
+
+/* Tags. */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1.75rem;
+  list-style: none;
+}
+
+.tag {
+  font-family: var(--serif);
+  font-size: var(--fs-xl);
+  font-style: italic;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.tag:is(:hover, :focus-visible) {
+  text-decoration: underline dotted;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.14em;
+}
+
+.tag-count {
+  margin-inline-start: 0.3em;
+  font-family: var(--mono);
+  font-size: 0.55em;
+  font-style: normal;
+  color: var(--ink-muted);
+}
+
+/* Archives. */
+.archive-year + .archive-year {
+  margin-top: 3.25rem;
+}
+
+.archive-year-title {
+  font-family: var(--serif);
+  font-size: var(--fs-3xl);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.archive-month-title {
+  margin: 1.75rem 0 1rem;
+  font-size: var(--text-ui);
+  font-weight: 400;
+  line-height: var(--leading-ui);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.archive-year-title a,
+.archive-month-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.archive-count {
+  margin-inline-start: 0.4em;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  font-style: normal;
+  color: var(--ink-muted);
+}
+
+/* Search. */
+.searchbox input {
+  width: 100%;
+  padding: 0.4rem 0 0.6rem;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: var(--fs-xl);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.searchbox input::placeholder {
+  color: var(--ink-muted);
+}
+
+/* Replace the browser's blue clear button with a quiet ink-coloured cross. */
+.searchbox input::-webkit-search-cancel-button {
+  width: 0.9em;
+  height: 0.9em;
+  margin: 0;
+  background-color: var(--ink-muted);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 3l10 10M13 3L3 13' stroke='black' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 3l10 10M13 3L3 13' stroke='black' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.searchbox input:focus {
+  border-bottom-color: var(--ink);
+}
+
+.search-results {
+  display: grid;
+  gap: 0.15rem;
+  margin-top: 1.5rem;
+  list-style: none;
+}
+
+/* Rows are rendered by fastsearch.js as <li class="post-entry">. */
+.search-results .post-entry {
+  position: relative;
+  padding: 0.55rem 0;
+}
+
+.search-results .entry-header {
+  font-family: var(--serif);
+  font-size: var(--text-title);
+  font-style: italic;
+  line-height: var(--leading-tight);
+  color: var(--ink);
+}
+
+.search-results .post-entry a {
+  position: absolute;
+  inset: 0;
+}
+
+.search-results .post-entry:is(:hover, .focus) .entry-header {
+  text-decoration: underline dotted;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.14em;
+}
+
+/* 404. */
+.not-found-code {
+  font-family: var(--serif);
+  font-size: var(--text-hero);
+  font-style: italic;
+  line-height: var(--leading-tight);
+  color: var(--ink);
+}
+
+.not-found-text {
+  margin: 0.75rem 0 1.5rem;
+  font-family: var(--serif);
+  font-size: var(--text-reading);
+}
+
+/* Narrow screens: date sits above the title. */
+@media (max-width: 520px) {
+  .entry-link,
+  .entries--compact .entry-link {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.2rem;
+  }
+
+  .entry-date {
+    padding-top: 0;
+  }
+}

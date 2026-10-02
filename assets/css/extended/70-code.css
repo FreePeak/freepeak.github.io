@@ -1,0 +1,151 @@
+/*
+ * Code blocks. Hugo emits Chroma classes (markup.highlight.noClasses: false).
+ * The palette is deliberately tiny: comments gray italic, literals gray,
+ * keywords bold, everything else plain.
+ */
+
+.prose .highlight {
+  position: relative;
+  margin-block: 1.75rem;
+}
+
+.prose pre {
+  margin-block: 1.75rem;
+  padding: 1.15rem 1.25rem;
+  overflow-x: auto;
+  background: var(--pre-bg);
+  color: var(--pre-ink);
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.7;
+  tab-size: 4;
+  scrollbar-width: thin;
+  scrollbar-color: var(--pre-muted) transparent;
+}
+
+.prose .highlight pre {
+  margin: 0;
+}
+
+.prose pre code {
+  padding: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  overflow-wrap: normal;
+}
+
+.prose pre code::before,
+.prose pre code::after {
+  content: none;
+}
+
+/* Comments. */
+.chroma :is(.c, .ch, .cm, .c1, .cs, .cp, .cpf) {
+  color: var(--pre-muted);
+  font-style: italic;
+}
+
+/* Strings and numbers. */
+.chroma :is(.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss, .m, .mb, .mf, .mh, .mi, .il, .mo) {
+  color: var(--pre-muted);
+}
+
+/* Keywords. */
+.chroma :is(.k, .kc, .kd, .kn, .kp, .kr, .kt) {
+  font-weight: 600;
+}
+
+.chroma .err {
+  color: inherit;
+  background: none;
+}
+
+/* Diffs. */
+.chroma .gd {
+  color: var(--pre-muted);
+  text-decoration: line-through;
+}
+
+.chroma .gi {
+  font-weight: 600;
+}
+
+/* Highlighted lines and optional line numbers. */
+.chroma .hl {
+  display: block;
+  margin-inline: -1.25rem;
+  padding-inline: 1.25rem;
+  background: color-mix(in srgb, var(--pre-ink) 10%, transparent);
+}
+
+.chroma :is(.ln, .lnt) {
+  margin-inline-end: 1em;
+  color: var(--pre-muted);
+  user-select: none;
+}
+
+.chroma .lntable {
+  width: auto;
+  margin: 0;
+  display: table;
+  overflow: visible;
+}
+
+.chroma .lntable td {
+  padding: 0;
+  vertical-align: top;
+}
+
+.chroma .lntable pre {
+  margin: 0;
+  padding: 0;
+  background: none;
+  overflow: visible;
+}
+
+/* Copy button (added by site.js). */
+.copy-code {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--pre-muted);
+  background: transparent;
+  color: var(--pre-ink);
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.highlight:is(:hover, :focus-within) .copy-code,
+.copy-code:focus-visible {
+  opacity: 1;
+}
+
+.copy-code:focus-visible {
+  outline-color: var(--pre-ink);
+}
+
+@media (hover: none) {
+  .copy-code {
+    opacity: 0.85;
+  }
+}
+
+@media (max-width: 520px) {
+  .prose pre {
+    padding: 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .chroma .hl {
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+  }
+}

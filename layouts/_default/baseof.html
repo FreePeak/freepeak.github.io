@@ -1,0 +1,23 @@
+{{- /* 0.158.0 introduced Language.Locale, which replaces the deprecated LanguageCode. */ -}}
+{{- if lt hugo.Version "0.158.0" }}
+{{- errorf "=> hugo v0.158.0 or greater is required for these layouts" }}
+{{- end -}}
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale | default "vi" }}" dir="ltr">
+<head>
+  {{- partial "head.html" . }}
+</head>
+<body class="kind-{{ .Kind }}"{{ if .Param "ShowCodeCopyButtons" }} data-code-copy="true"{{ end }}>
+  <a class="skip-link" href="#content">Bỏ qua, tới nội dung chính</a>
+  {{- partial "site-header.html" . }}
+  <div class="page">
+    <main class="content-page" id="content">
+      <div class="content-surface">
+        {{- block "main" . }}{{ end }}
+      </div>
+    </main>
+  </div>
+  {{- partial "site-footer.html" . }}
+  {{- partial "scripts.html" . }}
+</body>
+</html>

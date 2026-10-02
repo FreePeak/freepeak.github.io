@@ -1,0 +1,19 @@
+{{- /*
+  Search page. The behaviour comes from PaperMod's fastsearch.js (Fuse.js over
+  index.json); it looks for #searchInput / #searchResults and renders
+  <li class="post-entry"> rows, which assets/css/extended/40-pages.css styles.
+*/ -}}
+{{- define "main" }}
+<header class="page-head">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{- with .Description }}
+  <p class="page-desc">{{ . }}</p>
+  {{- end }}
+</header>
+
+<div id="searchbox" class="searchbox">
+  <input id="searchInput" type="search" autofocus autocomplete="off" maxlength="64"
+    placeholder="{{ .Params.placeholder | default "Nhập từ khóa" }}" aria-label="Tìm kiếm bài viết">
+  <ul id="searchResults" class="search-results" aria-label="Kết quả tìm kiếm"></ul>
+</div>
+{{- end }}

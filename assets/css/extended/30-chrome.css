@@ -1,0 +1,239 @@
+/*
+ * Fixed corner chrome: emblem (top-left), MENU (top-right), site name
+ * (bottom-left), theme toggle (bottom-right). Below 800px the footer row
+ * joins the page flow and the menu becomes a full-screen sheet.
+ */
+
+.site-header,
+.site-footer-bar {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: var(--frame-inline);
+  pointer-events: none;
+}
+
+.site-header > *,
+.site-footer-bar > * {
+  pointer-events: auto;
+}
+
+.site-header {
+  top: 0;
+  align-items: flex-start;
+  padding-top: var(--frame-block);
+}
+
+.site-footer-bar {
+  bottom: 0;
+  align-items: center;
+  padding-bottom: var(--frame-block);
+}
+
+/* Shared look of every chrome label. */
+.site-name,
+.theme-toggle,
+.menu-toggle,
+.nav-link {
+  font-family: var(--mono);
+  font-size: var(--text-ui);
+  line-height: var(--leading-ui);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+:is(.site-name, .theme-toggle, .menu-toggle, .nav-link):is(:hover, :focus-visible),
+.nav-link.is-active {
+  text-decoration: underline dotted;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.14em;
+}
+
+.nav-link.is-active {
+  text-decoration-style: solid;
+}
+
+/* Emblem. */
+.emblem {
+  display: block;
+  width: 22px;
+  margin-top: -6px;
+  color: var(--ink);
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.emblem:is(:hover, :focus-visible) {
+  opacity: 1;
+}
+
+.emblem svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: currentColor;
+}
+
+/* Menu: a native <details>, so it works without JavaScript. */
+.top-nav {
+  margin-left: auto;
+}
+
+.menu-toggle {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  cursor: pointer;
+}
+
+.menu-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.menu-label--open,
+.menu[open] .menu-label--closed {
+  display: none;
+}
+
+.menu[open] .menu-label--open {
+  display: inline;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.menu-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  list-style: none;
+}
+
+/* Footer controls. */
+.bottom-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.theme-toggle {
+  padding: 6px 10px;
+  margin-right: -10px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.theme-toggle[hidden] {
+  display: none;
+}
+
+/* Keep the fixed footer controls outside the narrowing reading column. */
+@media (min-width: 801px) {
+  .site-footer-bar {
+    padding-inline: clamp(28px, calc(50vw - 520px), var(--frame-inline));
+  }
+}
+
+@media (max-width: 800px) {
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  .site-header {
+    z-index: 220;
+    padding-bottom: calc(var(--frame-chrome-fade) + var(--frame-chrome-clearance));
+    /* Content scrolling under the logo and MENU fades out instead of colliding. */
+    background: linear-gradient(
+      to bottom,
+      var(--paper) 0%,
+      var(--paper) calc(100% - var(--frame-chrome-fade)),
+      transparent 100%
+    );
+  }
+
+  .site-footer-bar {
+    position: relative;
+    z-index: 100;
+  }
+
+  /* Padding enlarges the touch target; negative margins keep the glyph in place. */
+  .emblem {
+    position: relative;
+    z-index: 2;
+    box-sizing: content-box;
+    width: 18px;
+    padding: 13px;
+    margin: -17px 0 -13px -13px;
+  }
+
+  .menu-toggle {
+    position: relative;
+    z-index: 2;
+    min-height: 44px;
+    margin: -15px -10px;
+    padding: 15px 10px;
+  }
+
+  .site-name {
+    padding-block: 11px;
+    margin-block: -11px;
+  }
+
+  .theme-toggle {
+    padding-block: 11px;
+    margin-block: -11px;
+  }
+
+  .menu[open] .menu-links {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    gap: 18px;
+    margin: 0;
+    padding: calc(var(--frame-block) + 44px) var(--frame-inline) var(--frame-block);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--paper);
+  }
+
+  /* 44px rows: 22px of text plus padding, so every link is an easy tap. */
+  .menu[open] .menu-group {
+    gap: 0;
+  }
+
+  .menu[open] .nav-link {
+    display: block;
+    padding-block: 11px;
+    font-size: var(--fs-md);
+  }
+}
+
+@media (max-width: 800px) and (prefers-reduced-motion: no-preference) {
+  .menu[open] .menu-links {
+    animation: menu-sheet-in 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes menu-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

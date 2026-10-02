@@ -1,0 +1,16 @@
+{{- define "main" }}
+{{- with site.Params.homeInfoParams }}
+<section class="home-intro">
+  <h1 class="home-title">{{ .Title }}</h1>
+  <div class="prose home-text">{{ .Content | markdownify }}</div>
+</section>
+{{- end }}
+
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
+{{- $paginator := .Paginate $pages }}
+
+<h2 class="section-label">Bài viết{{ if eq $paginator.PageNumber 1 }} mới{{ end }}</h2>
+{{- partial "entry-list.html" $paginator.Pages }}
+{{- partial "pagination.html" $paginator }}
+{{- end }}

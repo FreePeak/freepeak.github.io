@@ -1,0 +1,16 @@
+{{- /* Newer / older links. Context: a Hugo paginator. */ -}}
+{{- if gt .TotalPages 1 }}
+<nav class="pagination" aria-label="Phân trang">
+  {{- if .HasPrev }}
+  <a class="pagination-prev" href="{{ .Prev.URL | absURL }}" rel="prev">&larr; Mới hơn</a>
+  {{- else }}
+  <span></span>
+  {{- end }}
+  <span class="pagination-count">Trang {{ .PageNumber }} / {{ .TotalPages }}</span>
+  {{- if .HasNext }}
+  <a class="pagination-next" href="{{ .Next.URL | absURL }}" rel="next">Cũ hơn &rarr;</a>
+  {{- else }}
+  <span></span>
+  {{- end }}
+</nav>
+{{- end }}

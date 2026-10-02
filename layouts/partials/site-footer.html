@@ -1,0 +1,14 @@
+{{- /*
+  Fixed bottom chrome: site name (bottom-left) and the theme toggle
+  (bottom-right). The toggle stays hidden until site.js runs, because it
+  does nothing without JavaScript (the OS colour scheme still applies).
+*/ -}}
+{{- $brand := site.Params.title | default site.Title }}
+<footer class="site-footer-bar">
+  <a class="site-name" href="{{ "/" | relURL }}">{{ $brand }}</a>
+  <div class="bottom-controls">
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Giao diện" hidden>
+      <span class="theme-label">Tự động</span>
+    </button>
+  </div>
+</footer>

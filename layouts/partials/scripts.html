@@ -1,0 +1,2 @@
+{{- $js := resources.Get "js/site.js" | minify | fingerprint }}
+<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>

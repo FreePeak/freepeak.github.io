@@ -1,0 +1,152 @@
+/*
+ * Design tokens.
+ *
+ * The visual language (paper sheet on a grey desk, fixed corner chrome,
+ * uppercase mono interface type over a serif reading column) is modelled on
+ * earendil.com, https://github.com/earendil-works/website (Apache-2.0).
+ * The CSS here is written for Hugo; no code, fonts or brand assets are copied.
+ * Earendil's own fonts (Departure Mono, Plantin Now) cannot draw most
+ * Vietnamese letters, so this site uses Newsreader + IBM Plex Mono (both OFL).
+ *
+ * Colour tokens use light-dark(), so the OS colour scheme works without any
+ * JavaScript; <html data-theme="light|dark"> (set by site.js) overrides it.
+ * They are registered with @property so a theme change cross-fades.
+ */
+
+@property --paper {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #faf9f6;
+}
+
+@property --desk {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #b8b8b8;
+}
+
+@property --ink {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #353431;
+}
+
+@property --ink-body {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #353431;
+}
+
+@property --ink-muted {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgb(25 24 22 / 0.64);
+}
+
+@property --rule {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgb(39 37 34 / 0.18);
+}
+
+@property --pre-bg {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #1c1b1a;
+}
+
+@property --pre-ink {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgb(244 242 238 / 0.92);
+}
+
+@property --pre-muted {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgb(244 242 238 / 0.5);
+}
+
+:root {
+  color-scheme: light dark;
+
+  /* Colour (light, dark). */
+  --paper: light-dark(#faf9f6, #2e2d2b);
+  --desk: light-dark(#b8b8b8, #1a1a1a);
+  --ink: light-dark(#353431, #f4f2ee);
+  --ink-body: light-dark(#353431, rgb(240 240 240 / 0.82));
+  --ink-muted: light-dark(rgb(25 24 22 / 0.64), rgb(240 240 240 / 0.6));
+  --rule: light-dark(rgb(39 37 34 / 0.18), rgb(244 242 238 / 0.18));
+  --pre-bg: light-dark(#1c1b1a, rgb(0 0 0 / 0.5));
+  --pre-ink: light-dark(rgb(244 242 238 / 0.92), rgb(240 240 240 / 0.82));
+  --pre-muted: light-dark(rgb(244 242 238 / 0.5), rgb(240 240 240 / 0.5));
+
+  /* Type families. Both web fonts cover all Vietnamese letters. */
+  --serif: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Noto Serif', Georgia, serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  /* Type scale. */
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.375rem;
+  --fs-2xl: 1.625rem;
+  --fs-3xl: 2.25rem;
+
+  --text-ui: var(--fs-sm);
+  --text-reading: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
+  --text-title: 1.3125rem;
+  --text-hero: clamp(1.5rem, 0.95rem + 1.7vw, 2.5rem);
+  --leading-ui: 1.25;
+  --leading-body: 1.6;
+  --leading-tight: 1.2;
+
+  /* One frame controls every outer alignment. */
+  --frame-inline: 75px;
+  --frame-block: 75px;
+  --frame-content-top: calc(var(--frame-block) + 76px);
+  --frame-content-bottom: calc(var(--frame-block) + 100px);
+  --frame-chrome-fade: 64px;
+  --frame-chrome-clearance: 20px;
+  --measure: 760px;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+@media (max-width: 800px) {
+  :root {
+    --frame-inline: 40px;
+    --frame-block: 40px;
+    --frame-content-top: calc(var(--frame-block) + 88px);
+    --frame-content-bottom: var(--frame-block);
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --frame-inline: 28px;
+    --frame-block: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    transition:
+      --paper 0.6s ease,
+      --desk 0.6s ease,
+      --ink 0.6s ease,
+      --ink-body 0.6s ease,
+      --ink-muted 0.6s ease,
+      --rule 0.6s ease,
+      --pre-bg 0.6s ease,
+      --pre-ink 0.6s ease,
+      --pre-muted 0.6s ease;
+  }
+}

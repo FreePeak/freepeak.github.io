@@ -100,19 +100,19 @@ params:
 menu:
   main:
     - identifier: posts
-      name: Posts
+      name: Bài viết
       url: /posts/
       weight: 10
     - identifier: archives
-      name: Archives
+      name: Lưu trữ
       url: /archives/
       weight: 20
     - identifier: tags
-      name: Tags
+      name: Thẻ
       url: /tags/
       weight: 30
     - identifier: search
-      name: Search
+      name: Tìm kiếm
       url: /search/
       weight: 40
 
@@ -123,7 +123,7 @@ markup:
     anchorLineNos: true
     codeFences: true
     guessSyntax: true
-    lineNos: true
+    lineNos: false
     style: monokai
   goldmark:
     renderer:
