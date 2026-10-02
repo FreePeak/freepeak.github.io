@@ -1,0 +1,10 @@
+{{- /* Taxonomy index (used when no content page owns /tags/). */ -}}
+{{- define "main" }}
+<header class="page-head">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{- with .Description }}
+  <p class="page-desc">{{ . }}</p>
+  {{- end }}
+</header>
+{{- partial "tag-index.html" . }}
+{{- end }}

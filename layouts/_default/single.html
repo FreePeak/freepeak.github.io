@@ -1,0 +1,55 @@
+{{- define "main" }}
+{{- $brand := site.Params.title | default site.Title }}
+<article class="post">
+  {{- /* Email-style header: Ngày / Từ / Đến / Chủ đề (+ Thẻ). */}}
+  <dl class="email-meta">
+    {{- if not .Date.IsZero }}
+    <div>
+      <dt>Ngày:</dt>
+      <dd>
+        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ partial "vi-date.html" .Date }}</time>
+        {{- if (.Param "ShowReadingTime") }}<span class="email-meta-aside"> · {{ .ReadingTime }} phút đọc</span>{{ end }}
+      </dd>
+    </div>
+    {{- end }}
+    <div>
+      <dt>Từ:</dt>
+      <dd>{{ partial "author.html" . | default $brand }}</dd>
+    </div>
+    <div>
+      <dt>Đến:</dt>
+      <dd>{{ .Params.to | default "Bạn đọc" }}</dd>
+    </div>
+    <div>
+      <dt>Chủ đề:</dt>
+      <dd><h1 class="subject">{{ .Title }}{{ if .Draft }} <span class="draft-flag">nháp</span>{{ end }}</h1></dd>
+    </div>
+    {{- with .GetTerms "tags" }}
+    <div>
+      <dt>Thẻ:</dt>
+      <dd>
+        {{- range $i, $tag := . }}{{ if $i }}, {{ end }}<a href="{{ $tag.RelPermalink }}">{{ $tag.LinkTitle }}</a>{{ end -}}
+      </dd>
+    </div>
+    {{- end }}
+  </dl>
+
+  {{- with .Description }}
+  <p class="lede">{{ . }}</p>
+  {{- end }}
+
+  {{- if (.Param "ShowToc") }}
+  {{- $toc := .TableOfContents }}
+  {{- if findRE "<li" $toc }}
+  <details class="toc"{{ if .Param "TocOpen" }} open{{ end }}>
+    <summary>Mục lục</summary>
+    {{ $toc }}
+  </details>
+  {{- end }}
+  {{- end }}
+
+  <div class="prose post-body">
+    {{- partial "anchored-headings.html" .Content }}
+  </div>
+</article>
+{{- end }}

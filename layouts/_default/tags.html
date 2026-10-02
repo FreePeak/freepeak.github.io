@@ -1,0 +1,13 @@
+{{- /*
+  Layout for content/tags.md ("layout: tags"). That page owns /tags/, so it
+  shadows Hugo's generated taxonomy page and needs its own tag listing.
+*/ -}}
+{{- define "main" }}
+<header class="page-head">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{- with .Description }}
+  <p class="page-desc">{{ . }}</p>
+  {{- end }}
+</header>
+{{- partial "tag-index.html" . }}
+{{- end }}

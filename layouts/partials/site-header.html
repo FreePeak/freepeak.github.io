@@ -1,0 +1,46 @@
+{{- /*
+  Fixed top chrome: emblem (top-left) and the MENU toggle (top-right).
+  The menu is a native <details>, so it works without JavaScript.
+*/ -}}
+{{- $brand := site.Params.title | default site.Title }}
+{{- $here := .RelPermalink }}
+{{- $socialLabels := dict "github" "GitHub" "twitter" "X" "linkedin" "LinkedIn" }}
+<header class="site-header">
+  <a class="emblem" href="{{ "/" | relURL }}" aria-label="{{ $brand }}">
+    <svg viewBox="72 60 120 176" aria-hidden="true" focusable="false">
+      <path d="M76 64H188L170 88H76Z"/>
+      <path d="M76 104L104 132V206L76 232Z"/>
+      <path d="M112 120H164L148 144H112Z"/>
+    </svg>
+  </a>
+
+  <nav class="top-nav" aria-label="Điều hướng chính">
+    <details class="menu" id="site-menu">
+      <summary class="menu-toggle">
+        <span class="menu-label menu-label--closed">Menu</span>
+        <span class="menu-label menu-label--open">Đóng</span>
+      </summary>
+      <div class="menu-links">
+        <ul class="menu-group">
+          {{- range site.Menus.main }}
+          {{- $url := .URL | relURL }}
+          {{- $exact := eq $url $here }}
+          {{- $inside := and (ne $url ("/" | relURL)) (hasPrefix $here $url) }}
+          <li><a class="nav-link{{ if or $exact $inside }} is-active{{ end }}" href="{{ $url }}"{{ if $exact }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+          {{- end }}
+        </ul>
+        {{- $feed := site.Home.OutputFormats.Get "rss" }}
+        {{- if or site.Params.socialIcons $feed }}
+        <ul class="menu-group menu-group--external" aria-label="Liên kết ngoài">
+          {{- with $feed }}
+          <li><a class="nav-link" href="{{ .RelPermalink }}">RSS</a></li>
+          {{- end }}
+          {{- range site.Params.socialIcons }}
+          <li><a class="nav-link" href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ index $socialLabels .name | default (.name | title) }}</a></li>
+          {{- end }}
+        </ul>
+        {{- end }}
+      </div>
+    </details>
+  </nav>
+</header>

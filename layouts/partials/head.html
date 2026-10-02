@@ -1,0 +1,62 @@
+{{- /*
+  Document head. Replaces PaperMod's head.html: PaperMod's stylesheet bundle
+  is not loaded, only assets/css/extended/*.css. SEO partials (Open Graph,
+  Twitter cards, JSON-LD) are still PaperMod's, from the theme directory.
+*/ -}}
+{{- $brand := site.Params.title | default site.Title }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+{{- $index := and (ne .Params.robotsNoIndex true) (or hugo.IsProduction (eq site.Params.env "production")) }}
+<meta name="robots" content="{{ cond $index "index, follow" "noindex, nofollow" }}">
+
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}{{ end }}</title>
+
+{{- if .IsHome }}
+{{ with site.Params.keywords -}}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+{{- else }}
+<meta name="keywords" content="{{ delimit (.Params.keywords | default .Params.tags | default slice) ", " }}">
+{{- end }}
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if or .IsPage .IsSection }}{{ .Summary | plainify | htmlUnescape | default (printf "%s - %s" .Title site.Title) }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+<meta name="author" content="{{ partial "author.html" . | default $brand }}">
+<link rel="canonical" href="{{ with .Params.canonicalURL }}{{ trim . " " }}{{ else }}{{ $.Permalink }}{{ end }}">
+
+{{- /* Icons */}}
+<link rel="icon" type="image/svg+xml" href="{{ site.Params.assets.favicon | default "/favicon.svg" | absURL }}">
+
+{{- /* Fonts: the files nearly every page needs on first paint (body, titles, labels). */}}
+<link rel="preload" href="{{ "fonts/newsreader-normal-400-700-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/newsreader-normal-400-700-vietnamese.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/newsreader-italic-400-700-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/plex-mono-normal-400-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+
+{{- /* Styles: every file in assets/css/extended, in filename order. */}}
+{{- $css := resources.Match "css/extended/*.css" | resources.Concat "css/site.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+{{- /* Search (client-side Fuse.js over the JSON output of the home page). */}}
+{{- if eq .Layout "search" }}
+<link rel="preload" as="fetch" href="../index.json" crossorigin="anonymous">
+{{- $fastsearch := resources.Get "js/fastsearch.js" | js.Build (dict "params" (dict "fuseOpts" site.Params.fuseOpts)) | minify }}
+{{- $fusejs := resources.Get "js/fuse.basic.min.js" }}
+{{- $search := slice $fusejs $fastsearch | resources.Concat "js/search.js" | fingerprint }}
+<script defer src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}"></script>
+{{- end }}
+
+{{- /* Feeds */}}
+{{- range .AlternativeOutputFormats }}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ $brand }}">
+{{- end }}
+
+{{- /* Restore a stored light/dark choice before first paint (no flash). */}}
+<script>try{var t=localStorage.getItem('fp-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+
+{{- partial "extend_head.html" . -}}
+
+{{- if or hugo.IsProduction (eq site.Params.env "production") }}
+{{- partial "templates/opengraph.html" . }}
+{{- partial "templates/twitter_cards.html" . }}
+{{- partial "templates/schema_json.html" . }}
+{{- end }}

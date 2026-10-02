@@ -1,0 +1,8 @@
+{{- /*
+  Appends a "#" permalink to every h2-h6 that Goldmark gave an id.
+
+  Applied to the article body in single.html only. A Markdown render hook
+  would also run for .Summary and .Plain, which leaks the "#" into RSS
+  descriptions and the search index.
+*/ -}}
+{{- . | replaceRE `(<h([2-6]) id="([^"]+)"[^>]*>)(.*?)(</h[2-6]>)` `${1}${4}<a class="anchor" href="#${3}" aria-label="Liên kết tới mục này">#</a>${5}` | safeHTML -}}

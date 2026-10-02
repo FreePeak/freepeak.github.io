@@ -1,0 +1,308 @@
+/* Long-form reading typography (.prose): serif body, quiet rules, dotted links. */
+
+.prose {
+  font-family: var(--serif);
+  font-size: var(--text-reading);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  color: var(--ink-body);
+  overflow-wrap: break-word;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose > :last-child {
+  margin-bottom: 0;
+}
+
+.prose p {
+  margin-block: 1.25em;
+}
+
+.prose a {
+  color: var(--ink);
+  font-weight: 500;
+  text-decoration: underline dotted;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.prose a:is(:hover, :focus-visible) {
+  text-decoration-style: solid;
+}
+
+.prose strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.prose a strong,
+.prose blockquote strong,
+.prose th strong {
+  color: inherit;
+}
+
+/* Headings. */
+.prose :is(h2, h3, h4, h5, h6) {
+  color: var(--ink);
+  text-wrap: balance;
+  scroll-margin-top: 6rem;
+}
+
+.prose h2 {
+  margin: 2em 0 1em;
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  line-height: 1.33;
+}
+
+.prose h3 {
+  margin: 1.6em 0 0.6em;
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.prose :is(h4, h5, h6) {
+  margin: 1.5em 0 0.5em;
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.prose :is(h2, h3, h4, h5, h6) + * {
+  margin-top: 0;
+}
+
+.prose a.anchor {
+  margin-inline-start: 0.4em;
+  color: var(--ink-muted);
+  font-weight: 400;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.prose :is(h2, h3, h4, h5, h6):is(:hover, :focus-within) a.anchor,
+.prose a.anchor:focus-visible {
+  opacity: 1;
+}
+
+/* Lists. */
+.prose :is(ul, ol) {
+  margin-block: 1.25em;
+  padding-inline-start: 1.625em;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li {
+  margin-block: 0.5em;
+  padding-inline-start: 0.375em;
+}
+
+.prose ul > li::marker {
+  color: var(--ink-muted);
+}
+
+.prose ol > li::marker {
+  color: var(--ink-muted);
+  font-weight: 400;
+}
+
+.prose li > :is(ul, ol) {
+  margin-block: 0.75em;
+}
+
+.prose li > p {
+  margin-block: 0.75em;
+}
+
+.prose li > p:first-child {
+  margin-top: 0;
+}
+
+.prose li > p:last-child {
+  margin-bottom: 0;
+}
+
+.prose dt {
+  margin-top: 1.25em;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.prose dd {
+  margin-top: 0.5em;
+  padding-inline-start: 1.625em;
+}
+
+/* Rules and quotes. */
+.prose hr {
+  margin-block: 3em;
+  border: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.prose blockquote {
+  margin-block: 1.6em;
+  padding-inline-start: 1em;
+  border-inline-start: 0.25rem solid var(--rule);
+  color: var(--ink);
+  font-style: italic;
+}
+
+.prose blockquote p {
+  margin-block: 0.75em;
+}
+
+.prose blockquote > :first-child {
+  margin-top: 0;
+}
+
+.prose blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* Media. */
+.prose img,
+.prose video {
+  display: block;
+  height: auto;
+  margin: 2em auto;
+}
+
+.prose figure {
+  margin-block: 2em;
+}
+
+.prose figure > img {
+  margin-block: 0;
+}
+
+.prose figcaption {
+  margin-top: 0.85em;
+  color: var(--ink-muted);
+  font-size: 0.875em;
+  line-height: 1.43;
+  text-align: center;
+}
+
+/* Tables scroll sideways instead of widening the page. */
+.prose table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin-block: 2em;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.875em;
+  line-height: 1.7;
+}
+
+.prose thead {
+  border-bottom: 1px solid var(--rule);
+}
+
+.prose th {
+  padding: 0 0.6em 0.6em;
+  color: var(--ink);
+  font-weight: 600;
+  text-align: start;
+  vertical-align: bottom;
+}
+
+.prose td {
+  padding: 0.6em;
+  text-align: start;
+  vertical-align: baseline;
+}
+
+.prose tbody tr + tr {
+  border-top: 1px solid var(--rule);
+}
+
+.prose :is(th, td):first-child {
+  padding-inline-start: 0;
+}
+
+.prose :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+/* Inline code gets literal backticks, like the Markdown source. */
+.prose :not(pre) > code {
+  font-family: var(--mono);
+  font-size: 0.78em;
+  font-weight: 500;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: '`';
+}
+
+.prose :is(a, h2, h3, h4, blockquote, th) code {
+  color: inherit;
+}
+
+.prose kbd {
+  padding: 0.19em 0.38em;
+  border-radius: 0.3em;
+  box-shadow:
+    0 0 0 1px var(--rule),
+    0 3px 0 var(--rule);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.78em;
+  font-weight: 500;
+}
+
+.prose mark {
+  padding-inline: 0.15em;
+  background: color-mix(in srgb, var(--ink) 14%, transparent);
+  color: inherit;
+}
+
+.prose details {
+  margin-block: 1.25em;
+}
+
+.prose summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Footnotes. */
+.prose .footnotes {
+  margin-top: 3em;
+  color: var(--ink-muted);
+  font-size: 0.875em;
+}
+
+.prose .footnotes hr {
+  margin-block: 1.5em;
+}
+
+.prose .footnotes ol {
+  margin-block: 0;
+}
+
+.prose .footnote-backref {
+  text-decoration: none;
+}
+
+.prose sup {
+  line-height: 0;
+}

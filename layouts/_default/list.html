@@ -1,0 +1,25 @@
+{{- /* Sections (/posts/) and taxonomy terms (/tags/<tag>/). */ -}}
+{{- define "main" }}
+<header class="page-head">
+  {{- if eq .Kind "term" }}
+  <p class="page-kicker">{{ if eq .Data.Plural "categories" }}Danh mục{{ else }}Thẻ{{ end }}</p>
+  {{- end }}
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{- with .Description }}
+  <p class="page-desc">{{ . }}</p>
+  {{- end }}
+  {{- if and (or (eq .Kind "term") (eq .Kind "section")) (.Param "ShowRssButtonInSectionTermList") }}
+  {{- with .OutputFormats.Get "rss" }}
+  <p class="page-tools"><a href="{{ .RelPermalink }}">RSS</a></p>
+  {{- end }}
+  {{- end }}
+</header>
+
+{{- with .Content }}
+<div class="prose page-body">{{ . }}</div>
+{{- end }}
+
+{{- $paginator := .Paginate .RegularPages }}
+{{- partial "entry-list.html" $paginator.Pages }}
+{{- partial "pagination.html" $paginator }}
+{{- end }}

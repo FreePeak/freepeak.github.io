@@ -1,0 +1,6 @@
+{{- /* Every tag, alphabetical, with post counts. */ -}}
+<ul class="tag-list">
+  {{- range site.Taxonomies.tags.Alphabetical }}
+  <li><a class="tag" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle | default .Name }}<sup class="tag-count">{{ .Count }}</sup></a></li>
+  {{- end }}
+</ul>
