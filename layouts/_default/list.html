@@ -2,7 +2,7 @@
 {{- define "main" }}
 <header class="page-head">
   {{- if eq .Kind "term" }}
-  <p class="page-kicker">{{ if eq .Data.Plural "categories" }}Danh mục{{ else }}Thẻ{{ end }}</p>
+  <p class="page-kicker">{{ if eq .Data.Plural "categories" }}Category{{ else }}Tag{{ end }}</p>
   {{- end }}
   <h1 class="page-title">{{ .Title }}</h1>
   {{- with .Description }}

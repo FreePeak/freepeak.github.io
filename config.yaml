@@ -1,6 +1,6 @@
 baseURL: "https://FreePeak.github.io/"
 title: FreePeak Labs
-languageCode: vi
+languageCode: en
 theme: PaperMod
 
 enableRobotsTXT: true
@@ -100,19 +100,19 @@ params:
 menu:
   main:
     - identifier: posts
-      name: Bài viết
+      name: Posts
       url: /posts/
       weight: 10
     - identifier: archives
-      name: Lưu trữ
+      name: Archives
       url: /archives/
       weight: 20
     - identifier: tags
-      name: Thẻ
+      name: Tags
       url: /tags/
       weight: 30
     - identifier: search
-      name: Tìm kiếm
+      name: Search
       url: /search/
       weight: 40
 
