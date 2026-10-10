@@ -1,3 +1,3 @@
 ---
-title: "Bài viết"
+title: "Posts"
 ---

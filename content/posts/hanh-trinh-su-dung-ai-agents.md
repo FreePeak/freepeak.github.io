@@ -1,12 +1,12 @@
 ---
-title: "Trải nghiệm sử dụng AI Agent lập trình viên 2026"
+title: "Using AI Coding Agents as a Developer: A 2026 Field Report"
 date: 2026-01-18T10:00:00+07:00
 draft: false
 author: "Free Peak"
 tags: ["AI", "Developer Tools", "Experience", "Review"]
 categories: ["Technology", "AI"]
-description: "Chia sẻ trải nghiệm thực tế về các AI coding agents: Cursor, Copilot, Claude Code, và nhiều công cụ khác - ưu điểm, nhược điểm, và cách chọn tool phù hợp cho từng bài toán."
-summary: "Hành trình khám phá và so sánh các AI coding agents phổ biến: từ ChatGPT, Cursor, GitHub Copilot đến Claude Code và GLM 4.7. Đánh giá dựa trên trải nghiệm thực tế với các project từ CRUD đến EDA, MCP/MPC và PKI."
+description: "Hands-on experience with AI coding agents: Cursor, Copilot, Claude Code and more - strengths, weaknesses, and how to pick the right tool for the job."
+summary: "A tour and comparison of the popular AI coding agents: from ChatGPT, Cursor and GitHub Copilot to Claude Code and GLM 4.7, judged on real work from CRUD apps through EDA, MCP/MPC and PKI."
 ShowToc: true
 TocOpen: false
 ShowReadingTime: true
@@ -18,7 +18,7 @@ ShowCodeCopyButtons: true
 cover:
     image: ""
     alt: "AI Developer Tools Comparison 2026"
-    caption: "So sánh các công cụ AI hỗ trợ lập trình viên"
+    caption: "Comparison of AI developer tools"
     relative: false
     hidden: false
 editPost:
@@ -35,7 +35,7 @@ Chào anh em, mình viết bài này để kể lại hành trình "chơi hệ A
 
 Bài này mình kể theo trải nghiệm thật, và có kèm một bảng tổng hợp cuối bài để anh em dễ chọn.
 
-## 1) Từ ChatGPT đến thời "cày chay" và bắt đầu trả phí
+## 1) From ChatGPT to the era of unpaid labour, and the first paid seat
 
 ![Dòng thời gian các AI tools mình từng dùng](../../images/ai-timeline.svg)
 
@@ -43,7 +43,7 @@ Mình bắt đầu với ChatGPT ngay từ lúc nó vừa ra mắt. Lúc đó qu
 
 Có giai đoạn mình "cày" bản free của Cursor bằng cách dùng… 5 email. Anh em nào từng trải chắc hiểu cảm giác hit limit rồi phải đổi account nó "hề" thế nào. Cuối cùng mình cũng xuống tiền $20/tháng cho Cursor.
 
-## 2) Khi project càng lớn, mình càng cần AI "đỡ việc thật"
+## 2) As projects grow, I need AI to do real work
 
 ![Một repo lớn: nhiều module, nhiều service](../../images/large-repo.svg)
 
@@ -60,7 +60,7 @@ Càng lên mấy tầng này, mình càng quan tâm 3 thứ:
 - **Cycle prompt**: bao nhiêu vòng hỏi-đáp để hoàn thành task.
 - **Stability/Quota**: đang chạy mà bị limit thì mất flow cực kỳ.
 
-## 3) Cursor + Opus 4.5: ổn định nhất về chất lượng và cycle prompt (nhưng bị limit)
+## 3) Cursor + Opus 4.5: the most stable on quality and prompt cycle (but rate limited)
 
 ![Cursor editor + AI chat](../../images/cursor-editor.svg)
 
@@ -76,7 +76,7 @@ Với mấy task này, Opus thường giúp mình **giảm số vòng prompt** r
 
 Nhưng… điểm đau duy nhất: **limit quá nhiều**. Dùng kiểu dev cày 4–6 tiếng/ngày là sẽ dính cap, và mình không muốn mỗi lần vào guồng lại bị ngắt.
 
-## 4) Vì limit, mình chuyển sang GitHub Copilot + Antigravity (Google)
+## 4) Because of limits, I moved to GitHub Copilot + Antigravity (Google)
 
 ![Copilot trong IDE](../../images/copilot-ide.svg)
 
@@ -91,13 +91,13 @@ Thói quen của mình là:
 - Khi quota gắt: đẩy qua **Copilot** để giữ nhịp code.
 - Những đoạn cần agent đọc/điều phối nhiều bước (setup, thay config, chạy chuỗi thay đổi): dùng **Antigravity (Google)**.
 
-## 5) Claude Code: plugin/support nhiều, nhưng limit mạnh nên chi phí đội lên
+## 5) Claude Code: many plugins and features, but hard limits push team cost up
 
 ![Một màn hình plugin/extension](../../images/ai-plugins.svg)
 
 Mình vẫn công nhận hệ Claude có nhiều điểm hay: ecosystem plugin/support khá rộng, trải nghiệm "nói chuyện để code" mượt. Nhưng vấn đề lớn nhất khiến mình không gắn bó lâu là **limit usage mạnh**, dẫn đến khi quy ra chi phí/khả năng cày, thì cảm giác **đắt hơn các nhà khác** (vì mình bị buộc phải tiết kiệm lượt).
 
-## 6) Repo nhỏ, task đơn giản: GLM 4.7 là lựa chọn mình dùng nhiều
+## 6) Small repos, simple tasks: GLM 4.7 is what I use most
 
 ![Đoạn code nhỏ, sửa nhanh](../../images/small-repo.svg)
 
@@ -110,7 +110,7 @@ Với những tác vụ kiểu:
 
 …thì mình **luôn ưu tiên GLM 4.7**. Lý do là nó nhanh, ra kết quả gọn, và mình không cần "đốt" Opus cho những việc không đòi hỏi chất lượng quá cao.
 
-## 7) Viết lách và research: chia vai cho đúng người
+## 7) Writing and research: give the right job to the right agent
 
 ![Viết blog và mail](../../images/writing.svg)
 
@@ -119,7 +119,7 @@ Mình chia use-case khá rõ:
 - **Viết email, viết blog, soạn nội dung**: mình dùng **GPT** vì văn phong linh hoạt, dễ chỉnh tone.
 - **Research/nghiên cứu**: mình thường dùng **Gemini** và **Grok** vì nhanh, hợp kiểu quét thông tin nhiều hướng.
 
-## 8) Bảng tổng hợp: dùng tool nào cho việc gì
+## 8) Summary table: which tool for which job
 
 | Use case | Tool/model mình hay dùng | Vì sao hợp | Điểm cần lưu ý |
 |---|---|---|---|
@@ -130,7 +130,7 @@ Mình chia use-case khá rõ:
 | Viết lách (mail/blog) | GPT | Dễ điều chỉnh giọng văn, bố cục tốt | Cần fact-check kỹ |
 | Research đa chiều | Gemini, Grok | Quét nhanh, gợi ý hướng tìm | Cần kiểm tra nguồn |
 
-## 9) Kết luận: muốn đánh giá khách quan thì benchmark cùng một bài
+## 9) Conclusion: to judge fairly, benchmark the same task
 
 Cuối cùng, cách mình thấy "công bằng" nhất để chọn tool/model là:
 

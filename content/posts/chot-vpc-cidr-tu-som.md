@@ -1,12 +1,12 @@
 ---
-title: "Chốt VPC CIDR Từ Sớm: Quyết Định Nhỏ Giúp Tránh Đập Đi Làm Lại"
+title: "Lock In VPC CIDR Early: A Small Decision That Prevents Tearing It All Down Later"
 date: 2026-01-19T10:00:00+07:00
 draft: false
 author: "Free Peak"
 tags: ["aws", "iac", "terragrunt", "networking", "eks"]
 categories: ["Architecture", "DevOps"]
-description: "Tại sao việc chọn CIDR cho VPC từ sớm lại quan trọng? Bài viết chia sẻ kinh nghiệm thực tế về cách quyết định CIDR có thể ảnh hưởng đến khả năng mở rộng hạ tầng AWS và cách quản trị CIDR hiệu quả với Terragrunt."
-summary: "CIDR của VPC nhìn như một lựa chọn kỹ thuật nhỏ, nhưng lại là nền tảng của toàn bộ hạ tầng mạng. Bài viết phân tích tại sao việc chốt CIDR sớm và quản trị nó như một quyết định cấp dự án sẽ giúp bạn tránh phải đập đi làm lại khi mở rộng hệ thống."
+description: "Why choosing a VPC CIDR early matters: real-world experience on how CIDR decisions shape AWS infrastructure growth, and how to govern CIDR effectively with Terragrunt."
+summary: "A VPC CIDR looks like a small technical choice, but it is the foundation of the whole network. Here is why locking it in early and treating it as a project-level decision saves you from rebuilding when you scale."
 cover:
     image: "/images/posts/chot-vpc-cidr-tu-som/cover.svg"
     alt: "VPC CIDR Planning - AWS Infrastructure Best Practice"
@@ -20,7 +20,7 @@ Và thứ hay cắn nhất lại là một dòng nhìn vô hại: CIDR của VPC
 
 
 ![CIDR Timeline](/images/posts/chot-vpc-cidr-tu-som/timeline.svg)
-## “Đổi CIDR” không giống đổi biến
+## Changing a CIDR is not like changing a variable
 
 CIDR nhìn như một lựa chọn kỹ thuật thuần túy:
 
@@ -46,7 +46,7 @@ Câu trả lời thường là: *thì mệt*.
 
 Dù chọn hướng nào, đây cũng không phải loại việc bạn muốn làm vào tuần mà team đang bận release.
 
-## Vì sao CIDR hay bị chồng lấp?
+## Why CIDRs overlap
 
 Tôi thấy có hai nguyên nhân phổ biến:
 
@@ -60,7 +60,7 @@ Mỗi team tự chọn một dải. Khi chưa kết nối liên mạng thì vẫ
 
 CIDR chồng lấp không phải lỗi kỹ thuật phức tạp. Nó giống kiểu “lúc xây nhà quên chừa đường ống”. Quên xong rồi, sửa mới đau.
 
-## Chốt CIDR sớm, và đưa nó lên config cấp dự án
+## Lock the CIDR early, and lift it to project-level config
 
 Tôi không nghĩ CIDR là thứ cần “chọn cho đúng một lần là xong mãi mãi”. Nhưng tôi tin nó là thứ nên *được quản trị như một quyết định nền tảng*, thay vì nằm rải rác trong code.
 
@@ -79,7 +79,7 @@ Vì sao quan trọng?
 
 Tóm lại: thay vì để CIDR là một chi tiết implementation, tôi coi nó là một phần của hợp đồng kiến trúc.
 
-## Chiến lược nhỏ cho một vấn đề lớn
+## A small strategy for a big problem
 
 Nếu áp dụng cách nghĩ “chiến lược bắt đầu từ vấn đề”, thì vấn đề ở đây không phải là “chọn CIDR nào cho đẹp”.
 
@@ -89,7 +89,7 @@ Chốt CIDR từ sớm không làm bạn deploy nhanh hơn hôm nay.
 
 Nhưng nó giúp bạn khỏi phải chạy ngược lại vào ngày mai.
 
-## Hình minh họa
+## Illustrations
 
 - Sơ đồ 1: CIDR là nền cho mọi lớp hạ tầng
 

@@ -1,32 +1,32 @@
 {{- define "main" }}
 {{- $brand := site.Params.title | default site.Title }}
 <article class="post">
-  {{- /* Email-style header: Ngày / Từ / Đến / Chủ đề (+ Thẻ). */}}
+  {{- /* Email-style header: Date / From / To / Subject (+ Tags). */}}
   <dl class="email-meta">
     {{- if not .Date.IsZero }}
     <div>
-      <dt>Ngày:</dt>
+      <dt>Date:</dt>
       <dd>
-        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ partial "vi-date.html" .Date }}</time>
-        {{- if (.Param "ShowReadingTime") }}<span class="email-meta-aside"> · {{ .ReadingTime }} phút đọc</span>{{ end }}
+        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ partial "long-date.html" .Date }}</time>
+        {{- if (.Param "ShowReadingTime") }}<span class="email-meta-aside"> · {{ .ReadingTime }} min read</span>{{ end }}
       </dd>
     </div>
     {{- end }}
     <div>
-      <dt>Từ:</dt>
+      <dt>From:</dt>
       <dd>{{ partial "author.html" . | default $brand }}</dd>
     </div>
     <div>
-      <dt>Đến:</dt>
-      <dd>{{ .Params.to | default "Bạn đọc" }}</dd>
+      <dt>To:</dt>
+      <dd>{{ .Params.to | default "Readers" }}</dd>
     </div>
     <div>
-      <dt>Chủ đề:</dt>
-      <dd><h1 class="subject">{{ .Title }}{{ if .Draft }} <span class="draft-flag">nháp</span>{{ end }}</h1></dd>
+      <dt>Subject:</dt>
+      <dd><h1 class="subject">{{ .Title }}{{ if .Draft }} <span class="draft-flag">draft</span>{{ end }}</h1></dd>
     </div>
     {{- with .GetTerms "tags" }}
     <div>
-      <dt>Thẻ:</dt>
+      <dt>Tags:</dt>
       <dd>
         {{- range $i, $tag := . }}{{ if $i }}, {{ end }}<a href="{{ $tag.RelPermalink }}">{{ $tag.LinkTitle }}</a>{{ end -}}
       </dd>
@@ -42,7 +42,7 @@
   {{- $toc := .TableOfContents }}
   {{- if findRE "<li" $toc }}
   <details class="toc"{{ if .Param "TocOpen" }} open{{ end }}>
-    <summary>Mục lục</summary>
+    <summary>Table of Contents</summary>
     {{ $toc }}
   </details>
   {{- end }}

@@ -16,7 +16,7 @@
       <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (cond $compact "02/01" "02/01/2006") }}</time>
       {{- end }}
       <span class="entry-main">
-        <span class="entry-title">{{ .Title }}{{ if .Draft }} <span class="draft-flag">nháp</span>{{ end }}</span>
+        <span class="entry-title">{{ .Title }}{{ if .Draft }} <span class="draft-flag">draft</span>{{ end }}</span>
         {{- if and (not $compact) (ne (.Param "hideSummary") true) }}
         {{- with .Summary | plainify | htmlUnescape | truncate 220 }}
         <span class="entry-desc">{{ . }}</span>
