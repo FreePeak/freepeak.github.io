@@ -1,12 +1,12 @@
 ---
-title: "EJBCA + GCP Cloud KMS: Hướng Dẫn Cài Đặt Và Cấu Hình Thực Tế"
+title: "EJBCA + GCP Cloud KMS: A Practical Installation and Configuration Guide"
 date: 2026-02-05T21:51:59+07:00
 draft: false
 author: "Free Peak"
 tags: ["ejbca","gcp","cloud-kms","pkcs11","installation","tutorial"]
 categories: ["Installation Guide"]
-description: "Hướng dẫn chi tiết cách tích hợp EJBCA Community Edition với GCP Cloud KMS sử dụng PKCS#11 library, bao gồm cấu hình generate_certs và test." 
-summary: "Hướng dẫn thành công tích hợp EJBCA CE với GCP Cloud KMS qua PKCS#11 với tùy chọn generate_certs: true."
+description: "Step-by-step integration of EJBCA Community Edition with GCP Cloud KMS using the PKCS#11 library, including the generate_certs configuration and testing."
+summary: "A working integration of EJBCA CE with GCP Cloud KMS over PKCS#11, with the generate_certs: true option."
 ShowToc: true
 TocOpen: false
 ShowReadingTime: true
@@ -17,8 +17,8 @@ ShowShareButtons: true
 ShowCodeCopyButtons: true
 cover:
     image: "/images/ejbca-gcp-kms-installation-cover.png"
-    alt: "Sơ đồ cài đặt EJBCA và GCP Cloud KMS"
-    caption: "Quy trình cài đặt EJBCA với GCP Cloud KMS"
+    alt: "EJBCA and GCP Cloud KMS setup diagram"
+    caption: "The EJBCA setup flow with GCP Cloud KMS"
     relative: true
     hidden: false
 editPost:
@@ -27,7 +27,7 @@ editPost:
     appendFilePath: true
 ---
 
-# EJBCA + GCP Cloud KMS: Hướng Dẫn Cài Đặt Và Cấu Hình Thực Tế
+# EJBCA + GCP Cloud KMS: A Practical Installation and Configuration Guide
 
 **Ngày**: 2026-02-05  
 **Trạng thái**: Thành công Test  

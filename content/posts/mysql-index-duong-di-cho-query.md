@@ -1,12 +1,12 @@
 ---
-title: "MySQL Index: Đường Đi Cho Query (Viết Cho Dev Backend)"
+title: "MySQL Index: The Path a Query Takes (Written for Backend Developers)"
 date: 2026-01-20T00:00:00+07:00
 draft: false
 author: "Free Peak"
 tags: ["mysql", "database", "index", "performance", "backend"]
 categories: ["Database", "Backend"]
-description: "Index không phải bùa tăng tốc. Nó là đường đi. Bài viết giải thích cách MySQL dùng index theo góc nhìn dev backend: thiết kế index theo query thật, anti-pattern hay gặp, và checklist áp dụng."
-summary: "Index chỉ nhanh khi query đi đúng đường. Bài viết đưa ra lens thực chiến cho dev backend: bắt đầu từ query quan trọng, viết điều kiện sargable, thiết kế index ghép theo thứ tự lọc/sort, và xác minh bằng EXPLAIN."
+description: "An index is not a speed-up charm. It is a path. How MySQL actually uses indexes, from a backend developer point of view: designing indexes for real queries, the anti-patterns you hit, and a checklist you can apply."
+summary: "An index is only fast when the query takes the right path. A practical lens for backend developers: start from the queries that matter, write sargable conditions, design composite indexes in the real filter/sort order, and verify with EXPLAIN."
 cover:
     image: "/images/posts/mysql-index-duong-di-cho-query/cover.svg"
     alt: "MySQL Index for Backend Performance"
@@ -22,7 +22,7 @@ MySQL index cũng vậy.
 
 Nó làm query nhanh lên thật. Nhưng nó không miễn phí. Và quan trọng hơn: nó chỉ nhanh khi query đi đúng đường.
 
-## Câu hỏi gốc: Query của bạn muốn đi theo trật tự nào?
+## The original question: in what order does your query want to travel?
 
 Một query phổ biến trong backend thường làm 3 việc:
 
@@ -38,7 +38,7 @@ Nếu không có index phù hợp, MySQL sẽ phải:
 
 Nói cho gọn: vấn đề không nằm ở việc “có index hay không”, mà nằm ở việc “index hiện tại có đúng với đường lọc/sort của query hay không”.
 
-## Lựa chọn nào cũng có giá (constraint của backend)
+## Every choice has a cost (the backend constraint)
 
 Tôi hay gặp 3 kiểu “đời sống” khi đụng index:
 
@@ -54,7 +54,7 @@ Bạn tạo index là bạn đang ký vào một “hợp đồng”:
 - đổi lại tốn dung lượng
 - và tốn chi phí ghi cho mọi mutation
 
-## Thực tế người dùng chỉ quan tâm 3 thứ
+## In practice users only care about 3 things
 
 Nếu bỏ hết thuật ngữ đi thì cuối cùng vẫn là:
 
@@ -64,9 +64,9 @@ Nếu bỏ hết thuật ngữ đi thì cuối cùng vẫn là:
 
 Bạn có thể giải thích B-Tree với đồng nghiệp cả buổi. Nhưng nếu endpoint list đơn hàng vẫn 3–4 giây thì sản phẩm vẫn đau.
 
-## Định nghĩa nghe hay, thực tế lắm bẫy
+## Definitions that sound good, reality that traps you
 
-### MySQL 8+ đôi khi chủ động bỏ qua index (selectivity thấp)
+### MySQL 8+ sometimes skips an index on its own (low selectivity)
 
 Có một cảm giác rất dễ gây hoang mang: bạn đã tạo index rồi, nhưng `EXPLAIN` vẫn cho thấy MySQL quét bảng.
 
@@ -118,7 +118,7 @@ Những thứ này làm bạn cảm giác “mình đã có index rồi mà vẫ
 
 Thực ra là query đang đi sai đường.
 
-## Một lens dễ dùng: bắt đầu từ query quan trọng, không bắt đầu từ bảng
+## One lens that is easy to use: start from the important query, not the table
 
 Đừng hỏi: “Bảng orders cần index gì?”
 
@@ -132,9 +132,9 @@ Hãy hỏi:
 
 Khi bạn trả lời được 4–5 câu đó, index tự nhiên “hiện hình”.
 
-## Framework 3 bước (đủ dùng cho dev backend)
+## A 3-step framework (enough for backend developers)
 
-### Bước 1: Viết query theo cách MySQL có thể tận dụng index
+### Step 1: Write the query the way MySQL can use an index
 
 Một anti-pattern kinh điển:
 
@@ -153,7 +153,7 @@ WHERE created_at >= '2026-01-01'
 
 Ngắn gọn: muốn dùng index thì đừng bọc cột bằng hàm trong điều kiện lọc.
 
-### Bước 2: Thiết kế index theo đúng thứ tự lọc/sort thật sự
+### Step 2: Design the index in the real filter/sort order
 
 Giả sử backend có endpoint list đơn hàng của user:
 
@@ -185,7 +185,7 @@ Bạn không cần nhớ quá nhiều lý thuyết. Chỉ cần nhớ quy tắc 
 - `(user_id, status, created_at)` dùng tốt khi query có `user_id` trước
 - thiếu `user_id` thì các cột sau khó phát huy
 
-### Bước 3: Dùng EXPLAIN để xác nhận, không dùng niềm tin
+### Step 3: Use EXPLAIN to confirm, not faith
 
 Sau khi tạo index, chạy:
 
@@ -203,7 +203,7 @@ Những dấu hiệu bạn muốn thấy:
 
 Thói quen tốt: “tạo index xong là phải kiểm chứng”, không phải “cảm giác thấy ổn”.
 
-## Anti-pattern: Thêm index để “đỡ sợ” và cái giá phía sau
+## Anti-pattern: adding an index out of fear, and the price behind it
 
 Nhiều team đi vào vòng lặp:
 
@@ -217,7 +217,7 @@ Một câu hỏi nên tự hỏi trước khi thêm index:
 
 “Index này cứu endpoint nào, tần suất bao nhiêu, và đánh đổi gì cho write?”
 
-## Phân trang: OFFSET lớn là kẻ giết hiệu năng
+## Pagination: large OFFSET is a performance killer
 
 Pagination kiểu:
 
@@ -241,7 +241,7 @@ LIMIT 20;
 
 Khi đó index `(user_id, status, created_at)` gần như “đúng sách”.
 
-## Checklist nhanh (dành cho dev backend)
+## A quick checklist (for backend developers)
 
 - Bắt đầu từ query thật (hot path), không bắt đầu từ “bảng này nên có gì”.
 - Tránh điều kiện phá index: hàm trên cột, ép kiểu, `LIKE '%...%'`.
@@ -250,7 +250,7 @@ Khi đó index `(user_id, status, created_at)` gần như “đúng sách”.
 - OFFSET lớn: cân nhắc keyset pagination.
 - Mỗi index là chi phí ghi + dung lượng + bảo trì. Đừng tạo cho yên tâm.
 
-## Chốt lại một nguyên lý
+## Closing on one principle
 
 Index không phải bùa.
 

@@ -1,11 +1,11 @@
 ---
-title: "Chúng ta đi làm vì điều gì"
+title: "Why We Work"
 date: 2026-01-21
 draft: false
-tags: ["công-việc", "đời-sống", "xã-hội", "tâm-trí"]
+tags: ["work", "life", "society", "mind"]
 ---
 
-## Tiền về
+## About money
 
 Thông báo lương về lúc 9:03 sáng.
 
@@ -21,7 +21,7 @@ phần an tâm.
 
 Spoiler: nếu ai đổi “an tâm” bằng tiền, thì an tâm đó thường là hàng có hạn sử dụng.
 
-## Chúng ta đi làm vì điều gì
+## Why we work
 
 Nếu gọi thẳng ra, tôi thấy chúng ta đi làm vì ba thứ rất người, và rất dễ hiểu.
 
@@ -45,7 +45,7 @@ Thứ ba: vì sợ bị bỏ lại.
 Ba lý do đó đều hợp lý.
 Vì nó hợp lý nên nó càng khó thoát.
 
-## “Bán mình cho tư bản” là bán cái gì
+## Selling yourself to capital is selling what
 
 Nói “bán mình cho tư bản” nghe như một câu khẩu hiệu.
 Nhưng nếu bỏ chữ nghĩa đi, nó chỉ là một mô tả đời thường: ta đem một phần đời mình ra
@@ -78,7 +78,7 @@ Tôi hay tự giễu rằng trong đầu mình có một startup vô hình, chuy
 “Ráng thêm chút nữa là ổn.”
 Startup đó chưa bao giờ IPO, nhưng gọi vốn rất đều.
 
-## Tại sao con người chia phe ghét nhau
+## Why people split into camps and hate each other
 
 Nếu chỉ có chuyện “đi làm để sống”, ta đã có thể thương nhau hơn.
 Nhưng không. Ta chia phe.
@@ -124,7 +124,7 @@ Rẻ chi phí thay thế.
 Rẻ cả chi phí đạo đức, vì người ta tự đổ lỗi cho nhau thay vì hỏi:
 “Tại sao mình phải sống như vậy?”
 
-## Lợi ích ở đây là gì
+## What the benefit actually is
 
 Lợi ích có hai phía.
 
@@ -146,7 +146,7 @@ Có kẻ để ghét, ta thấy mình kiểm soát được sự bất lực.
 Tôi không nói vậy để mắng ai.
 Tôi cũng làm y như thế.
 
-## Lối thoát của người “nhân viên bình thường”
+## The escape hatch for an ordinary employee
 
 Tôi hay gặp một câu tự trách kiểu này:
 
@@ -180,7 +180,7 @@ Bạn có thể làm một nhân viên “bình thường”, nhưng không tầ
 
 Lối thoát, với tôi, có ba hướng. Bạn có thể chọn cả ba, nhưng ưu tiên khác nhau.
 
-## 1) Giữ công việc, bớt khổ tâm
+## 1) Keep the job, lose the anguish
 
 Đây là “giải thoát” cấp độ một: vẫn làm, vẫn nhận lương, nhưng bớt bị kéo bởi so sánh.
 
@@ -197,7 +197,7 @@ Một vài nguyên tắc tôi thấy hữu ích:
 Nếu nghe giống thiền, thì đúng là thiền.
 Nhưng phiên bản công sở của thiền chỉ là: đừng để bản ngã lái máy.
 
-## 2) Tối ưu để có nhiều thời gian hơn (giảm nhu cầu, tăng tự do)
+## 2) Optimise for more time (cut demand, gain freedom)
 
 Nếu bạn không muốn leo thang địa vị, bạn vẫn cần “đòn bẩy” khác.
 Đòn bẩy của người không leo là: giảm mức lệ thuộc.
@@ -218,7 +218,7 @@ Nó là tham cảm giác an toàn tuyệt đối.
 An toàn tuyệt đối không có.
 Chỉ có bớt phụ thuộc.
 
-## 3) Dám đổi môi trường làm việc (mà không đốt cầu)
+## 3) Dare to change workplace (without burning bridges)
 
 Không leo chức không có nghĩa là bạn phải chịu mọi môi trường.
 
@@ -238,7 +238,7 @@ Chịu đựng giỏi hơn chưa chắc là giải thoát.
 Giải thoát không phải là thắng.
 Giải thoát là biết lúc nào không cần đánh nữa.
 
-## Kết
+## Closing
 
 Thông báo lương vẫn sẽ rung.
 

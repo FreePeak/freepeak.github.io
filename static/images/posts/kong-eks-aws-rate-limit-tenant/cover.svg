@@ -62,12 +62,12 @@
   <!-- Title block -->
   <g transform="translate(90,120)">
     <text x="0" y="0" class="sub" font-size="18" fill="#9fb3d9">AWS EKS • API Gateway • Best Practices</text>
-    <text x="0" y="64" class="title" font-size="52" fill="#eaf1ff">Kong DB-less trên EKS</text>
+    <text x="0" y="64" class="title" font-size="52" fill="#eaf1ff">Kong DB-less on EKS</text>
     <text x="0" y="120" class="title" font-size="40" fill="#eaf1ff">Rate Limiting theo Tenant</text>
 
     <rect x="0" y="150" width="520" height="2" fill="#d6e3ff" opacity="0.2"/>
 
-    <text x="0" y="196" class="sub" font-size="20" fill="#c7d6f6">Vì sao ALB Ingress không đủ khi bạn cần giới hạn theo identity</text>
+    <text x="0" y="196" class="sub" font-size="20" fill="#c7d6f6">Why ALB Ingress falls short when you must limit by identity</text>
   </g>
 
   <!-- Corner badge -->

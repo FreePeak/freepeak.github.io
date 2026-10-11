@@ -12,7 +12,7 @@
 
   var THEME_KEY = 'fp-theme';
   var MODES = ['auto', 'dark', 'light'];
-  var LABELS = { auto: 'Tự động', dark: 'Tối', light: 'Sáng' };
+  var LABELS = { auto: 'Auto', dark: 'Dark', light: 'Light' };
   var toggle = document.getElementById('theme-toggle');
 
   function storedMode() {
@@ -45,7 +45,7 @@
 
     if (toggle) {
       toggle.querySelector('.theme-label').textContent = LABELS[mode];
-      toggle.setAttribute('aria-label', 'Giao diện: ' + LABELS[mode].toLowerCase() + '. Nhấn để đổi.');
+      toggle.setAttribute('aria-label', 'Theme: ' + LABELS[mode].toLowerCase() + '. Click to change.');
     }
   }
 
@@ -123,7 +123,7 @@
   function flash(button, label) {
     button.textContent = label;
     window.setTimeout(function () {
-      button.textContent = 'Sao chép';
+      button.textContent = 'Copy';
     }, 2000);
   }
 
@@ -150,15 +150,15 @@
       var button = document.createElement('button');
       button.type = 'button';
       button.className = 'copy-code';
-      button.textContent = 'Sao chép';
-      button.setAttribute('aria-label', 'Sao chép đoạn mã');
+      button.textContent = 'Copy';
+      button.setAttribute('aria-label', 'Copy code');
       button.addEventListener('click', function () {
         copyText(source.textContent).then(
           function () {
-            flash(button, 'Đã chép');
+            flash(button, 'Copied');
           },
           function () {
-            flash(button, 'Lỗi');
+            flash(button, 'Failed');
           }
         );
       });

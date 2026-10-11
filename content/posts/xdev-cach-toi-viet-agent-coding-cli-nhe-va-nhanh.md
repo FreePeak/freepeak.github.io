@@ -1,12 +1,12 @@
 ---
-title: "xdev: cách tôi viết một agent coding CLI nhẹ và nhanh"
+title: "xdev: how I wrote a lightweight, fast agent coding CLI"
 date: 2026-09-16T14:01:03+07:00
 draft: false
 author: "Free Peak"
 tags: ["ai", "coding", "golang", "tui", "developer-tools", "agent"]
 categories: ["Technology", "AI"]
-description: "7 ngày viết lại coding agent harness bằng Go: 1 binary 20MB, RSS nền ~16MB, 4 tool lõi, system prompt dưới 1000 token. Kể chuyện thật: số đo thật, bug thật, và thứ tôi cố tình không làm."
-summary: "Tôi dùng omp, opencode, Claude Code mỗi ngày và ngày càng khó chịu với độ nặng của chúng. Bài này kể lại 7 ngày viết xdev: đọc kiến trúc pi/omp, port data model sang Go, vật lộn với terminal UI, và những con số đo được trên máy tôi — 20MB binary, ~16MB RAM, 40ms khởi động."
+description: "Seven days rewriting a coding agent harness in Go: one 20MB binary, ~16MB idle RSS, 4 core tools, a system prompt under 1000 tokens. Real numbers, real bugs, and the things I deliberately did not build."
+summary: "I use omp, opencode and Claude Code every day, and I got more and more annoyed by how heavy they are. This is the story of the 7 days I spent writing xdev: reading the pi/omp architecture, porting the data model to Go, fighting the terminal UI, and the numbers I measured on my own machine - a 20MB binary, ~16MB RAM, 40ms startup."
 ShowToc: true
 TocOpen: false
 ShowReadingTime: true
@@ -29,7 +29,7 @@ editPost:
 
 > **Nói trước cho rõ:** mọi con số trong bài tôi đo trên máy cá nhân (macOS, Apple Silicon) vào ngày 16/09/2026, kèm đúng câu lệnh tôi dùng. Máy bạn sẽ ra số khác. Và tôi không so chất lượng agent — tôi chỉ cân độ nặng.
 
-## 1) Mọi chuyện bắt đầu từ một câu hỏi ngớ ngẩn
+## 1) It starts with a stupid question
 
 Chiều hôm đó tôi mở ba tab terminal: một tab chạy omp, một tab Claude Code, một tab opencode. Cả ba đang "nghĩ".
 
@@ -50,7 +50,7 @@ chạy, không phải mockup:
 
 ![Transcript xdev đang chạy: top bar, scrollback, composer, status row](/images/posts/xdev-cach-toi-viet-agent-coding-cli-nhe-va-nhanh/transcript.svg)
 
-## 2) Đo đã, rồi hãy nói
+## 2) Measure first, then talk
 
 Tôi không viết bài này để bảo mấy tool kia tệ. omp và Claude Code là hai thứ tôi dùng hằng ngày; nếu không có chúng thì tôi đã không bao giờ nghĩ tới chuyện tự viết một cái.
 
@@ -71,7 +71,7 @@ Cột "binary" mới là chỗ đáng nói. omp, Claude Code và opencode đều
 
 20MB với ~200MB, cho cùng một việc. Đây không phải cuộc thi "ai code giỏi hơn ai"; Go hay TS không phải lý do. Lý do là **bạn có thật sự cần cái runtime đó nằm trong binary của mình không**, khi phần lớn thời gian nó chỉ ngồi chờ network.
 
-## 3) Đi học trước: pi và omp
+## 3) Go to school first: pi and omp
 
 Tôi không tự nghĩ ra thiết kế. Tôi ngồi đọc. Và đọc xong thì thấy mình không cần phải thông minh nữa.
 
@@ -95,11 +95,11 @@ JSONL session tree (append-only + một con trỏ lá), unified stream contract,
 
 Nghiên cứu tôi viết ra trong 7 ngày nằm ở `docs/research/`: 19 file phân tích omp, pi, Claude Code, opencode, hermes, fx — kèm bảng verdict từng tính năng: cái nào port, cái nào bỏ, cái nào port khác đi và **tại sao**. `docs/parity-delta.md` ghi lại mọi chỗ tôi cố tình khác omp, và cả những flag omp tôi **nhận cho tương thích nhưng không có nghĩa** (như `--no-pty`, vì bash của tôi là pipe-based).
 
-## 4) Kiến trúc: những gì tôi chọn, và những gì tôi cố tình không làm
+## 4) Architecture: what I chose, and what I deliberately did not do
 
 Module path `github.com/FreePeak/xdev`, Go 1.25, **CGO-free**, một binary tĩnh, đúng 5 direct dependency (`tcell`, `go-runewidth`, MCP Go SDK, `yaml.v3`, `modernc.org/sqlite`).
 
-### Session là cây JSONL append-only, với một con trỏ lá
+### The session is an append-only JSONL tree with a leaf pointer
 
 Không có entry nào bị sửa hay xoá. Branch chỉ là **dời một con trỏ**. Context dựng lại bằng cách đi theo parent link. Format inspectable — bạn `jq` vào file session của tôi được, và tôi không cần viết riêng cái viewer nào.
 
@@ -107,7 +107,7 @@ Không có entry nào bị sửa hay xoá. Branch chỉ là **dời một con tr
 
 ![Tree selector của xdev: cây session append-only, mỗi entry một dòng](/images/posts/xdev-cach-toi-viet-agent-coding-cli-nhe-va-nhanh/tree-selector.svg)
 
-### Mọi thứ đều có biên
+### Everything is bounded
 
 Queue có biên. Buffer có biên. Session window có biên. Output sink có biên.
 
@@ -117,7 +117,7 @@ Cụ thể: `debug.SetMemoryLimit(100MB)` (override bằng `XDEV_MEMLIMIT`), và
 
 Tôi đo lúc boot: ~16MB RSS. 30–70MB ước tính cho phiên làm việc bình thường, worst case ép dưới 100MB. Đây là con số duy nhất tôi phải thừa nhận là mình chưa đo đủ: **tôi chưa chạy một phiên 200k token thật sự tới đáy.** Con số 100MB là thiết kế cộng với các test có thật, không phải measurement của tình huống tệ nhất.
 
-### 4 tool lõi, và phần còn lại là tuỳ chọn
+### 4 core tools, and the rest is optional
 
 Prompt + 4 tool nằm dưới 1000 token, và chỗ này tôi không tin lời mình nói — tôi **test luôn cái giới hạn đó**:
 
@@ -135,7 +135,7 @@ if tokens := len([]rune(got)) / 4; tokens >= maxPromptTokens {
 
 `grep`, `glob`, `lsp`, `eval`, `browser`, `debug`, `computer`, `tts`, `task`... đều có, nhưng chúng là lớp thêm vào sau khi 4 cái lõi đã đứng vững. Tổng: 544 file Go, ~90k dòng không tính test, ~63k dòng test — tức **test chiếm 41% codebase**.
 
-### Những thứ tôi cố tình không làm
+### The things I deliberately did not do
 
 Nói rõ cái mình không làm quan trọng hơn nói cái mình làm:
 
@@ -144,17 +144,17 @@ Nói rõ cái mình không làm quan trọng hơn nói cái mình làm:
 - **Không nạp extension trong process.** Extension chạy **subprocess** nói chuyện với nhau bằng JSONL handshake. Một extension crash không được phép làm chết agent. Cái mất: renderer custom trong process — extension chỉ **khai báo** spec (`card` | `table` | `tree`), host render, và spec sai thì degrade về plain text.
 - **Không tự nhận là bản sao.** omp v18.1.17 có 131 trang docs `omp://`; tôi diff cơ học `omp --help` với `xdev -h` rồi ghi lại từng thứ còn thiếu, kèm lý do.
 
-## 5) TUI: chỗ tôi mất nhiều thời gian nhất
+## 5) The TUI: where I spent the most time
 
 Đây là phần tôi muốn kể nhất, vì nó cũng là chỗ tôi sai nhiều nhất.
 
-### tcell, không phải bubbletea
+### tcell, not bubbletea
 
 bubbletea đẹp, dễ dùng, tài liệu tốt. Nhưng mô hình Elm của nó **allocate nhiều**, mà trong một cái TUI mỗi giây nhận cả nghìn token stream thì allocation churn chính là giật.
 
 tcell thô hơn, nhanh hơn, ít cấp phát hơn — và frame-plan model của omp port lên nó rất sạch. Đổi lại, bạn phải tự quản mọi thứ. Tôi tự quản mọi thứ.
 
-### Frame plan: ba trạng thái của một block
+### Frame plan: three states of a block
 
 Mỗi frame là: chrome bắt buộc (editor/status/HUD/overlay) + `TerminalFramePlan { history?: {id, rows}, viewport: rows[] }`.
 
@@ -168,13 +168,13 @@ Và transcript block có **ba trạng thái**:
 
 Cái insight này tôi học được bằng cách trả giá: bạn phải vẽ *viewport*, đừng vẽ *session*. Commit `perf(tui): draw the viewport, not the session; trim aged tool output first` là commit tôi ước gì mình viết được ngay từ ngày đầu.
 
-### Resize là thứ đáng ghét nhất trong terminal
+### Resize is the most hateful thing about terminals
 
 Alt-screen (`?1049h`) chỉ dành cho overlay; còn transcript thì dòng nào cuộn mất khỏi màn hình, tôi đẩy vào **scrollback thật của terminal**. Lý do rất đơn giản: khi tôi không còn nhìn thấy nó, không có lý do gì để nó chiếm RAM của tôi.
 
 Hậu quả: khi terminal resize, con trỏ của tôi không còn ở chỗ tôi nghĩ nữa. Phải hỏi lại terminal xem mình đang ở dòng nào bằng DSR anchor rồi dựng lại. `DSR-anchor resize recovery` nằm trong PRD từ đầu, và nó là một trong những dòng code đau đớn nhất tôi từng viết.
 
-### Bốn cái bug TUI tôi nhớ mãi
+### The four TUI bugs I will never forget
 
 **Bug 1 — đóng băng thật sự.** `fix(tui): the tree selector could own the keyboard while painting nothing — a "frozen TUI" with a live process`. Một selector vẽ ra **không gì cả** nhưng vẫn **giữ bàn phím**. Người dùng thấy treo, process vẫn sống. Ghê ở chỗ: mọi tín hiệu "process còn sống" của tôi đều báo ổn.
 
@@ -188,7 +188,7 @@ Sau ba bug đầu, tôi thêm watchdog: **UI loop iteration nào quá 5 giây th
 
 Lý do: ba vụ treo tôi vừa kể, nếu không có dump thì tôi chỉ còn cách đoán. Mà đoán một cái TUI treo là lãng phí thời gian. Tôi chấp nhận tốn một goroutine để đổi lấy việc không phải đoán nữa.
 
-### Chuột: thứ tôi làm đi làm lại
+### The mouse: the thing I did and redid
 
 Chuột trong TUI không có spec. Nó chỉ có cảm giác "sai". Và cái cảm giác "sai" đó tôi phải trả lời 5 lần trong 4 tiếng:
 
@@ -208,7 +208,7 @@ Cái cuối cùng thì buồn cười: tôi đã dựng một bảng roster agen
 
 ![Bảng chọn model theo từng role](/images/posts/xdev-cach-toi-viet-agent-coding-cli-nhe-va-nhanh/model-picker.svg)
 
-### Màn hình bắt đầu, và context dock
+### The start screen, and the context dock
 
 Màn hình bắt đầu là chỗ duy nhất thương hiệu được phép có ý kiến — một wordmark pixel, dòng tagline nhị phân của nó, và bốn hành động thật kèm đúng phím chạy được chúng. Mọi thứ còn lại giữ đơn sắc để transcript là thứ duy nhất tranh sự chú ý:
 
@@ -218,13 +218,13 @@ Context dock là câu trả lời cho "tôi đang ở đâu trong session này?"
 
 ![Context dock của xdev: mục plan đang chờ, trên phần footer của session](/images/posts/xdev-cach-toi-viet-agent-coding-cli-nhe-va-nhanh/dock.svg)
 
-### Theme: 66 token màu
+### Theme: 66 colour tokens
 
 Tôi port hệ theme của Grok CLI (`GrokNight`/`GrokDay`, tự đổi theo `OSC 11`), và bắt buộc phải đủ **cả 66 color token** — viết y hệt cách omp viết, để một file theme của omp sơn được lên chrome của xdev mà không phải sửa gì. Thiếu một token là test fail, không có chuyện "để sau".
 
 Cả ngày làm việc trong một cái TUI mà để nó dùng màu mặc định của terminal thì tôi chịu không nổi. Đây là chi phí tôi tự nguyện trả, và tôi nghĩ nó đáng.
 
-## 6) Test một thứ chỉ tồn tại dưới dạng chữ
+## 6) Testing a thing that only exists as text
 
 Nghe buồn cười thật. Nhưng TUI của tôi render **chữ**, mà chữ thì không ai diff bằng mắt một cách kỷ luật được.
 
@@ -237,7 +237,7 @@ Nên phần lớn test TUI của tôi là test **dòng ký tự**: dựng frame 
 
 63k dòng test, nhiều dòng chỉ để nói "dòng này phải giống hệt hôm qua". Giữ chúng thì tốn công. Nhưng mỗi lần tôi refactor renderer, chúng là thứ duy nhất cho tôi dám refactor mà không sợ.
 
-## 7) Thứ mà model sinh ra để làm tôi bất ngờ
+## 7) The thing the model produced that surprised me
 
 Trong quá trình build có một thay đổi tôi rất thích: `an unparseable tool call is an error result, not a dead run`.
 
@@ -249,7 +249,7 @@ Tương tự với `edit arg-repair + freshness guard`. Args sửa được thì
 
 Cặp này là toàn bộ triết lý của tôi về harness: chỗ nào máy tự vá được thì vá, chỗ nào vá là mất dữ liệu thì dừng.
 
-## 8) Ba thứ tôi học được
+## 8) Three things I learned
 
 **Một: "nhẹ" không phải là cắt tính năng. Là cắt runtime.**
 
@@ -267,7 +267,7 @@ Chỗ nào tôi port cả implementation lẫn lý do, tôi đi rất nhanh. Ch�
 
 `docs/parity-delta.md` vì thế có giá trị ngang với code. Nó là nơi tôi ghi: omp làm A, tôi làm B, và **vì sao là B**.
 
-## 9) Thử nếu bạn muốn
+## 9) Try it if you want
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/FreePeak/xdev/main/scripts/install.sh | sh
@@ -285,7 +285,7 @@ xdev --resume 01a0             # resume theo prefix session id
 
 Repo: `github.com/FreePeak/xdev` (Apache-2.0).
 
-## 10) Chốt lại
+## 10) Closing
 
 Câu hỏi "một công cụ viết code thì cần gì trong bộ nhớ" với tôi giờ đã có đáp án: khoảng 16MB, 4 cái tool, và một cái session format mà `jq` đọc được.
 

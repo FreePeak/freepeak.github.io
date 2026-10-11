@@ -17,12 +17,8 @@
   <rect width="1200" height="520" fill="url(#bg)"/>
 
   <g transform="translate(70 70)">
-    <text x="0" y="0" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="700">
-      Leftmost prefix (index ghép)
-    </text>
-    <text x="0" y="42" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">
-      (user_id, status, created_at) hoạt động tốt khi query bắt đầu từ user_id
-    </text>
+    <text x="0" y="0" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="700">Leftmost prefix (composite index)</text>
+    <text x="0" y="42" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">(user_id, status, created_at) works when the query starts at user_id</text>
   </g>
 
   <g transform="translate(90 150)">
@@ -56,7 +52,7 @@
 
     <g transform="translate(24 146)">
       <rect x="0" y="0" width="972" height="40" rx="10" fill="url(#no)" opacity="0.12"/>
-      <text x="16" y="26" fill="#fdba74" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">Không tốt: WHERE status = ? (thiếu user_id)</text>
+      <text x="16" y="26" fill="#fdba74" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">Poor: WHERE status = ? (user_id missing)</text>
     </g>
   </g>
 </svg>

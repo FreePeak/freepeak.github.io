@@ -18,7 +18,7 @@
   <h2 class="archive-year-title"><a href="#{{ $year }}">{{ $year }}</a><sup class="archive-count">{{ len .Pages }}</sup></h2>
   {{- range .Pages.GroupByDate "1" }}
   <div class="archive-month">
-    <h3 class="archive-month-title" id="{{ $year }}-{{ .Key }}"><a href="#{{ $year }}-{{ .Key }}">Tháng {{ .Key }}</a><sup class="archive-count">{{ len .Pages }}</sup></h3>
+    <h3 class="archive-month-title" id="{{ $year }}-{{ .Key }}"><a href="#{{ $year }}-{{ .Key }}">{{ .Key }}</a><sup class="archive-count">{{ len .Pages }}</sup></h3>
     {{- partial "entry-list.html" (dict "pages" .Pages "compact" true) }}
   </div>
   {{- end }}

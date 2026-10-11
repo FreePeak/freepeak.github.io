@@ -19,7 +19,7 @@
   <rect width="1200" height="720" fill="#ffffff"/>
 
   <text x="80" y="84" class="mono h1" font-size="34" fill="#0b1220">Architecture: Client -> ALB -> Kong (DB-less) -> Services</text>
-  <text x="80" y="118" class="mono" font-size="18" fill="#0b1220" opacity="0.75">Tách rõ: ALB lo networking/TLS. Kong lo policy Layer 7 (auth, rate limit, transform).</text>
+  <text x="80" y="118" class="mono" font-size="18" fill="#0b1220" opacity="0.75">A clean split: ALB handles networking and TLS; Kong handles layer 7 policy (auth, rate limit, transform).</text>
 
   <!-- AWS boundary -->
   <rect x="60" y="160" width="1080" height="480" rx="18" fill="#ffffff" class="muted"/>

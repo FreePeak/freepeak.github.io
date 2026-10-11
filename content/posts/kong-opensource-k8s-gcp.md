@@ -1,12 +1,12 @@
 ---
-title: "Kiến trúc & Best Practices: Sử dụng Kong Open Source làm API Gateway trên GKE"
+title: "Architecture and Best Practices: Running Kong Open Source as an API Gateway on GKE"
 date: 2026-01-19T10:00:00+07:00
 draft: false
 author: "Free Peak"
 tags: ["Kong", "Kubernetes", "GCP", "API Gateway", "Ingress", "DevOps"]
 categories: ["Architecture", "DevOps"]
-description: "Hướng dẫn chuyên sâu về kiến trúc và các thực tiễn tốt nhất (best practices) khi triển khai Kong Open Source làm API Gateway và Ingress Controller trên Google Kubernetes Engine (GKE)."
-summary: "Tại sao nên chọn Kong thay vì Ingress mặc định của GCP? Bài viết phân tích kiến trúc, lý do lựa chọn và chia sẻ các best practices thực tế để vận hành Kong Open Source hiệu quả, bảo mật và tối ưu chi phí trên GKE."
+description: "A deep dive into the architecture and best practices for deploying Kong Open Source as an API gateway and ingress controller on Google Kubernetes Engine (GKE)."
+summary: "Why choose Kong over the default GCP Ingress? Architecture, the reasoning behind the choice, and real-world best practices for running Kong Open Source on GKE efficiently, securely and cost-effectively."
 cover:
     image: "/images/kong-blog/cover.svg"
     alt: "Kong API Gateway Architecture on GKE"
@@ -16,7 +16,7 @@ Trong hệ sinh thái Cloud Native ngày nay, việc quản lý traffic đi vào
 
 Bài viết này sẽ đi sâu vào lý do tại sao Kong lại là lựa chọn ưu việt về mặt kiến trúc, đồng thời chia sẻ các **Best Practices** đúc kết từ thực tế để triển khai Kong hiệu quả trên GKE.
 
-## 1. Giới thiệu: Kong Gateway trong bức tranh K8s trên GCP
+## 1. Introduction: Kong Gateway in the K8s-on-GCP picture
 
 Kong Open Source là một API Gateway phổ biến nhất thế giới, được xây dựng dựa trên NGINX và mở rộng bằng Lua (hoặc Go/Rust qua WASM). Trong môi trường Kubernetes, Kong đóng vai trò kép:
 1.  **Ingress Controller:** Điều hướng traffic từ bên ngoài vào cluster tuân theo chuẩn Kubernetes Ingress resource.
@@ -26,22 +26,22 @@ Khác với các Load Balancer layer 4 đơn thuần, Kong hoạt động ở La
 
 ![Kong Architecture](/images/kong-blog/section1-intro.svg)
 
-### Vai trò trong kiến trúc GKE
+### Its role in the GKE architecture
 Trên GKE, Kong thường đứng sau Google Cloud Load Balancer. Mô hình phổ biến là:
 `Client` -> `GCP L4 Load Balancer` -> `Kong Proxy Service` -> `K8s Services`
 
 Mô hình này tận dụng được sức mạnh hạ tầng mạng toàn cầu của Google (Global Load Balancing) đồng thời giữ được sự linh hoạt trong xử lý logic của Kong.
 
-## 2. Tại sao chọn Kong thay vì Ingress mặc định của GCP?
+## 2. Why choose Kong over the default GCP Ingress?
 
 GCP cung cấp GCE Ingress Controller tích hợp sẵn rất tốt, nhưng nó thường chỉ giải quyết được bài toán routing cơ bản. Khi hệ thống lớn dần, các hạn chế bắt đầu lộ diện. Dưới đây là lý do các kiến trúc sư phần mềm chuyển sang Kong:
 
-### Điểm yếu của GCP Ingress (GCE)
+### The weaknesses of GCP Ingress (GCE)
 *   **Hạn chế về tính năng:** Chủ yếu tập trung vào L7 Load Balancing cơ bản (Path-based routing). Các tính năng như rate limiting, authentication, request transformation gần như không có hoặc rất khó cấu hình.
 *   **Độ trễ (Latency):** Với các rule phức tạp, độ trễ có thể tăng lên.
 *   **Vendor Lock-in:** Cấu hình phụ thuộc chặt chẽ vào Annotation của Google Cloud. Khó mang sang AWS hay Azure nếu cần chiến lược Multi-cloud.
 
-### Ưu điểm vượt trội của Kong
+### Kong's standout advantages
 1.  **Hệ sinh thái Plugin khổng lồ:** Đây là "vũ khí bí mật" của Kong. Bạn cần Rate Limiting? Có plugin. Cần OAuth2/JWT Auth? Có plugin. Cần log request ra Kafka/ELK? Có plugin. Tất cả chỉ cần bật/tắt qua config.
 2.  **Hiệu năng cao:** Kong được build trên NGINX và sử dụng OpenResty (Lua JIT), cho phép xử lý hàng chục nghìn request/giây với độ trễ cực thấp (< 10ms).
 3.  **Unified Gateway:** Kong có thể xử lý cả traffic từ ngoài vào (North-South) và traffic giữa các service (East-West) trong mô hình Service Mesh (Kong Mesh).
@@ -49,16 +49,16 @@ GCP cung cấp GCE Ingress Controller tích hợp sẵn rất tốt, nhưng nó 
 
 ![Kong vs GCP Ingress Comparison](/images/kong-blog/section2-comparison.svg)
 
-### Khi nào nên dùng Kong?
+### When should you use Kong?
 *   Khi bạn cần các tính năng API Management nâng cao (Auth, Quota, Monetization).
 *   Khi hệ thống có lượng traffic lớn và yêu cầu độ trễ thấp.
 *   Khi bạn muốn đồng nhất công nghệ Gateway trên nhiều môi trường (Hybrid Cloud).
 
-## 3. Best Practices: Triển khai Kong trên GKE
+## 3. Best Practices: Running Kong on GKE
 
 Để vận hành Kong ổn định trên môi trường Production, đừng chỉ dừng lại ở `helm install`. Dưới đây là các thực tiễn tốt nhất bạn nên áp dụng.
 
-### a. Chuẩn bị & Kiến trúc tổng thể
+### a. Preparation and overall architecture
 
 **1. Luôn sử dụng Helm Charts**
 Không nên cài đặt Kong bằng các file YAML rời rạc (manifests). Hãy sử dụng [Official Kong Helm Chart](https://github.com/Kong/charts). Helm giúp bạn dễ dàng quản lý version, rollback khi có sự cố và tùy biến `values.yaml` một cách có cấu trúc.
@@ -72,7 +72,7 @@ Trên GKE, hãy cấu hình Service của Kong Proxy là `LoadBalancer`. Google 
 
 ![Kong Deployment Architecture](/images/kong-blog/section3a-architecture.svg)
 
-### b. Quản lý cấu hình & Plugin hiệu quả
+### b. Config and plugin management done right
 
 **1. "Configuration as Code" với CRDs**
 Kong cung cấp các Custom Resource Definitions (CRDs) như `KongPlugin`, `KongIngress`, `KongConsumer`. Hãy sử dụng chúng thay vì gọi Admin API bằng tay.
@@ -87,7 +87,7 @@ Ví dụ: Service Payment cần Rate Limit khắt khe hơn Service Product Catal
 
 ![Configuration Flow](/images/kong-blog/section3b-config-flow.svg)
 
-### c. Tối ưu hóa & Bảo mật
+### c. Optimisation and security
 
 **1. Bảo vệ Kong Admin API**
 Đây là nguyên tắc sống còn. Kong Admin API (mặc định port 8001/8444) cho phép thay đổi toàn bộ cấu hình Gateway.
@@ -103,7 +103,7 @@ Sử dụng **Cert-Manager** kết hợp với Let's Encrypt để tự động 
 
 ![Security Best Practices](/images/kong-blog/section3c-security.svg)
 
-### d. CI/CD & DevOps Automation
+### d. CI/CD and DevOps automation
 
 Để đạt được sự linh hoạt tối đa, hãy áp dụng mô hình GitOps:
 *   **Source Code:** Chứa code ứng dụng và file `values.yaml` cho Helm Chart của ứng dụng.
@@ -114,7 +114,7 @@ Sử dụng **Cert-Manager** kết hợp với Let's Encrypt để tự động 
 
 ---
 
-## 4. Bài học thực tế từ Production
+## 4. Real production lessons
 
 Trong quá trình vận hành Kong trên GKE cho các hệ thống lớn, đây là những "chiến trường" mà chúng tôi đã đi qua:
 
@@ -127,11 +127,11 @@ Trong quá trình vận hành Kong trên GKE cho các hệ thống lớn, đây 
 3.  **Plugin Ordering:**
     Thứ tự chạy của các Plugin rất quan trọng (ví dụ: Rate Limit phải chạy *trước* hay *sau* Auth?). Hãy nắm vững "Priority" của từng plugin để tránh các lỗ hổng logic.
 
-### Best Practices theo use case (DB-less / PostgreSQL / Hybrid)
+### Best practices by use case (DB-less / PostgreSQL / Hybrid)
 
 Dưới đây là khung tham chiếu để chọn và vận hành Kong an toàn trong Production. Mục tiêu là: nêu rõ trade-off, giảm rủi ro mất cấu hình, và phù hợp cách deploy của team.
 
-#### 1) DB-less Mode (phù hợp GitOps / setup đơn giản)
+#### 1) DB-less Mode (suits GitOps / simple setups)
 
 `kong.conf` essentials:
 
@@ -161,7 +161,7 @@ volumes:
       name: kong-declarative-config  # Fallback config
 ```
 
-#### 2) PostgreSQL Mode (phù hợp Enterprise / cần thay đổi runtime qua API/UI)
+#### 2) PostgreSQL Mode (suits enterprise / runtime changes via API or UI)
 
 *   HA PostgreSQL: Patroni, CrunchyData, hoặc managed service.
 *   Read replicas (nếu cần): dùng read-only endpoint/host (tùy theo version/feature set) để offload reads.
@@ -195,7 +195,7 @@ volumes:
 
 ![Lessons Learned](/images/kong-blog/section4-lessons.svg)
 
-## 5. Kết luận
+## 5. Conclusion
 
 Sử dụng Kong Open Source trên GKE mang lại sức mạnh kiểm soát traffic tuyệt vời mà Ingress mặc định khó so sánh được. Tuy nhiên, "sức mạnh lớn đi kèm trách nhiệm lớn". Việc làm chủ Kong đòi hỏi team của bạn phải hiểu sâu về cách Kong hoạt động cũng như các mô hình quản lý cấu hình hiện đại như GitOps.
 

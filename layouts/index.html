@@ -10,7 +10,7 @@
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
 {{- $paginator := .Paginate $pages }}
 
-<h2 class="section-label">Bài viết{{ if eq $paginator.PageNumber 1 }} mới{{ end }}</h2>
+<h2 class="section-label">Posts{{ if eq $paginator.PageNumber 1 }} (new){{ end }}</h2>
 {{- partial "entry-list.html" $paginator.Pages }}
 {{- partial "pagination.html" $paginator }}
 {{- end }}

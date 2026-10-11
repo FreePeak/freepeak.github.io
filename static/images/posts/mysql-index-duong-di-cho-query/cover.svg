@@ -33,9 +33,7 @@
     <text x="0" y="0" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-weight="700">
       MySQL Index
     </text>
-    <text x="0" y="64" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="44" font-weight="700">
-      Đường đi cho query
-    </text>
+    <text x="0" y="64" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="44" font-weight="700">The path a query takes</text>
 
     <rect x="0" y="105" width="560" height="6" fill="url(#accent)" opacity="0.9"/>
 

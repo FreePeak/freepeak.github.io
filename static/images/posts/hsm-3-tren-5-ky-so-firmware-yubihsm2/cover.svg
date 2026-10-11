@@ -60,7 +60,7 @@
 
     <!-- 5 signers -->
     <g transform="translate(470, 18)">
-      <text x="140" y="-8" class="label" text-anchor="middle" opacity="0.85">3-trên-5</text>
+      <text x="140" y="-8" class="label" text-anchor="middle" opacity="0.85">3-of-5</text>
 
       <!-- helper function via manual placement -->
       <g>
@@ -98,8 +98,8 @@
   </g>
 
   <!-- Title / subtitle -->
-  <text x="600" y="86" class="title" text-anchor="middle">HSM &amp; 3-trên-5</text>
-  <text x="600" y="128" class="subtitle" text-anchor="middle">Biến code signing thành quy trình</text>
+  <text x="600" y="86" class="title" text-anchor="middle">HSM and 3-of-5</text>
+  <text x="600" y="128" class="subtitle" text-anchor="middle">Turning code signing into a process</text>
 
   <!-- Bottom accent line -->
   <rect x="270" y="570" width="660" height="4" fill="url(#accent)" opacity="0.7"/>

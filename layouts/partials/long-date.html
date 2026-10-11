@@ -1,0 +1,3 @@
+{{- /* Long English date, e.g. "Tuesday, 20 January 2026". Context: a time.Time. */ -}}
+{{- $months := slice "January" "February" "March" "April" "May" "June" "July" "August" "September" "October" "November" "December" -}}
+{{- printf "%s %d %s %d" (.Format "Monday") .Day (index $months (sub (int .Month) 1)) .Year -}}

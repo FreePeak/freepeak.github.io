@@ -14,11 +14,11 @@
     </svg>
   </a>
 
-  <nav class="top-nav" aria-label="Điều hướng chính">
+  <nav class="top-nav" aria-label="Main navigation">
     <details class="menu" id="site-menu">
       <summary class="menu-toggle">
         <span class="menu-label menu-label--closed">Menu</span>
-        <span class="menu-label menu-label--open">Đóng</span>
+        <span class="menu-label menu-label--open">Close</span>
       </summary>
       <div class="menu-links">
         <ul class="menu-group">
@@ -31,7 +31,7 @@
         </ul>
         {{- $feed := site.Home.OutputFormats.Get "rss" }}
         {{- if or site.Params.socialIcons $feed }}
-        <ul class="menu-group menu-group--external" aria-label="Liên kết ngoài">
+        <ul class="menu-group menu-group--external" aria-label="External links">
           {{- with $feed }}
           <li><a class="nav-link" href="{{ .RelPermalink }}">RSS</a></li>
           {{- end }}

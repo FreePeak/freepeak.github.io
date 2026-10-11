@@ -17,63 +17,55 @@
   <rect width="1200" height="640" fill="url(#bg)"/>
 
   <g transform="translate(70 70)">
-    <text x="0" y="0" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700">
-      MySQL 8+: Vì sao optimizer có thể bỏ qua index
-    </text>
-    <text x="0" y="44" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">
-      Khi độ chọn lọc thấp, quét bảng có thể rẻ hơn đọc index + quay về bảng
-    </text>
+    <text x="0" y="0" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700">MySQL 8+: why the optimizer may skip an index</text>
+    <text x="0" y="44" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">At low selectivity, a table scan can beat index plus lookup</text>
   </g>
 
   <g transform="translate(80 170)">
     <rect x="0" y="0" width="1040" height="120" rx="16" fill="#0b1b2a" stroke="#1f2937"/>
 
-    <text x="28" y="46" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">
-      Cột status chỉ có vài giá trị: PAID | PENDING | CANCELLED
-    </text>
+    <text x="28" y="46" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">A status column with few values: PAID | PENDING | CANCELLED</text>
     <text x="28" y="78" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">
       SELECT ... FROM orders WHERE status = 'PAID';
     </text>
 
     <g transform="translate(760 26)">
       <rect x="0" y="0" width="252" height="68" rx="14" fill="url(#accent)" opacity="0.16"/>
-      <text x="18" y="28" fill="#bfdbfe" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="14">Độ chọn lọc thấp</text>
+      <text x="18" y="28" fill="#bfdbfe" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="14">Low selectivity</text>
       <text x="18" y="50" fill="#99f6e4" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">~ 30% rows</text>
     </g>
   </g>
 
   <g transform="translate(80 320)">
     <rect x="0" y="0" width="510" height="250" rx="18" fill="#111827" stroke="#1f2937"/>
-    <text x="26" y="44" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700">Dùng index (đôi khi tệ)</text>
+    <text x="26" y="44" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700">Use the index (sometimes worse)</text>
 
     <path d="M44 78 H466" stroke="#1f2937" stroke-width="2"/>
 
-    <text x="26" y="118" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">1) Đọc index idx_status</text>
-    <text x="26" y="146" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">2) Lấy nhiều row_id</text>
-    <text x="26" y="174" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">3) Quay về bảng (random I/O)</text>
+    <text x="26" y="118" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">1) Read index idx_status</text>
+    <text x="26" y="146" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">2) Fetch many row ids</text>
+    <text x="26" y="174" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">3) Look up rows (random I/O)</text>
 
     <rect x="26" y="196" width="458" height="40" rx="12" fill="url(#warn)" opacity="0.12"/>
-    <text x="44" y="222" fill="#fdba74" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">Cost cao nếu trúng nhiều dòng</text>
+    <text x="44" y="222" fill="#fdba74" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">Costly when many rows match</text>
   </g>
 
   <g transform="translate(610 320)">
     <rect x="0" y="0" width="510" height="250" rx="18" fill="#0b1b2a" stroke="#1f2937"/>
-    <text x="26" y="44" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700">Quét bảng (đôi khi rẻ)</text>
+    <text x="26" y="44" fill="#e5e7eb" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700">Scan the table (sometimes cheaper)</text>
 
     <path d="M44 78 H466" stroke="#1f2937" stroke-width="2"/>
 
-    <text x="26" y="118" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">1) Đọc liên tục (sequential I/O)</text>
-    <text x="26" y="146" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">2) Lọc status trong memory</text>
-    <text x="26" y="174" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">3) Trả kết quả</text>
+    <text x="26" y="118" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">1) Sequential read</text>
+    <text x="26" y="146" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">2) Filter status in memory</text>
+    <text x="26" y="174" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">3) Return the results</text>
 
     <rect x="26" y="196" width="458" height="40" rx="12" fill="url(#accent)" opacity="0.14"/>
-    <text x="44" y="222" fill="#99f6e4" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">Cost thấp hơn nếu đọc nhiều</text>
+    <text x="44" y="222" fill="#99f6e4" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="16">Cheaper when it reads a lot</text>
   </g>
 
   <g transform="translate(80 590)">
     <rect x="0" y="0" width="1040" height="1" fill="#1f2937"/>
-    <text x="0" y="28" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="14">
-      Dấu hiệu: possible_keys có idx_status, nhưng key = NULL, type = ALL
-    </text>
+    <text x="0" y="28" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="14">The tell: possible_keys lists idx_status, but key = NULL and type = ALL</text>
   </g>
 </svg>

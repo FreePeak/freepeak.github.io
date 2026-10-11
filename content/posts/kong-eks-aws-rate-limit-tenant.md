@@ -1,12 +1,12 @@
 ---
-title: "Kong DB-less trên AWS EKS: Rate Limiting theo Tenant, và vì sao ALB Ingress không đủ"
+title: "Kong DB-less on AWS EKS: Per-Tenant Rate Limiting, and Why ALB Ingress Is Not Enough"
 date: 2026-01-19T10:00:00+07:00
 draft: false
 author: "Free Peak"
 tags: ["Kong", "AWS", "EKS", "API Gateway", "Rate Limiting", "ALB", "WAF", "GitOps"]
 categories: ["Architecture", "DevOps"]
-description: "Một góc nhìn thực dụng về việc triển khai Kong DB-less trên AWS EKS để giải quyết bài toán rate limiting theo tenant: vì sao ALB Ingress/WAF/Lambda nhanh chóng thành 'băng keo', và best practices để vận hành Kong gọn, an toàn, dễ scale."
-summary: "Nếu bạn cần rate limit theo identity (tenant/API key/JWT claim) trên EKS, ALB Ingress sẽ đẩy bạn vào vòng xoáy WAF/Lambda/custom code. Kong DB-less cho bạn một điểm quyết định ở Layer 7: plugin, consumer, config-as-code, GitOps. Bài viết này chốt kiến trúc và best practices triển khai."
+description: "A pragmatic look at running Kong DB-less on AWS EKS for per-tenant rate limiting: why ALB Ingress, WAF and Lambda quickly turn into duct tape, plus the best practices for running Kong lean, safe and easy to scale."
+summary: "If you need to rate limit by identity (tenant, API key, JWT claim) on EKS, ALB Ingress pushes you into a spiral of WAF, Lambda and custom code. Kong DB-less gives you one decision point at layer 7: plugins, consumers, config-as-code, GitOps. This post locks down the architecture and the deployment best practices."
 ShowToc: true
 TocOpen: false
 ShowReadingTime: true
@@ -49,17 +49,17 @@ Bạn phải giới hạn theo identity: API key, JWT claim, consumer id… nói
 
 Đến đây, ALB bắt đầu lộ vẻ mặt: tôi là load balancer, đừng bắt tôi làm gateway.
 
-## 0) Mục lục nhanh
+## 0) Quick contents
 
-1. Bài toán thật sự: rate limiting theo identity
+1. The real problem: rate limiting by identity
 2. Decision tree: ALB/WAF/Lambda vs Kong
-3. Vì sao DB-less hợp EKS
-4. Kiến trúc đề xuất trên EKS
-5. Guardrails vận hành (best practices)
-6. Ví dụ cấu hình tối giản
-7. Kết
+3. Why DB-less fits EKS
+4. The proposed EKS architecture
+5. Operational guardrails (best practices)
+6. A minimal configuration example
+7. Closing
 
-## 1) Bài toán thật sự: rate limiting theo identity (không phải theo IP)
+## 1) The real problem: rate limiting by identity (not by IP)
 
 Nghe thì đơn giản: "giới hạn request".
 
@@ -77,13 +77,13 @@ Lúc này, thứ bạn cần không phải là “một con ALB đứng trước
 
 Nôm na: **bạn cần API Gateway hơn là Ingress**.
 
-## 2) Decision tree kiểu kỹ sư: ALB/WAF/Lambda hay một gateway đúng nghĩa?
+## 2) An engineer decision tree: ALB/WAF/Lambda or a real gateway?
 
 ![Decision tree: ALB/WAF/Lambda vs Kong DB-less](/images/posts/kong-eks-aws-rate-limit-tenant/decision-tree.svg)
 
 Tôi từng đi qua đủ các nhánh, nên xin kể theo kiểu “đường nào cũng có giá”.
 
-### Nhánh A: Cố nhét logic vào ALB Ingress
+### Branch A: Squeeze the logic into ALB Ingress
 ALB Ingress mạnh ở chỗ: routing, TLS termination, integration với AWS ecosystem.
 
 Nhưng khi bạn đòi rate limiting theo tenant, bạn sẽ bắt đầu thấy mình viết thêm thứ mà bạn không định vận hành:
@@ -94,7 +94,7 @@ Nhưng khi bạn đòi rate limiting theo tenant, bạn sẽ bắt đầu thấy
 
 Tức là bạn đang lắp một cái gateway bằng… các mảnh khác nhau.
 
-### Nhánh B: Dùng AWS WAF
+### Branch B: Use AWS WAF
 WAF làm tốt một số thứ: IP reputation, bot control, rule matching.
 
 Nhưng với rate limiting theo identity, WAF thường khiến bạn rơi vào 2 tình huống:
@@ -104,7 +104,7 @@ Nhưng với rate limiting theo identity, WAF thường khiến bạn rơi vào 
 
 WAF không tệ. Chỉ là nó không sinh ra để trở thành “quota engine theo tenant”.
 
-### Nhánh C: Viết Lambda/custom authorizer
+### Branch C: Write a Lambda/custom authorizer
 Đây là con đường hấp dẫn nhất, vì nó cho bạn cảm giác “mình kiểm soát được hết”.
 
 Nhưng nó cũng là con đường dễ biến thành nợ dài hạn:
@@ -115,7 +115,7 @@ Nhưng nó cũng là con đường dễ biến thành nợ dài hạn:
 
 Tới một ngày, bạn nhận ra: bạn vừa dựng một API Gateway mini, nhưng không có đội ngũ của Kong.
 
-### Nhánh D: Dùng Kong DB-less trên EKS
+### Branch D: Run Kong DB-less on EKS
 Kong giải đúng cái bạn đang thiếu: một gateway layer 7 với model “consumer + credential + plugin”.
 
 - Rate limiting là plugin, không phải dự án.
@@ -124,7 +124,7 @@ Kong giải đúng cái bạn đang thiếu: một gateway layer 7 với model �
 
 Và quan trọng: **DB-less** cho bạn một style vận hành phù hợp Kubernetes.
 
-## 3) DB-less trên EKS: vì sao đây thường là best practice
+## 3) DB-less on EKS: why this is usually the best practice
 
 Tôi không nói DB-less là “chân lý cho mọi trường hợp”. Nhưng trên EKS, với mục tiêu tối giản vận hành, DB-less gần như là lựa chọn mặc định tốt.
 
@@ -142,7 +142,7 @@ Lợi ích thực dụng:
 
 Nói thẳng: nếu bạn đã chạy EKS nghiêm túc, bạn **nên** thích cách làm này.
 
-## 4) Kiến trúc đề xuất trên AWS EKS (tối giản nhưng không ngây thơ)
+## 4) The proposed AWS EKS architecture (minimal but not naive)
 
 ![Architecture: Client -> ALB -> Kong -> Services](/images/posts/kong-eks-aws-rate-limit-tenant/architecture.svg)
 
@@ -163,7 +163,7 @@ Nếu bạn muốn đi xa hơn (multi-tenant mạnh, internal traffic, east-west
 
 Nhưng YAGNI: đừng làm hai con gateway chỉ vì… nhìn cho giống big tech.
 
-## 5) Guardrails triển khai Kong DB-less trên EKS (best practices)
+## 5) Guardrails for running Kong DB-less on EKS (best practices)
 
 Tôi gọi đây là guardrails, không phải best practices.
 
@@ -171,7 +171,7 @@ Vì best practices nghe như khuyến nghị.
 
 Còn guardrails là thứ bạn dựng lên để giảm blast radius khi có người (hoặc một script) đẩy nhầm config.
 
-### 5.1) Treat gateway config như product: GitOps và review trước khi apply
+### 5.1) Treat gateway config like product: GitOps and review before apply
 Nếu gateway là cửa ngõ, thì config của nó là “policy của công ty”.
 
 - Lưu toàn bộ Kong config trong Git.
@@ -180,7 +180,7 @@ Nếu gateway là cửa ngõ, thì config của nó là “policy của công ty
 
 Đừng để gateway trở thành nơi “ai cũng có thể bấm” nhưng “không ai chịu trách nhiệm”.
 
-### 5.2) Tuyệt đối khóa Admin API (đừng để nó sống như một public endpoint)
+### 5.2) Lock the Admin API down (do not let it live as a public endpoint)
 Nguyên tắc sống còn:
 
 - Admin API để `ClusterIP`.
@@ -188,7 +188,7 @@ Nguyên tắc sống còn:
 
 Bạn có thể có 100 lớp auth cho traffic client. Nhưng nếu Admin API hở, thì coi như xong.
 
-### 5.3) Rate limiting theo tenant: chọn identity source rõ ràng
+### 5.3) Per-tenant rate limiting: pick a clear identity source
 Trước khi bật plugin, hãy trả lời một câu:
 
 “Tenant identity đến từ đâu?”
@@ -198,7 +198,7 @@ Trước khi bật plugin, hãy trả lời một câu:
 
 Đừng để mỗi service tự parse theo một kiểu. Bạn sẽ không debug nổi khi có incident.
 
-### 5.4) Tránh global plugin trừ khi bạn thật sự cần
+### 5.4) Avoid global plugins unless you really need them
 Global plugin nhìn rất tiện. Nhưng nó cũng là cách nhanh nhất để:
 
 - Phạt nhầm những route không nên bị phạt
@@ -209,7 +209,7 @@ Best practice thường là:
 - Apply plugin theo Ingress/Service/Route cụ thể
 - Chỉ globalize những thứ mang tính “hạ tầng” (correlation id, baseline logging)
 
-### 5.5) Observability không phải đồ trang trí
+### 5.5) Observability is not decoration
 Một gateway không có metrics/logs thì chỉ là một hộp đen biết trả 502.
 
 - Bật access logs có cấu trúc (JSON) và đẩy về hệ thống tập trung.
@@ -217,7 +217,7 @@ Một gateway không có metrics/logs thì chỉ là một hộp đen biết tr�
 
 Rate limiting theo tenant mà không đo tenant nào bị 429 nhiều nhất thì… bạn chỉ đang đoán.
 
-## 6) Một ví dụ cấu hình (tối giản) để hình dung
+## 6) A minimal configuration example, for shape
 
 ![Rate limiting flow: identity -> consumer -> plugin -> 429](/images/posts/kong-eks-aws-rate-limit-tenant/rate-limit-flow.svg)
 
@@ -228,7 +228,7 @@ Dưới đây là ví dụ dạng “minh họa ý tưởng” (tùy bạn đang
 - Một rate limiting plugin gắn vào route/service
 
 ```yaml
-# Pseudo-example: minh họa, không phải manifest đầy đủ
+# Pseudo-example: illustrative, not a full manifest
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
@@ -244,7 +244,7 @@ Ghi chú thực dụng:
 - `policy: local` đơn giản nhất (đếm theo từng pod). Nếu bạn cần quota “toàn cụm” chính xác hơn, bạn sẽ cân nhắc Redis.
 - Đừng tối ưu quá sớm. Hãy bắt đầu với cái bạn vận hành được.
 
-## 7) Kết
+## 7) Closing
 
 ALB Ingress là một default hợp lý. Nhưng nó không phải là API Gateway.
 

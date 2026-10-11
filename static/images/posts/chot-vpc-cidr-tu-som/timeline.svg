@@ -28,8 +28,8 @@
   <!-- Phase 1: Easy start -->
   <g transform="translate(150, 200)">
     <circle cx="0" cy="0" r="12" fill="#059669"/>
-    <text x="0" y="-40" class="label" text-anchor="middle">Giai đoạn đầu</text>
-    <text x="0" y="-20" class="small" text-anchor="middle" fill="#059669">Dễ dàng</text>
+    <text x="0" y="-40" class="label" text-anchor="middle">Early on</text>
+    <text x="0" y="-20" class="small" text-anchor="middle" fill="#059669">Easy</text>
     
     <rect x="-80" y="30" width="160" height="70" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
     <text x="0" y="55" class="small" text-anchor="middle">1 VPC</text>
@@ -40,11 +40,11 @@
   <!-- Phase 2: Growing pains -->
   <g transform="translate(450, 200)">
     <circle cx="0" cy="0" r="12" fill="#d97706"/>
-    <text x="0" y="-40" class="label" text-anchor="middle">Khi mở rộng</text>
-    <text x="0" y="-20" class="small" text-anchor="middle" fill="#d97706">Bắt đầu rắc rối</text>
+    <text x="0" y="-40" class="label" text-anchor="middle">As you scale</text>
+    <text x="0" y="-20" class="small" text-anchor="middle" fill="#d97706">Trouble starts</text>
     
     <rect x="-100" y="30" width="200" height="100" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
-    <text x="0" y="55" class="small" text-anchor="middle">3 VPCs, 5 môi trường</text>
+    <text x="0" y="55" class="small" text-anchor="middle">3 VPCs, 5 environments</text>
     <text x="0" y="75" class="code" text-anchor="middle" fill="#d97706">10.0.0.0/16 (x3)</text>
     <text x="0" y="95" class="small" text-anchor="middle">+ Office: 10.0.0.0/16</text>
     <text x="0" y="115" class="small" text-anchor="middle" fill="#d97706">⚠ CIDR overlap!</text>
@@ -53,14 +53,14 @@
   <!-- Phase 3: Crisis -->
   <g transform="translate(750, 200)">
     <circle cx="0" cy="0" r="12" fill="#dc2626"/>
-    <text x="0" y="-40" class="label" text-anchor="middle">Khi cần kết nối</text>
-    <text x="0" y="-20" class="small" text-anchor="middle" fill="#dc2626">Khủng hoảng</text>
+    <text x="0" y="-40" class="label" text-anchor="middle">When you must connect</text>
+    <text x="0" y="-20" class="small" text-anchor="middle" fill="#dc2626">Crisis</text>
     
     <rect x="-90" y="30" width="180" height="110" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
     <text x="0" y="55" class="small" text-anchor="middle">VPN / Peering</text>
     <text x="0" y="75" class="small" text-anchor="middle">Multi-account</text>
-    <text x="0" y="95" class="small" text-anchor="middle" fill="#dc2626">✗ Không route được</text>
-    <text x="0" y="115" class="small" text-anchor="middle" fill="#dc2626">→ Đập đi làm lại</text>
+    <text x="0" y="95" class="small" text-anchor="middle" fill="#dc2626">No route possible</text>
+    <text x="0" y="115" class="small" text-anchor="middle" fill="#dc2626">Tear it down and rebuild</text>
     <text x="0" y="130" class="small" text-anchor="middle" fill="#dc2626">→ Migrate VPC</text>
   </g>
   
@@ -70,5 +70,5 @@
   
   <!-- Bottom insight -->
   <rect x="100" y="350" width="800" height="40" rx="6" fill="#f0fdf4" stroke="#059669" stroke-width="2"/>
-  <text x="500" y="377" class="label" text-anchor="middle" fill="#059669">💡 Giải pháp: Chốt CIDR sớm, quản trị như quyết định cấp dự án</text>
+  <text x="500" y="377" class="label" text-anchor="middle" fill="#059669">Solution: lock CIDR in early, treat it as a project-level decision</text>
 </svg>

@@ -17,8 +17,8 @@
 
   <rect width="1000" height="420" fill="#0b1220"/>
 
-  <text x="40" y="55" class="title">3-trên-5 (3-of-5): ngưỡng phát hành</text>
-  <text x="40" y="80" class="small">Cần tối thiểu 3 chữ ký hợp lệ trong 5 signer để “mở cổng” release.</text>
+  <text x="40" y="55" class="title">3-of-5: the release threshold</text>
+  <text x="40" y="80" class="small">At least 3 valid signatures out of 5 signers to open the release gate.</text>
 
   <!-- Signers -->
   <g transform="translate(70, 125)">
@@ -49,8 +49,8 @@
     <!-- Gate -->
     <g transform="translate(0, 170)">
       <rect x="140" y="0" width="480" height="72" rx="12" fill="#0b2a3a" stroke="#1e293b" stroke-width="2"/>
-      <text x="380" y="28" class="label" text-anchor="middle">Cổng phát hành</text>
-      <text x="380" y="52" class="small" text-anchor="middle">Mở khi đủ ≥ 3 chữ ký hợp lệ</text>
+      <text x="380" y="28" class="label" text-anchor="middle">Release gate</text>
+      <text x="380" y="52" class="small" text-anchor="middle">Opens at 3 or more valid signatures</text>
 
       <path d="M 380 78 L 380 118" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrow)"/>
     </g>
@@ -59,7 +59,7 @@
     <g transform="translate(300, 300)">
       <rect x="0" y="0" width="260" height="70" rx="14" fill="#052033" stroke="#38bdf8" stroke-width="2"/>
       <text x="130" y="30" class="label" text-anchor="middle">Release allowed</text>
-      <text x="130" y="52" class="small" text-anchor="middle">Firmware được đẩy OTA</text>
+      <text x="130" y="52" class="small" text-anchor="middle">Firmware shipped over the air</text>
     </g>
   </g>
 

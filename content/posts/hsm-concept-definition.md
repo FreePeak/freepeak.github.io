@@ -1,12 +1,12 @@
 ---
-title: "HSM: Pháo Đài Vật Lý Cho Những Bí Mật Số"
+title: "HSM: The Physical Fortress for Digital Secrets"
 date: 2026-01-27T10:00:00+07:00
 draft: false
 author: ""
 tags: ["security", "hsm", "hardware", "cryptography", "fips"]
 categories: ["Security", "Architecture"]
-description: "HSM không chỉ là một thiết bị crypto nhanh hơn. Đó là một pháo đài vật lý nơi Private Key sinh ra, sống sót, và tự sát nếu bị xâm phạm. Bài viết đi sâu vào FIPS 140-2, True Random Number Generator (TRNG) và Side-channel attacks."
-summary: "Tại sao server Linux bình thường là nơi tồi tệ để chứa Private Key? Bài viết giải mã các khái niệm hardcore của HSM: từ lớp vỏ Epoxy tự hủy, bộ sinh số ngẫu nhiên từ tiếng ồn vật lý, đến khả năng giữ 'poker face' trước các tấn công đo điện năng."
+description: "An HSM is not just faster crypto hardware. It is a physical fortress where a private key is born, survives, and destroys itself if tampered with. A deep dive into FIPS 140-2, True Random Number Generators (TRNG) and side-channel attacks."
+summary: "Why a regular Linux server is a terrible place to keep a private key. Decoding the hardcore concepts of HSMs: from self-destructing epoxy shells, to randomness harvested from physical noise, to keeping a poker face under power-analysis attacks."
 cover:
   image: "/images/posts/hsm-concept-definition/cover.svg"
   alt: "Anatomy of an Hardware Security Module"
@@ -24,7 +24,7 @@ Với dân làm phần cứng, một con server Linux bình thường là một 
 
 Đó là lý do HSM (Hardware Security Module) ra đời. Không phải để tính toán nhanh hơn. Mà để tạo ra một "nhà tù" vật lý cho các bí mật.
 
-## FIPS 140-2: Khi cái vỏ hộp đắt hơn con chip
+## FIPS 140-2: when the casing costs more than the chip
 
 Nếu bạn cầm một con HSM chuẩn (ví dụ FIPS 140-2 Level 3) lên, bạn sẽ thấy nó nặng chịch.
 Không phải vì nhiều linh kiện, mà vì nó được đổ đặc ruột bằng Epoxy (keo resin cứng).
@@ -38,7 +38,7 @@ Tại sao? Để chống lại những gã hacker cầm khoan và dao mổ.
 Biến cái cục kim loại giá $20,000 thành cục gạch (brick) đúng nghĩa đen.
 Đó là cái giá của sự an toàn: thà chết (mất key) chứ không để lọt vào tay giặc.
 
-## Nỗi ám ảnh về sự ngẫu nhiên (Entropy)
+## The obsession with randomness (entropy)
 
 Máy tính là những kẻ tuân thủ quy tắc tuyệt đối. Bắt nó "ngẫu nhiên" cũng khó như bắt một ông kế toán già làm thơ vậy.
 
@@ -55,7 +55,7 @@ Bên trong con chip là các mạch điện được thiết kế để đo "ti�
 
 Đó là sự ngẫu nhiên của vũ trụ, không phải của thuật toán. Và vũ trụ thì không ai đoán trước được.
 
-## Tấn công Kênh kề (Side-Channel): Khi Hacker giải Lý thay vì giải Toán
+## Side-Channel Attacks: when a hacker solves physics instead of maths
 
 Đây là phần tôi thích nhất.
 Dân phần mềm thường nghĩ hacker sẽ ngồi giải phương trình toán học để tìm Private Key $d$ từ Public Key $e$.
@@ -75,7 +75,7 @@ Nó bọc các lớp lá chắn nhiễu điện từ (shielding) để tín hi�
 
 Nói cách khác, HSM là một "poker face" hoàn hảo. Dù bên trong đang gào thét tính toán, bên ngoài mặt nó vẫn lạnh tanh, không biến sắc (không đổi dòng điện, không trễ thời gian).
 
-## Key Wrapping: Quy tắc "Xuất Nhập Cảnh"
+## Key Wrapping: the import-export border rule
 
 Nguyên tắc vàng của HSM: **Private Key không bao giờ được xuất ra dưới dạng plaintext.**
 
@@ -89,7 +89,7 @@ Chỉ có một con HSM khác, có đúng chìa khóa của cái két đó (thư
 
 Key luôn luôn được bọc. Từ lúc sinh ra cho đến lúc chết đi.
 
-## Kết: Mua sự an tâm
+## Closing: buying peace of mind
 
 Cuối cùng, khi bạn bỏ tiền mua HSM, bạn không mua tính năng.
 Bạn đang mua sự đảm bảo về vật lý.

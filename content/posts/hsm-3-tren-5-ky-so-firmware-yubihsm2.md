@@ -1,12 +1,12 @@
 ---
-title: "HSM Và Nghi Lễ Ký 3-trên-5: Biến Code Signing Từ Script Thành Quy Trình"
+title: "HSM and the 3-of-5 Signing Ritual: Turning Code Signing From a Script Into a Process"
 date: 2026-01-21T10:00:00+07:00
 draft: false
 author: ""
 tags: ["security", "pki", "hsm", "firmware", "supply-chain"]
 categories: ["Security", "Architecture"]
-description: "Một cách nhìn thực dụng về HSM khi tích hợp vào hệ thống ký firmware: chọn model, vòng đời key, và vì sao 3-trên-5 giúp giảm rủi ro mà vẫn giữ được tốc độ release."
-summary: "HSM không chỉ là một thiết bị phần cứng. Nó là cách ép quy trình ký số (vốn hay bị biến thành script trong CI) trở lại thành một nghi lễ có ràng buộc: key không rời khỏi thiết bị, người ký phải xuất hiện, và chữ ký cần đủ người đồng thuận."
+description: "A pragmatic look at putting an HSM into a firmware signing system: choosing a model, the key lifecycle, and why 3-of-5 cuts risk without slowing releases down."
+summary: "An HSM is not just a hardware crypto box. It is a way to force digital signing - so often reduced to a script in CI - back into a ritual with constraints: the key never leaves the device, the signer shows up in person, and the signature needs enough people to agree."
 cover:
   image: "/images/posts/hsm-3-tren-5-ky-so-firmware-yubihsm2/cover.svg"
   alt: "HSM 3-of-5 signing ceremony"
@@ -22,7 +22,7 @@ Nhưng càng làm với firmware, tôi càng thấy “ký” không phải là 
 
 Vì nếu private key ký firmware bị lộ, thứ bạn mất không chỉ là một artifact. Bạn mất niềm tin của cả chuỗi cung ứng.
 
-## Câu hỏi gốc: Mình đang ký để bảo vệ cái gì?
+## The original question: what am I signing to protect?
 
 Định nghĩa nghe rất đẹp: “ký số để đảm bảo tính toàn vẹn và xác thực”.
 
@@ -35,7 +35,7 @@ Vì nếu private key ký firmware bị lộ, thứ bạn mất không chỉ là
 
 Nếu private key nằm trong một file `.pem` trên CI runner, thì đôi khi câu trả lời đáng buồn là: không cần hack gì phức tạp, chỉ cần “lỡ” có người copy key ra khỏi đúng chỗ.
 
-## “HSM” không phải để làm crypto nhanh hơn
+## An HSM is not for making crypto faster
 
 Tôi từng tưởng HSM là để tăng hiệu năng crypto. Nhưng trong bối cảnh code signing, giá trị chính của HSM là:
 (Nếu bạn muốn hiểu sâu hơn về lớp vỏ vật lý, FIPS 140-2 và tại sao nó an toàn đến mức 'hoang tưởng', hãy đọc bài [HSM: Pháo Đài Vật Lý Cho Những Bí Mật Số](/posts/hsm-concept-definition/))
@@ -48,7 +48,7 @@ Nói cách khác: HSM biến “ký” từ một hàm trong code thành một h
 
 Ma sát này chính là thứ cứu bạn trong những ngày xui.
 
-## Cây quyết định: vì sao chọn HSM portable (thay vì HSM to đùng)
+## The decision tree: why a portable HSM (instead of a huge one)
 
 Khi chọn HSM cho hệ thống ký firmware, tôi thấy có ít nhất 3 hướng (mỗi hướng có cái giá riêng):
 
@@ -66,7 +66,7 @@ Khi chọn HSM cho hệ thống ký firmware, tôi thấy có ít nhất 3 hư�
 
 Trong một triển khai điển hình, lựa chọn ở đây là một HSM dạng portable: nhỏ, có chứng nhận, hỗ trợ PKCS#11, đủ dùng cho ký Ed25519, và quan trọng là có thể phát cho từng signer.
 
-## Reality check: người mua (và đội vận hành) thật sự quan tâm gì?
+## Reality check: what do buyers (and the ops team) actually care about?
 
 Nếu bỏ hết jargon, tôi thấy yêu cầu thực tế hay rơi vào 3 nhóm (và nhóm nào cũng “đúng”, chỉ khác thứ tự ưu tiên):
 
@@ -76,7 +76,7 @@ Nếu bỏ hết jargon, tôi thấy yêu cầu thực tế hay rơi vào 3 nhó
 
 Nhiều hệ thống ký số thất bại vì cố tối ưu nhóm (1) nhưng làm nát nhóm (2): mọi thứ phải qua một “ông admin giữ key”, đến lúc ông đó đi họp là release đứng hình.
 
-## Nghi lễ ký 3-trên-5: nhìn giống thủ tục, nhưng là guardrail
+## The 3-of-5 signing ritual: looks like paperwork, is actually a guardrail
 
 Thiết kế 3-trên-5 (3-of-5) nghe có vẻ “corporate”, nhưng nó giải được một bài toán rất đời thường:
 
@@ -101,7 +101,7 @@ Build Server -> Signing Server -> (signing request) -> 5 Signers
 - Trục kỹ thuật: key nằm trong HSM, không rời khỏi thiết bị.
 - Trục tổ chức: quyền phát hành cần đồng thuận, không phụ thuộc một người.
 
-## Một framework 3 bước để nghĩ cho “ký firmware” (thực dụng)
+## A 3-step framework for thinking about firmware signing (pragmatic)
 
 Nếu phải nén mọi thứ lại để triển khai được, tôi dùng 3 bước sau:
 
@@ -139,7 +139,7 @@ Signing Client (app/tool)                     HSM (PKCS#11 token)
 Key idea: digest goes in, signature comes out; private key never leaves HSM.
 ```
 
-## Anti-pattern: biến private key thành một “secret bình thường”
+## Anti-pattern: turning a private key into just another secret
 
 Một số phản xạ rất tự nhiên (và rất nguy hiểm):
 
@@ -151,7 +151,7 @@ Những thứ này đều có chung một bệnh: nó làm giảm ma sát đến
 
 HSM không làm bạn miễn nhiễm. Nó chỉ giúp bạn buộc hệ thống phải trả lời câu hỏi: “Key đang ở đâu, ai đang chạm vào nó?”
 
-## Kết
+## Closing
 
 Tôi thích nhìn HSM như một cách “định hình hành vi” hơn là một món đồ crypto.
 
@@ -162,7 +162,7 @@ Khi bạn thiết kế ký firmware với HSM + 3-trên-5, bạn đang nói th�
 
 Và nếu phải nhớ một câu để mang sang dự án khác: *đừng tối ưu sự tiện cho người ký đến mức quên mất sự an toàn cho người dùng.*
 
-## Định nghĩa nhanh (để khỏi lạc)
+## Quick definitions (so you do not get lost)
 
 | Thuật ngữ | Nghĩa trong bài này |
 |---|---|

@@ -46,8 +46,8 @@ ShowShareButtons: true
 ShowCodeCopyButtons: true
 cover:
     image: ""/images/ejbca-gcp-kms-analysis-cover.png"
-    alt: "Sơ đồ tương thích EJBCA và GCP Cloud KMS"
-    caption: "Kiến trúc tương thích giữa EJBCA và GCP Cloud KMS"
+    alt: "EJBCA and GCP Cloud KMS compatibility diagram"
+    caption: "The compatibility architecture between EJBCA and GCP Cloud KMS"
     relative: true
     hidden: false
 editPost:
@@ -56,23 +56,23 @@ editPost:
     appendFilePath: true
 ---
 
-# EJBCA + GCP Cloud KMS: Phân Tích Kỹ Thuật Về Tương Thích Và Giới Hạn
+# EJBCA + GCP Cloud KMS: Technical Analysis of Compatibility and Limits
 
 **Ngày**: 2026-02-05  
 **Mục đích**: Phân tích sâu về khả năng tương thích giữa EJBCA Community Edition và GCP Cloud KMS thông qua PKCS#11
 
 ---
 
-## 1. Tổng Quan Về Các Thành Phần Kỹ Thuật
+## 1. Overview of the Technical Components
 
-### 1.1 EJBCA là gì?
+### 1.1 What is EJBCA?
 
 **EJBCA** (Enterprise Java Beans Certificate Authority) là phần mềm CA (Certificate Authority) mã nguồn mở dùng để:
 - Tạo và quản lý chứng chỉ số (digital certificates)
 - Ký chứng chỉ cho người dùng, thiết bị, server
 - Quản lý vòng đời chứng chỉ (cấp phát, thu hồi, gia hạn)
 
-### 1.2 PKCS#11 là gì?
+### 1.2 What is PKCS#11?
 
 **PKCS#11** là chuẩn giao tiếp (API) để ứng dụng nói chuyện với HSM (Hardware Security Module):
 
@@ -89,7 +89,7 @@ editPost:
 - Liệt kê khóa (List Keys)
 - Nhập/xuất chứng chỉ (Import/Export Certificate)
 
-### 1.3 GCP Cloud KMS là gì?
+### 1.3 What is GCP Cloud KMS?
 
 **GCP Cloud KMS** là dịch vụ quản lý khóa của Google Cloud:
 - Khóa được lưu trong HSM của Google (Cloud HSM)
@@ -98,9 +98,9 @@ editPost:
 
 ---
 
-## 2. Luồng Hoạt Động Lý Tưởng (Cách Nó Nên Hoạt Động)
+## 2. The Ideal Flow (How It Is Supposed to Work)
 
-### Bước 1: Cấu hình PKCS#11 Token trong EJBCA
+### Step 1: Configure the PKCS#11 Token in EJBCA
 
 ```mermaid
 sequenceDiagram
@@ -117,7 +117,7 @@ sequenceDiagram
     EJBCA-->>Admin: Crypto Token đã kích hoạt
 ```
 
-### Bước 2: Tạo Khóa Trên HSM
+### Step 2: Create Keys on the HSM
 
 ```mermaid
 sequenceDiagram
@@ -137,7 +137,7 @@ sequenceDiagram
     EJBCA-->>Admin: Khóa đã tạo: "signKey"
 ```
 
-### Bước 3: Tạo CA (Certificate Authority)
+### Step 3: Create a CA (Certificate Authority)
 
 ```mermaid
 sequenceDiagram
@@ -170,9 +170,9 @@ sequenceDiagram
 
 ---
 
-## 3. Vấn Đề Thực Tế Với GCP Cloud KMS
+## 3. The Real Problems With GCP Cloud KMS
 
-### 3.1 Điểm Nghẹt #1: Không Thể Tạo Khóa
+### 3.1 Bottleneck #1: Cannot Create Keys
 
 ```mermaid
 sequenceDiagram
@@ -193,7 +193,7 @@ sequenceDiagram
 
 **Giải pháp:** Phải tạo khóa qua GCP Console hoặc `gcloud` CLI trước.
 
-### 3.2 Điểm Nghẹt #2: Khóa Có Sẵn Không Được Nhìn Thấy
+### 3.2 Bottleneck #2: Existing Keys Are Not Visible
 
 Đây là **VấN ĐỆ CHÍNH** - khi đã có khóa sẵn trên GCP Cloud HSM:
 
@@ -247,9 +247,9 @@ flowchart TB
 
 ---
 
-## 4. Phân Tích Chi Tiết Cơ Chế Ghép Cặp Khóa
+## 4. Detailed Analysis of the Key Pairing Mechanism
 
-### 4.1 Cách HSM Truyền Thống Hoạt Động
+### 4.1 How a Traditional HSM Works
 
 Trong HSM truyền thống (như Thales, SafeNet, nCipher):
 
@@ -274,7 +274,7 @@ HSM Token chứa:
 3. Ghép cặp theo `CKA_ID` khớp nhau
 4. Trả về `KeyStore.Entry` cho mỗi cặp
 
-### 4.2 Cách GCP Cloud KMS PKCS#11 Hoạt Động
+### 4.2 How GCP Cloud KMS PKCS#11 Works
 
 ```
 GCP KMS Token chứa:
@@ -295,9 +295,9 @@ GCP KMS Token chứa:
 
 ---
 
-## 5. Tại Sao Không Thể Khắc Phục?
+## 5. Why It Cannot Be Fixed
 
-### 5.1 Thử nghiệm: Import Certificate Vào Token
+### 5.1 Experiment: Importing a Certificate Into the Token
 
 Chúng tôi đã thử:
 1. Tạo certificate tự ký bằng Python + GCP KMS API
@@ -311,7 +311,7 @@ Chúng tôi đã thử:
 
 **Lý do:** Java SunPKCS11 không thể *nhìn thấy* Private Key trên token, nên không thể ghép cặp với certificate mới import.
 
-### 5.2 Tùy chọn `generate_certs` của GCP
+### 5.2 GCP generate_certs Option
 
 GCP có tùy chọn `generate_certs: true` trong config để tự tạo certificate:
 
@@ -330,7 +330,7 @@ tokens:
 
 ---
 
-## 6. Tóm Tắt Các Điểm Nghẹt
+## 6. Summary of the Bottlenecks
 
 | Điểm Nghẹt | Nguyên Nhân | Có Thể Khắc Phục? |
 |------------|-------------|-------------------|
@@ -342,7 +342,7 @@ tokens:
 
 ---
 
-## 7. SƠ Đồ Tổng Thể
+## 7. Overall Diagram
 
 ```mermaid
 flowchart TB
@@ -372,9 +372,9 @@ flowchart TB
 
 ---
 
-## 8. Kết Luận Và Đề Xuất
+## 8. Conclusion and Recommendations
 
-### 8.1 Kết Luận
+### 8.1 Conclusion
 
 **EJBCA Community Edition KHÔNG thể hoạt động với GCP Cloud KMS** do:
 
@@ -382,7 +382,7 @@ flowchart TB
 2. **Giới hạn của Java SunPKCS11:** Yêu cầu Certificate để ghép cặp với Private Key
 3. **Giới hạn của EJBCA CE:** Không có PKCS#11 NG để hỗ trợ cloud KMS
 
-### 8.2 Đề Xuất Giải Pháp
+### 8.2 Recommended Solutions
 
 | Giải pháp | Chi phí | Ưu điểm | Nhược điểm |
 |-----------|---------|---------|------------|
@@ -393,7 +393,7 @@ flowchart TB
 
 ---
 
-## 9. Thuật Ngữ
+## 9. Glossary
 
 | Thuật ngữ | Giải thích |
 |-----------|------------|

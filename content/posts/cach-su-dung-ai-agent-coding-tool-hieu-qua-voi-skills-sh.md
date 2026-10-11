@@ -1,12 +1,12 @@
 ---
-title: "Cách Sử Dụng AI Agent Coding Tool Hiệu Quả Với Skills.sh"
+title: "How to Use AI Agent Coding Tools Effectively with Skills.sh"
 date: 2026-01-21T10:00:00+07:00
 draft: false
 author: "Free Peak"
 tags: ["ai", "coding", "productivity", "skills-sh"]
 categories: ["engineering"]
-description: "Hướng dẫn thực tế để tận dụng AI agent coding tools và hệ sinh thái Skills.sh"
-summary: "Từ việc cài tool hàng chục cái đến việc dùng đúng tool đúng thời điểm - một framework thực tế"
+description: "A practical guide to getting real value from AI agent coding tools and the Skills.sh ecosystem"
+summary: "From installing dozens of tools to using the right tool at the right time - one practical framework"
 ShowToc: true
 TocOpen: false
 ShowReadingTime: true
@@ -103,7 +103,7 @@ Cuối cùng, chiến lược dùng AI coding tools là chọn skill cần học
 
 ---
 
-## Danh Sách AI Agent Coding Tools
+## AI Agent Coding Tools List
 
 Dưới đây là tổng hợp các AI agent coding tools hỗ trợ bởi Skills.sh:
 
@@ -124,7 +124,7 @@ Dưới đây là tổng hợp các AI agent coding tools hỗ trợ bởi Skill
 15. **Trae** - [trae.ai](https://www.trae.ai/)
 16. **Windsurf** - [codeium.com](https://codeium.com/windsurf)
 
-## Skills Phổ Biến Tại Skills.sh
+## Popular Skills on Skills.sh
 
 Theo leaderboard, những skill được install nhiều nhất:
 
