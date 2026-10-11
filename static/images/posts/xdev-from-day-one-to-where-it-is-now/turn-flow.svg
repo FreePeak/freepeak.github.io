@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" font-family="Menlo, 'JetBrains Mono', monospace">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7dd3fc"/>
+    </marker>
+  </defs>
+  <rect width="1120" height="560" fill="#0f1115"/>
+  <rect x="0.5" y="0.5" width="1119" height="559" fill="none" stroke="#262b36"/>
+
+  <text x="28" y="34" fill="#e6e6e6" font-size="17" font-weight="700">One turn, end to end</text>
+  <text x="28" y="54" fill="#6f7787" font-size="12">goroutine per turn · bounded worker pool of 6 · no shared mutable turn state</text>
+
+  <!-- left column: user + prompt -->
+  <g font-size="13">
+    <rect x="28" y="76" width="200" height="60" rx="6" fill="#171b23" stroke="#2b3240"/>
+    <text x="44" y="100" fill="#9ece6a">you</text>
+    <text x="44" y="122" fill="#c0caf5" textLength="none">a prompt (or /command)</text>
+
+    <path d="M228 106 L292 106" stroke="#7dd3fc" stroke-width="1.5" marker-end="url(#ah)"/>
+
+    <rect x="292" y="76" width="200" height="60" rx="6" fill="#171b23" stroke="#2b3240"/>
+    <text x="308" y="100" fill="#7dcfff">internal/agent</text>
+    <text x="308" y="122" fill="#c0caf5">build messages</text>
+
+    <path d="M492 106 L556 106" stroke="#7dd3fc" stroke-width="1.5" marker-end="url(#ah)"/>
+
+    <rect x="556" y="76" width="200" height="60" rx="6" fill="#171b23" stroke="#2b3240"/>
+    <text x="572" y="100" fill="#bb9af7">internal/ai</text>
+    <text x="572" y="122" fill="#c0caf5">stream over SSE</text>
+
+    <path d="M756 106 L820 106" stroke="#7dd3fc" stroke-width="1.5" marker-end="url(#ah)"/>
+
+    <rect x="820" y="76" width="272" height="60" rx="6" fill="#1b2030" stroke="#3b4a6b"/>
+    <text x="836" y="100" fill="#7dcfff">provider</text>
+    <text x="836" y="122" fill="#c0caf5">8 wire formats, one reader</text>
+  </g>
+
+  <!-- return path -->
+  <g font-size="13">
+    <path d="M984 136 L984 168 L136 168 L136 196" stroke="#565f89" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+    <text x="150" y="192" fill="#565f89" font-size="11">unified AssistantMessageEvent stream</text>
+  </g>
+
+  <!-- tool dispatch band -->
+  <g font-size="13">
+    <rect x="136" y="196" width="848" height="74" rx="6" fill="#171b23" stroke="#2b3240"/>
+    <text x="152" y="220" fill="#9ece6a">tool calls in this batch</text>
+    <text x="152" y="242" fill="#c0caf5">goroutine per call, semaphore of 6 (MaxToolWorkers)</text>
+    <text x="152" y="260" fill="#565f89" font-size="11">order preserved after the join, so a repeat loop counts in model order, not worker-finish order</text>
+  </g>
+
+  <!-- the tools -->
+  <g font-size="12">
+    <rect x="136" y="300" width="164" height="52" rx="5" fill="#151a22" stroke="#2b3240"/>
+    <text x="152" y="322" fill="#ff9e64">read / write / edit</text>
+    <text x="152" y="342" fill="#565f89">the eager core</text>
+
+    <rect x="316" y="300" width="164" height="52" rx="5" fill="#151a22" stroke="#2b3240"/>
+    <text x="332" y="322" fill="#ff9e64">bash / grep / glob</text>
+    <text x="332" y="342" fill="#565f89">shells out to rg, git</text>
+
+    <rect x="496" y="300" width="164" height="52" rx="5" fill="#151a22" stroke="#2b3240"/>
+    <text x="512" y="322" fill="#ff9e64">lsp · browser · dap</text>
+    <text x="512" y="342" fill="#565f89">lazy child processes</text>
+
+    <rect x="676" y="300" width="164" height="52" rx="5" fill="#151a22" stroke="#2b3240"/>
+    <text x="692" y="322" fill="#ff9e64">task · hub · mcp</text>
+    <text x="692" y="342" fill="#565f89">subagents, servers</text>
+
+    <rect x="856" y="300" width="128" height="52" rx="5" fill="#151a22" stroke="#2b3240"/>
+    <text x="872" y="322" fill="#ff9e64">the long tail</text>
+    <text x="872" y="342" fill="#565f89">deferred catalog</text>
+
+    <path d="M156 270 L156 300" stroke="#565f89" stroke-width="1.5" marker-end="url(#ah)"/>
+    <path d="M396 270 L396 300" stroke="#565f89" stroke-width="1.5" marker-end="url(#ah)"/>
+    <path d="M578 270 L578 300" stroke="#565f89" stroke-width="1.5" marker-end="url(#ah)"/>
+    <path d="M758 270 L758 300" stroke="#565f89" stroke-width="1.5" marker-end="url(#ah)"/>
+    <path d="M920 270 L920 300" stroke="#565f89" stroke-width="1.5" marker-end="url(#ah)"/>
+  </g>
+
+  <!-- back to the loop -->
+  <g font-size="13">
+    <path d="M984 352 L984 384 L136 384 L136 412" stroke="#7dd3fc" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+    <rect x="136" y="412" width="848" height="56" rx="6" fill="#1b2030" stroke="#3b4a6b"/>
+    <text x="152" y="436" fill="#7dcfff">internal/session</text>
+    <text x="152" y="456" fill="#c0caf5">append the results: one JSONL entry per message, the leaf pointer moves</text>
+  </g>
+
+  <!-- termination + compaction -->
+  <g font-size="12">
+    <rect x="136" y="496" width="272" height="46" rx="5" fill="#151a22" stroke="#2b3240"/>
+    <text x="152" y="518" fill="#9ece6a">loop ends when</text>
+    <text x="152" y="534" fill="#c0caf5">no tool calls, or the budget stops it</text>
+
+    <rect x="424" y="496" width="272" height="46" rx="5" fill="#151a22" stroke="#2b3240"/>
+    <text x="440" y="518" fill="#f7768e">context warning</text>
+    <text x="440" y="534" fill="#c0caf5">compact at 80% of the window</text>
+
+    <rect x="712" y="496" width="272" height="46" rx="5" fill="#151a22" stroke="#2b3240"/>
+    <text x="728" y="518" fill="#f7768e">heap warning</text>
+    <text x="728" y="534" fill="#c0caf5">85% of the memory limit</text>
+  </g>
+</svg>

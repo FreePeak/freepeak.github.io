@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" font-family="Menlo, 'JetBrains Mono', monospace">
+  <rect width="1120" height="560" fill="#0f1115"/>
+  <rect x="0.5" y="0.5" width="1119" height="559" fill="none" stroke="#262b36"/>
+  <text x="28" y="34" fill="#e6e6e6" font-size="17" font-weight="700">743 commits across 29 active days</text>
+  <text x="28" y="54" fill="#6f7787" font-size="12">commits per day, 2026-09-09 to 2026-10-11 &mdash; git log --format='%ad' --date=short | sort | uniq -c</text>
+  <text x="28" y="76" fill="#565f89" font-size="11">The longest gap between consecutive commit days is three days (09-21 to 09-24). Four days in, 132 commits landed in one day.</text>
+  <line x1="64" y1="400" x2="1092" y2="400" stroke="#2b3240"/>
+    <rect x="70.4" y="376.7" width="22.7" height="23.3" rx="2" fill="#9ece6a"/>
+    <text x="81.7" y="370.7" fill="#a9b1d6" font-size="10" text-anchor="middle">11</text>
+    <text x="81.7" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-09</text>
+    <rect x="105.8" y="349.1" width="22.7" height="50.9" rx="2" fill="#7dcfff"/>
+    <text x="117.2" y="343.1" fill="#a9b1d6" font-size="10" text-anchor="middle">24</text>
+    <text x="117.2" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-10</text>
+    <rect x="141.3" y="153.9" width="22.7" height="246.1" rx="2" fill="#7dcfff"/>
+    <text x="152.6" y="147.9" fill="#a9b1d6" font-size="10" text-anchor="middle">116</text>
+    <text x="152.6" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-11</text>
+    <rect x="176.7" y="120.0" width="22.7" height="280.0" rx="2" fill="#7dcfff"/>
+    <text x="188.1" y="114.0" fill="#a9b1d6" font-size="10" text-anchor="middle">132</text>
+    <text x="188.1" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-12</text>
+    <rect x="212.2" y="266.4" width="22.7" height="133.6" rx="2" fill="#7dcfff"/>
+    <text x="223.5" y="260.4" fill="#a9b1d6" font-size="10" text-anchor="middle">63</text>
+    <text x="223.5" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-13</text>
+    <rect x="247.6" y="315.2" width="22.7" height="84.8" rx="2" fill="#bb9af7"/>
+    <text x="259.0" y="309.2" fill="#a9b1d6" font-size="10" text-anchor="middle">40</text>
+    <text x="259.0" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-14</text>
+    <rect x="283.1" y="298.2" width="22.7" height="101.8" rx="2" fill="#bb9af7"/>
+    <text x="294.4" y="292.2" fill="#a9b1d6" font-size="10" text-anchor="middle">48</text>
+    <text x="294.4" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-15</text>
+    <rect x="318.5" y="349.1" width="22.7" height="50.9" rx="2" fill="#bb9af7"/>
+    <text x="329.9" y="343.1" fill="#a9b1d6" font-size="10" text-anchor="middle">24</text>
+    <text x="329.9" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-16</text>
+    <rect x="354.0" y="340.6" width="22.7" height="59.4" rx="2" fill="#bb9af7"/>
+    <text x="365.3" y="334.6" fill="#a9b1d6" font-size="10" text-anchor="middle">28</text>
+    <text x="365.3" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-17</text>
+    <rect x="389.4" y="351.2" width="22.7" height="48.8" rx="2" fill="#bb9af7"/>
+    <text x="400.8" y="345.2" fill="#a9b1d6" font-size="10" text-anchor="middle">23</text>
+    <text x="400.8" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-18</text>
+    <rect x="424.9" y="376.7" width="22.7" height="23.3" rx="2" fill="#bb9af7"/>
+    <text x="436.2" y="370.7" fill="#a9b1d6" font-size="10" text-anchor="middle">11</text>
+    <text x="436.2" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-19</text>
+    <rect x="460.3" y="347.0" width="22.7" height="53.0" rx="2" fill="#bb9af7"/>
+    <text x="471.7" y="341.0" fill="#a9b1d6" font-size="10" text-anchor="middle">25</text>
+    <text x="471.7" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-20</text>
+    <rect x="495.8" y="355.5" width="22.7" height="44.5" rx="2" fill="#bb9af7"/>
+    <text x="507.1" y="349.5" fill="#a9b1d6" font-size="10" text-anchor="middle">21</text>
+    <text x="507.1" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-21</text>
+    <rect x="531.2" y="391.5" width="22.7" height="8.5" rx="2" fill="#565f89"/>
+    <text x="542.6" y="385.5" fill="#a9b1d6" font-size="10" text-anchor="middle">4</text>
+    <text x="542.6" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-24</text>
+    <rect x="566.7" y="397.9" width="22.7" height="2.1" rx="2" fill="#565f89"/>
+    <text x="578.0" y="391.9" fill="#a9b1d6" font-size="10" text-anchor="middle">1</text>
+    <text x="578.0" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-27</text>
+    <rect x="602.1" y="351.2" width="22.7" height="48.8" rx="2" fill="#ff9e64"/>
+    <text x="613.4" y="345.2" fill="#a9b1d6" font-size="10" text-anchor="middle">23</text>
+    <text x="613.4" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-28</text>
+    <rect x="637.6" y="353.3" width="22.7" height="46.7" rx="2" fill="#ff9e64"/>
+    <text x="648.9" y="347.3" fill="#a9b1d6" font-size="10" text-anchor="middle">22</text>
+    <text x="648.9" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-29</text>
+    <rect x="673.0" y="359.7" width="22.7" height="40.3" rx="2" fill="#ff9e64"/>
+    <text x="684.3" y="353.7" fill="#a9b1d6" font-size="10" text-anchor="middle">19</text>
+    <text x="684.3" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">09-30</text>
+    <rect x="708.4" y="395.8" width="22.7" height="4.2" rx="2" fill="#ff9e64"/>
+    <text x="719.8" y="389.8" fill="#a9b1d6" font-size="10" text-anchor="middle">2</text>
+    <text x="719.8" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">10-01</text>
+    <rect x="743.9" y="336.4" width="22.7" height="63.6" rx="2" fill="#ff9e64"/>
+    <text x="755.2" y="330.4" fill="#a9b1d6" font-size="10" text-anchor="middle">30</text>
+    <text x="755.2" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">10-02</text>
+    <rect x="779.3" y="374.5" width="22.7" height="25.5" rx="2" fill="#ff9e64"/>
+    <text x="790.7" y="368.5" fill="#a9b1d6" font-size="10" text-anchor="middle">12</text>
+    <text x="790.7" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">10-03</text>
+    <rect x="814.8" y="361.8" width="22.7" height="38.2" rx="2" fill="#ff9e64"/>
+    <text x="826.1" y="355.8" fill="#a9b1d6" font-size="10" text-anchor="middle">18</text>
+    <text x="826.1" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">10-04</text>
+    <rect x="850.2" y="353.3" width="22.7" height="46.7" rx="2" fill="#ff9e64"/>
+    <text x="861.6" y="347.3" fill="#a9b1d6" font-size="10" text-anchor="middle">22</text>
+    <text x="861.6" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">10-05</text>
+    <rect x="885.7" y="391.5" width="22.7" height="8.5" rx="2" fill="#ff9e64"/>
+    <text x="897.0" y="385.5" fill="#a9b1d6" font-size="10" text-anchor="middle">4</text>
+    <text x="897.0" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">10-06</text>
+    <rect x="921.1" y="391.5" width="22.7" height="8.5" rx="2" fill="#ff9e64"/>
+    <text x="932.5" y="385.5" fill="#a9b1d6" font-size="10" text-anchor="middle">4</text>
+    <text x="932.5" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">10-07</text>
+    <rect x="956.6" y="391.5" width="22.7" height="8.5" rx="2" fill="#ff9e64"/>
+    <text x="967.9" y="385.5" fill="#a9b1d6" font-size="10" text-anchor="middle">4</text>
+    <text x="967.9" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">10-08</text>
+    <rect x="992.0" y="397.9" width="22.7" height="2.1" rx="2" fill="#ff9e64"/>
+    <text x="1003.4" y="391.9" fill="#a9b1d6" font-size="10" text-anchor="middle">1</text>
+    <text x="1003.4" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">10-09</text>
+    <rect x="1027.5" y="393.6" width="22.7" height="6.4" rx="2" fill="#ff9e64"/>
+    <text x="1038.8" y="387.6" fill="#a9b1d6" font-size="10" text-anchor="middle">3</text>
+    <text x="1038.8" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">10-10</text>
+    <rect x="1062.9" y="383.0" width="22.7" height="17.0" rx="2" fill="#ff9e64"/>
+    <text x="1074.3" y="377.0" fill="#a9b1d6" font-size="10" text-anchor="middle">8</text>
+    <text x="1074.3" y="416.0" fill="#6f7787" font-size="9" text-anchor="middle">10-11</text>
+    <rect x="64" y="464" width="12" height="12" rx="2" fill="#9ece6a"/>
+    <text x="82" y="474" fill="#a9b1d6" font-size="11">day 1: research + MVP</text>
+    <rect x="270" y="464" width="12" height="12" rx="2" fill="#7dcfff"/>
+    <text x="288" y="474" fill="#a9b1d6" font-size="11">days 2-5: milestones M5-M15</text>
+    <rect x="476" y="464" width="12" height="12" rx="2" fill="#bb9af7"/>
+    <text x="494" y="474" fill="#a9b1d6" font-size="11">days 6-13: the field-driven pass</text>
+    <rect x="682" y="464" width="12" height="12" rx="2" fill="#565f89"/>
+    <text x="700" y="474" fill="#a9b1d6" font-size="11">days 14-19: the flat week</text>
+    <rect x="888" y="464" width="12" height="12" rx="2" fill="#ff9e64"/>
+    <text x="906" y="474" fill="#a9b1d6" font-size="11">days 20-33: the daily driver</text>
+  <text x="28" y="516" fill="#6f7787" font-size="11">Milestones M0-M4 landed inside day 1; the full M0-M15 arc closed on day 4. Day 33 shipped the Telegram gateway.</text>
+  <text x="28" y="534" fill="#6f7787" font-size="11">Day 3 and day 4 together are a third of the whole month. Then the cadence settles: mostly 4 to 30 commits, mostly TUI and resilience fixes.</text>
+</svg>
