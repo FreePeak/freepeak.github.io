@@ -6,7 +6,7 @@
   </defs>
 
   <rect x="0" y="0" width="800" height="300" fill="#ffffff" rx="12" />
-  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">Quy trình "Configuration as Code"</text>
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">The config-as-code path</text>
 
   <!-- Step 1: Git -->
   <g transform="translate(60,80)">
@@ -46,5 +46,5 @@
     <text x="95" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#0b2a2a">Sync</text>
   </g>
 
-  <text x="400" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#6b7280">Best practice: lưu cấu hình trong Git, review/approve trước khi sync vào cluster.</text>
+  <text x="400" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#6b7280">Best practice: keep config in Git; review and approve before it syncs to the cluster.</text>
 </svg>

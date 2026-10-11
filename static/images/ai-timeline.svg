@@ -75,6 +75,6 @@
   </g>
 
   <g opacity="0.5" class="mono" font-size="14" fill="#a6e3a1">
-    <text x="170" y="660">Hint: mỗi node = một giai doan tool; duong cong = do "cuon" va quota.</text>
+    <text x="170" y="660">Hint: each node is one tool era; the curve shows how tightly they lock you in and how hard the quota bites.</text>
   </g>
 </svg>

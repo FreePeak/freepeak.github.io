@@ -46,5 +46,5 @@
     <text x="80" y="106" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#c7d2fe">Applied Config</text>
   </g>
 
-  <text x="400" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#6b7280">Best practice: tách repo infra, review PR trước khi ArgoCD sync.</text>
+  <text x="400" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#6b7280">Best practice: a separate infra repo, PR review before ArgoCD syncs.</text>
 </svg>

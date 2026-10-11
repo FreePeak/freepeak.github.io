@@ -16,14 +16,14 @@
 
   <rect width="1200" height="720" fill="#ffffff"/>
 
-  <text x="80" y="84" class="mono h1" font-size="34" fill="#0b1220">Decision Tree: Khi cần rate limit theo tenant</text>
-  <text x="80" y="118" class="mono" font-size="18" fill="#0b1220" opacity="0.75">Ba nhánh "nhìn có vẻ đúng" và một nhánh "đúng bài".</text>
+  <text x="80" y="84" class="mono h1" font-size="34" fill="#0b1220">Decision tree: when per-tenant rate limiting is needed</text>
+  <text x="80" y="118" class="mono" font-size="18" fill="#0b1220" opacity="0.75">Three branches that look right, one that is right.</text>
 
   <!-- Root -->
   <g transform="translate(80,170)">
     <rect x="0" y="0" width="1040" height="80" rx="16" class="outline" fill="#ffffff"/>
     <text x="24" y="34" class="mono h2" font-size="18" fill="#0b1220">Need: rate limiting theo identity (tenant/API key/JWT claim)</text>
-    <text x="24" y="60" class="mono" font-size="14" fill="#0b1220" opacity="0.7">Goal: enforce 429 + headers nhất quán, không đẩy logic vào từng service</text>
+    <text x="24" y="60" class="mono" font-size="14" fill="#0b1220" opacity="0.7">Goal: a consistent 429 and headers, without pushing logic into every service</text>
   </g>
 
   <!-- Branch arrows -->
@@ -38,10 +38,10 @@
     <text x="20" y="40" class="mono h2" font-size="18" fill="#0b1220">ALB Ingress</text>
     <text x="20" y="74" class="mono" font-size="14" fill="#0b1220">Pros: native, managed routing</text>
     <text x="20" y="108" class="mono label" font-size="14" fill="#0b1220">Cost:</text>
-    <text x="20" y="132" class="mono muted" font-size="14" fill="#0b1220">- phải tự parse identity</text>
-    <text x="20" y="156" class="mono muted" font-size="14" fill="#0b1220">- phải có quota store</text>
-    <text x="20" y="180" class="mono muted" font-size="14" fill="#0b1220">- enforce không nhất quán</text>
-    <text x="20" y="214" class="mono" font-size="14" fill="#0b1220" opacity="0.7">=> gateway bằng "băng keo"</text>
+    <text x="20" y="132" class="mono muted" font-size="14" fill="#0b1220">- must parse identity itself</text>
+    <text x="20" y="156" class="mono muted" font-size="14" fill="#0b1220">- needs its own quota store</text>
+    <text x="20" y="180" class="mono muted" font-size="14" fill="#0b1220">- enforcement is inconsistent</text>
+    <text x="20" y="214" class="mono" font-size="14" fill="#0b1220" opacity="0.7">=> a gateway taped together</text>
   </g>
 
   <g transform="translate(450,320)">
@@ -49,21 +49,21 @@
     <text x="20" y="40" class="mono h2" font-size="18" fill="#0b1220">AWS WAF</text>
     <text x="20" y="74" class="mono" font-size="14" fill="#0b1220">Pros: bot/IP rules</text>
     <text x="20" y="108" class="mono label" font-size="14" fill="#0b1220">Cost:</text>
-    <text x="20" y="132" class="mono muted" font-size="14" fill="#0b1220">- rule khó đọc/khó review</text>
-    <text x="20" y="156" class="mono muted" font-size="14" fill="#0b1220">- ops/cost tăng theo traffic</text>
-    <text x="20" y="180" class="mono muted" font-size="14" fill="#0b1220">- không phải quota engine</text>
-    <text x="20" y="214" class="mono" font-size="14" fill="#0b1220" opacity="0.7">=> đúng một phần, thiếu phần chính</text>
+    <text x="20" y="132" class="mono muted" font-size="14" fill="#0b1220">- rules are hard to read and review</text>
+    <text x="20" y="156" class="mono muted" font-size="14" fill="#0b1220">- ops and cost grow with traffic</text>
+    <text x="20" y="180" class="mono muted" font-size="14" fill="#0b1220">- not a quota engine</text>
+    <text x="20" y="214" class="mono" font-size="14" fill="#0b1220" opacity="0.7">=> half right, missing the main point</text>
   </g>
 
   <g transform="translate(740,320)">
     <rect x="0" y="0" width="300" height="260" rx="16" class="outline" fill="#fff1f1"/>
     <text x="20" y="40" class="mono h2" font-size="18" fill="#0b1220">Lambda/custom</text>
-    <text x="20" y="74" class="mono" font-size="14" fill="#0b1220">Pros: linh hoạt</text>
+    <text x="20" y="74" class="mono" font-size="14" fill="#0b1220">Pros: flexible</text>
     <text x="20" y="108" class="mono label" font-size="14" fill="#0b1220">Cost:</text>
     <text x="20" y="132" class="mono muted" font-size="14" fill="#0b1220">- latency/cold start</text>
-    <text x="20" y="156" class="mono muted" font-size="14" fill="#0b1220">- tự làm observability</text>
-    <text x="20" y="180" class="mono muted" font-size="14" fill="#0b1220">- tự định nghĩa chuẩn 429</text>
-    <text x="20" y="214" class="mono" font-size="14" fill="#0b1220" opacity="0.7">=> bạn tự build gateway mini</text>
+    <text x="20" y="156" class="mono muted" font-size="14" fill="#0b1220">- home-grown observability</text>
+    <text x="20" y="180" class="mono muted" font-size="14" fill="#0b1220">- you set your own 429 standard</text>
+    <text x="20" y="214" class="mono" font-size="14" fill="#0b1220" opacity="0.7">=> you end up building a mini gateway</text>
   </g>
 
   <g transform="translate(900,520)">

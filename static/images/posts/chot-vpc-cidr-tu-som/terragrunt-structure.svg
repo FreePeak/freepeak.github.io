@@ -18,14 +18,14 @@
   <rect width="900" height="550" fill="#fdfcfa"/>
   
   <!-- Title -->
-  <text x="450" y="35" class="title" text-anchor="middle" font-size="22">Quản trị CIDR với Terragrunt: Config cấp dự án</text>
+  <text x="450" y="35" class="title" text-anchor="middle" font-size="22">Governing CIDR with Terragrunt: project-level config</text>
   
   <!-- Project structure -->
   <g transform="translate(50, 80)">
     <!-- project.hcl -->
     <rect x="0" y="0" width="350" height="180" class="file"/>
     <text x="15" y="25" class="label">📄 project.hcl</text>
-    <text x="15" y="50" class="small">(Config cấp dự án - SSOT cho CIDR)</text>
+    <text x="15" y="50" class="small">(project-level config: the CIDR source of truth)</text>
     
     <rect x="20" y="70" width="310" height="95" fill="#f0fdf4" rx="4"/>
     <text x="30" y="90" class="code">locals {</text>
@@ -36,14 +36,14 @@
     <text x="45" y="180" class="code">  }</text>
     <text x="30" y="198" class="code">}</text>
     
-    <text x="15" y="225" class="small" fill="#059669">✓ Tất cả môi trường có dải riêng biệt</text>
-    <text x="15" y="245" class="small" fill="#059669">✓ Dễ review, audit trong Git</text>
-    <text x="15" y="265" class="small" fill="#059669">✓ Không chồng lấp khi mở rộng</text>
+    <text x="15" y="225" class="small" fill="#059669">Every environment gets its own range</text>
+    <text x="15" y="245" class="small" fill="#059669">Easy to review and audit in Git</text>
+    <text x="15" y="265" class="small" fill="#059669">No overlap as you scale</text>
   </g>
   
   <!-- Arrow down -->
   <path d="M225 345 L225 385" class="arrow" marker-end="url(#arrow)"/>
-  <text x="245" y="370" class="small">truyền xuống</text>
+  <text x="245" y="370" class="small">inherited down</text>
   
   <!-- Environment folders -->
   <g transform="translate(50, 395)">

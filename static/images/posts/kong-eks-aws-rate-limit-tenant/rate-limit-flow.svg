@@ -16,7 +16,7 @@
   <rect width="1200" height="720" fill="#ffffff"/>
 
   <text x="80" y="84" class="mono h1" font-size="34" fill="#0b1220">Rate Limiting Flow (per tenant)</text>
-  <text x="80" y="118" class="mono" font-size="18" fill="#0b1220" opacity="0.75">Từ identity -> consumer -> plugin -> response/metrics.</text>
+  <text x="80" y="118" class="mono" font-size="18" fill="#0b1220" opacity="0.75">From identity to consumer to plugin to response and metrics.</text>
 
   <g transform="translate(80,190)">
     <!-- request -->

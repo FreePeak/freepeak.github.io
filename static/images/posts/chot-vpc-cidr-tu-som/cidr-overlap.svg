@@ -37,8 +37,8 @@
 
   <rect x="0" y="0" width="1200" height="675" fill="url(#bg)"/>
 
-  <text x="70" y="95" class="title">CIDR chồng lấp: đường nối bị “kẹt”</text>
-  <text x="70" y="135" class="sub">Peering/VPN/TGW không route được nếu hai bên dùng dải IP overlap</text>
+  <text x="70" y="95" class="title">Overlapping CIDRs: the link gets stuck</text>
+  <text x="70" y="135" class="sub">Peering, VPN and TGW cannot route if both sides overlap</text>
 
   <!-- VPC A -->
   <rect x="110" y="210" width="430" height="300" class="vpcA"/>
@@ -58,14 +58,14 @@
   <path d="M540 360 C590 320, 610 320, 660 360" class="link" marker-end="url(#arrowHeadBad)"/>
   <line x1="585" y1="310" x2="615" y2="340" class="x"/>
   <line x1="615" y1="310" x2="585" y2="340" class="x"/>
-  <text x="535" y="415" class="small" fill="#b91c1c">Overlap → không route</text>
+  <text x="535" y="415" class="small" fill="#b91c1c">Overlap, so no route</text>
 
   <!-- Fix suggestion -->
   <rect x="110" y="545" width="980" height="90" fill="#ffffff" stroke="#111827" stroke-width="3" rx="18"/>
-  <text x="150" y="600" class="label">Cách tránh: chuẩn hóa “bảng CIDR” từ sớm</text>
+  <text x="150" y="600" class="label">Avoid it: standardise a "CIDR table" early</text>
   <text x="560" y="600" class="small">VD: dev 10.10.0.0/16 · staging 10.20.0.0/16 · prod 10.30.0.0/16</text>
 
   <!-- Optional ok arrow hint -->
   <path d="M540 250 C590 210, 610 210, 660 250" class="linkOk" marker-end="url(#arrowHeadOk)" opacity="0.35"/>
-  <text x="530" y="205" class="small" opacity="0.55">(khi CIDR không overlap)</text>
+  <text x="530" y="205" class="small" opacity="0.55">(when CIDRs do not overlap)</text>
 </svg>

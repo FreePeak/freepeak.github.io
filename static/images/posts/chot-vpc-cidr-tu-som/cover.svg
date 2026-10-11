@@ -60,13 +60,13 @@
       <line x1="50" y1="25" x2="50" y2="42" stroke="#ffd700" stroke-width="4" stroke-linecap="round"/>
       
       <!-- Warning text -->
-      <text x="120" y="30" font-family="Arial, sans-serif" font-size="20" fill="#ffd700" font-weight="bold">Quyết định sớm</text>
-      <text x="120" y="55" font-family="Arial, sans-serif" font-size="18" fill="#ffd700" opacity="0.9">tránh đập đi làm lại!</text>
+      <text x="120" y="30" font-family="Arial, sans-serif" font-size="20" fill="#ffd700" font-weight="bold">Decide early</text>
+      <text x="120" y="55" font-family="Arial, sans-serif" font-size="18" fill="#ffd700" opacity="0.9">avoid tearing it down and rebuilding!</text>
     </g>
   </g>
   
   <!-- Title -->
-  <text x="600" y="80" font-family="Arial, sans-serif" font-size="42" fill="white" text-anchor="middle" font-weight="bold">Chốt VPC CIDR Từ Sớm</text>
+  <text x="600" y="80" font-family="Arial, sans-serif" font-size="42" fill="white" text-anchor="middle" font-weight="bold">Lock In VPC CIDR Early</text>
   
   <!-- Subtitle -->
   <text x="600" y="530" font-family="Arial, sans-serif" font-size="24" fill="#00d4ff" text-anchor="middle" opacity="0.9">AWS Infrastructure as Code Best Practice</text>

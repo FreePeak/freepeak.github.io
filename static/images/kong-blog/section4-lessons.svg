@@ -2,7 +2,7 @@
   <!-- Background -->
   <rect width="800" height="300" fill="#fff" rx="10" ry="10"/>
 
-  <text x="400" y="40" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#333">Bài Học Thực Tế</text>
+  <text x="400" y="40" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#333">Lessons from production</text>
 
   <!-- Lesson 1: DB-less -->
   <g transform="translate(100, 80)">

@@ -32,13 +32,13 @@
 
   <rect x="0" y="0" width="1200" height="675" fill="url(#bg)"/>
 
-  <text x="70" y="95" class="title">CIDR là “nền” của VPC</text>
-  <text x="70" y="135" class="sub">Một dải IP đi xuyên qua mọi lớp: subnet → routing → EKS → kết nối liên mạng</text>
+  <text x="70" y="95" class="title">CIDR is the "floor" of the VPC</text>
+  <text x="70" y="135" class="sub">One IP range runs through every layer: subnet, routing, EKS, interconnect</text>
 
   <!-- Foundation pill -->
   <rect x="120" y="180" width="960" height="90" class="pill"/>
   <text x="160" y="235" class="label">VPC CIDR: 10.0.0.0/16</text>
-  <text x="520" y="235" class="small">(quyết định khó đổi về sau)</text>
+  <text x="520" y="235" class="small">(hard to change later)</text>
 
   <!-- Layer boxes -->
   <rect x="120" y="320" width="300" height="120" class="box"/>
@@ -54,11 +54,11 @@
   <text x="810" y="405" class="small">EKS nodes/pods/services</text>
 
   <rect x="120" y="480" width="460" height="130" class="box"/>
-  <text x="150" y="535" class="label">Kết nối liên mạng</text>
+  <text x="150" y="535" class="label">Interconnect</text>
   <text x="150" y="570" class="small">Peering / VPN / TGW / On-prem</text>
 
   <rect x="620" y="480" width="460" height="130" class="box"/>
-  <text x="650" y="535" class="label">Mở rộng hệ sinh thái</text>
+  <text x="650" y="535" class="label">Ecosystem growth</text>
   <text x="650" y="570" class="small">Multi-account / multi-env / shared services</text>
 
   <!-- Arrows from foundation to layers -->
@@ -70,5 +70,5 @@
   <path d="M940 440 L900 480" class="arrow dash" marker-end="url(#arrowHead)"/>
 
   <!-- Footer note -->
-  <text x="70" y="650" class="small">Gợi ý: quản trị CIDR như “quyết định cấp dự án”, đừng hardcode rải rác.</text>
+  <text x="70" y="650" class="small">Tip: govern CIDR as a "project-level decision"; do not scatter hardcoded values.</text>
 </svg>
