@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" font-family="Menlo, 'JetBrains Mono', monospace">
+  <rect width="1120" height="560" fill="#0f1115"/>
+  <rect x="0.5" y="0.5" width="1119" height="559" fill="none" stroke="#262b36"/>
+  <text x="28" y="34" fill="#e6e6e6" font-size="17" font-weight="700">128,179 lines of Go in 816 files. This is where they live.</text>
+  <text x="28" y="54" fill="#6f7787" font-size="12">lines of non-test Go per package, the 14 largest of 37 under internal/ (102,085 more lines of tests sit beside them, 458 files)</text>
+  <line x1="64" y1="470" x2="1092" y2="470" stroke="#2b3240"/>
+  <rect x="75.7" y="108.0" width="49.9" height="362.0" rx="3" fill="#bb9af7"/>
+  <text x="100.7" y="92.0" fill="#a9b1d6" font-size="10" text-anchor="middle">26,582</text>
+  <text x="100.7" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">tui</text>
+  <rect x="149.2" y="254.5" width="49.9" height="215.5" rx="3" fill="#bb9af7"/>
+  <text x="174.1" y="238.5" fill="#a9b1d6" font-size="10" text-anchor="middle">15,825</text>
+  <text x="174.1" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">agent</text>
+  <rect x="222.6" y="291.9" width="49.9" height="178.1" rx="3" fill="#bb9af7"/>
+  <text x="247.6" y="275.9" fill="#a9b1d6" font-size="10" text-anchor="middle">13,080</text>
+  <text x="247.6" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">tool</text>
+  <rect x="296.0" y="344.8" width="49.9" height="125.2" rx="3" fill="#bb9af7"/>
+  <text x="321.0" y="328.8" fill="#a9b1d6" font-size="10" text-anchor="middle">9,195</text>
+  <text x="321.0" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">config</text>
+  <rect x="369.5" y="368.7" width="49.9" height="101.3" rx="3" fill="#bb9af7"/>
+  <text x="394.4" y="352.7" fill="#a9b1d6" font-size="10" text-anchor="middle">7,442</text>
+  <text x="394.4" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">ai</text>
+  <rect x="442.9" y="421.1" width="49.9" height="48.9" rx="3" fill="#7dcfff"/>
+  <text x="467.9" y="405.1" fill="#a9b1d6" font-size="10" text-anchor="middle">3,591</text>
+  <text x="467.9" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">session</text>
+  <rect x="516.3" y="428.8" width="49.9" height="41.2" rx="3" fill="#7dcfff"/>
+  <text x="541.3" y="412.8" fill="#a9b1d6" font-size="10" text-anchor="middle">3,023</text>
+  <text x="541.3" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">memory</text>
+  <rect x="589.7" y="440.3" width="49.9" height="29.7" rx="3" fill="#7dcfff"/>
+  <text x="614.7" y="424.3" fill="#a9b1d6" font-size="10" text-anchor="middle">2,178</text>
+  <text x="614.7" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">lsp</text>
+  <rect x="663.2" y="441.3" width="49.9" height="28.7" rx="3" fill="#7dcfff"/>
+  <text x="688.1" y="425.3" fill="#a9b1d6" font-size="10" text-anchor="middle">2,110</text>
+  <text x="688.1" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">serve</text>
+  <rect x="736.6" y="441.9" width="49.9" height="28.1" rx="3" fill="#7dcfff"/>
+  <text x="761.6" y="425.9" fill="#a9b1d6" font-size="10" text-anchor="middle">2,066</text>
+  <text x="761.6" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">dist</text>
+  <rect x="810.0" y="443.8" width="49.9" height="26.2" rx="3" fill="#7dcfff"/>
+  <text x="835.0" y="427.8" fill="#a9b1d6" font-size="10" text-anchor="middle">1,925</text>
+  <text x="835.0" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">gateway</text>
+  <rect x="883.5" y="444.3" width="49.9" height="25.7" rx="3" fill="#7dcfff"/>
+  <text x="908.4" y="428.3" fill="#a9b1d6" font-size="10" text-anchor="middle">1,886</text>
+  <text x="908.4" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">browser</text>
+  <rect x="956.9" y="444.8" width="49.9" height="25.2" rx="3" fill="#7dcfff"/>
+  <text x="981.9" y="428.8" fill="#a9b1d6" font-size="10" text-anchor="middle">1,848</text>
+  <text x="981.9" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">theme</text>
+  <rect x="1030.3" y="444.9" width="49.9" height="25.1" rx="3" fill="#7dcfff"/>
+  <text x="1055.3" y="428.9" fill="#a9b1d6" font-size="10" text-anchor="middle">1,842</text>
+  <text x="1055.3" y="488.0" fill="#6f7787" font-size="10" text-anchor="middle">dap</text>
+  <text x="28" y="516" fill="#6f7787" font-size="11">Purple: the five packages that are the product. Blue: the rest, nearly all of them optional seams &#8212;</text>
+  <text x="28" y="534" fill="#6f7787" font-size="11">a browser, a debugger, a gateway daemon, an MCP client, a Python kernel, a memory backend. One binary, seven direct dependencies.</text>
+</svg>
